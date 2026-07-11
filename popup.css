@@ -1,0 +1,380 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --bg-app: #08090C;
+  --bg-card: #111319;
+  --border-color: #1C1E26;
+  --text-primary: #F3F4F6;
+  --text-muted: #8E939E;
+  
+  --accent-active: #FF1E27; /* YouTube Brand Red */
+  --accent-hover: #FF4D52;
+  
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  width: 380px;
+  height: 440px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* App container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: none;
+  background-color: rgba(8, 9, 12, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 10;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(255, 30, 39, 0.25);
+}
+
+.app-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+}
+
+/* Active Status Badge & Pulse Dot */
+.status-badge {
+  display: flex;
+  align-items: center;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #10B981;
+  background-color: rgba(16, 185, 129, 0.08);
+  padding: 3px 8px;
+  border-radius: 20px;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.status-badge:hover {
+  background-color: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.status-badge.inactive {
+  color: #9CA3AF;
+  background-color: rgba(156, 163, 175, 0.08);
+  border-color: rgba(156, 163, 175, 0.15);
+}
+
+.status-badge.inactive:hover {
+  background-color: rgba(156, 163, 175, 0.15);
+  border-color: rgba(156, 163, 175, 0.3);
+}
+
+.status-badge.inactive .badge-pulse-dot {
+  background-color: #9CA3AF;
+  box-shadow: none;
+  animation: none;
+}
+
+/* Dim popup options when master toggle is off */
+.tabs-navigation.disabled-mode,
+#options-scroll-area.disabled-mode {
+  opacity: 0.35 !important;
+  pointer-events: none !important;
+}
+
+.badge-pulse-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #10B981;
+  border-radius: 50%;
+  margin-right: 6px;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: badge-pulse 2s infinite;
+}
+
+@keyframes badge-pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+
+
+/* Master Switch Section (Floating card) */
+.master-switch-section {
+  padding: 12px 18px;
+  margin: 0 20px 12px 20px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabs capsule layout styling */
+.tabs-navigation {
+  display: flex;
+  background-color: #12141C;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  margin: 0 20px 12px 20px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 6px 0;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+}
+
+.tab-btn.active {
+  background-color: var(--accent-active);
+  color: var(--text-primary);
+  box-shadow: 0 4px 10px rgba(255, 30, 39, 0.2);
+}
+
+/* Options Scroll Area */
+#options-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 0 16px 0;
+}
+
+#options-scroll-area::-webkit-scrollbar {
+  width: 4px;
+}
+
+#options-scroll-area::-webkit-scrollbar-track {
+  background: var(--bg-app);
+}
+
+#options-scroll-area::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+/* Tab Content Panes */
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+  animation: tabFadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* iOS-style Section Headers & Option Card Blocks */
+.section-title {
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  margin-left: 24px;
+}
+
+.options-section {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 6px 18px;
+  margin: 0 20px 14px 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Switch Row Layout */
+.switch-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(28, 30, 38, 0.3);
+  transition: opacity 0.2s ease;
+}
+
+.switch-row:last-child {
+  border-bottom: none;
+}
+
+.switch-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 270px; /* Increased to account for wider popup screen */
+}
+
+.switch-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.master-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.switch-description {
+  font-size: 10px;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+/* Toggle Switch Styling */
+.toggle-control {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.toggle-control input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.control-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #1E212A;
+  transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 34px;
+  border: 1px solid var(--border-color);
+}
+
+.control-slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--text-muted);
+  transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50%;
+}
+
+.toggle-control input:checked + .control-slider {
+  background-color: var(--accent-active);
+  border-color: var(--accent-active);
+}
+
+.toggle-control input:checked + .control-slider:before {
+  transform: translateX(16px);
+  background-color: var(--text-primary);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Sub-option Switch Styling */
+.sub-switch-row {
+  position: relative !important;
+  margin-left: 28px !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+
+.sub-switch-row::before {
+  content: "" !important;
+  position: absolute !important;
+  left: -14px !important;
+  top: -8px !important;
+  width: 8px !important;
+  height: 18px !important;
+  border-left: 1.5px solid rgba(255, 255, 255, 0.25) !important;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.25) !important;
+  border-bottom-left-radius: 3px !important;
+}
+
+.sub-label {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: var(--text-muted) !important;
+}
+
+/* Disabled Sub-option look */
+.sub-switch-row.disabled {
+  opacity: 0.4 !important;
+  pointer-events: none !important;
+}
+

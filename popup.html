@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Control</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <img src="icons/logo.png" class="header-logo" alt="logo">
+        <span class="app-title">youtube control</span>
+      </div>
+      <span class="status-badge" id="masterToggle" role="button" tabindex="0"><span class="badge-pulse-dot"></span><span class="status-text">active</span></span>
+    </header>
+
+
+
+    <!-- Tabs Navigation Capsule -->
+    <div class="tabs-navigation">
+      <button class="tab-btn active" data-tab="feeds">Feeds</button>
+      <button class="tab-btn" data-tab="watch">Watch</button>
+      <button class="tab-btn" data-tab="style">Style</button>
+    </div>
+
+    <!-- Options Group -->
+    <div id="options-scroll-area">
+      <!-- Tab Pane: Feeds -->
+      <div class="tab-pane active" id="tab-feeds">
+        <h4 class="section-title">Navigation & Feeds</h4>
+        <section class="options-section">
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label">Hide Home Feed</span>
+              <span class="switch-description">Remove the main video feed on home page</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="hideHomeFeed">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label">Hide Subscriptions Section</span>
+              <span class="switch-description">Hide the list of subscribed channels in the sidebar</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="hideSubscriptions">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label">Hide Explore Section</span>
+              <span class="switch-description">Hide Trending, Gaming, Music, and Films tabs</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="hideExplore">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label">Hide More from YouTube</span>
+              <span class="switch-description">Hide Premium, Music, and Kids links in the sidebar</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="hideMoreFromYoutube">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label">Hide Shorts & Playables</span>
+              <span class="switch-description">Remove Shorts tab, feed, and games</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="hideShorts">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+        </section>
+      </div>
+
+      <!-- Tab Pane: Watch Experience -->
+      <div class="tab-pane" id="tab-watch">
+        <h4 class="section-title">Watch Experience</h4>
+        <section class="options-section">
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label">Hide Recommended Videos</span>
+              <span class="switch-description">Remove the sidebar list on video pages</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="hideRecommended">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label">Hide Comments & Chat</span>
+              <span class="switch-description">Remove comments feed and live chat</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="hideComments">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label">Hide Buttons & Stats</span>
+              <span class="switch-description">Hide Subscribe button, Likes, and Views</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="hideButtonsStats">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label">Hide Top Header Bar</span>
+              <span class="switch-description">Hide search bar and header navigation</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="hideHeader">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label">Video Screenshot Button</span>
+              <span class="switch-description">Add a screenshot button to the player control bar</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="showScreenshotBtn">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label">Mini Fullscreen Button</span>
+              <span class="switch-description">Add a mini fullscreen button to the player control bar</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="showMiniFullscreenBtn">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label">Sticky Video Player</span>
+              <span class="switch-description">Keep video player fixed at the top of the page while scrolling</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="stickyPlayer">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label">Dock Comments to Sidebar</span>
+              <span class="switch-description">Move comments to the sidebar next to the video</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="dockCommentsSidebar">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+        </section>
+      </div>
+
+      <!-- Tab Pane: Visual Styling -->
+      <div class="tab-pane" id="tab-style">
+        <h4 class="section-title">Visual Styling</h4>
+        <section class="options-section">
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label">Black & White Mode</span>
+              <span class="switch-description">Make YouTube elements grayscale</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="grayscaleMode">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label">Blur Thumbnails</span>
+              <span class="switch-description">Soften thumbnail images until hovered</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="blurThumbnails">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row sub-switch-row" id="sub-row-unblur">
+            <div class="switch-info">
+              <span class="switch-label sub-label">Reveal on Hover</span>
+              <span class="switch-description">Temporarily unblur when mouse hovers over thumbnail</span>
+            </div>
+            <label class="toggle-control toggle-sub">
+              <input type="checkbox" id="unblurOnHover">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

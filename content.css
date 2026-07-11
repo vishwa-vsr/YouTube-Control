@@ -1,0 +1,463 @@
+/* ==========================================================================
+   YouTube Focus Flow - Content Stylesheet
+   ========================================================================== */
+
+/* 1. HIDE HOME FEED */
+.yt-hide-home-feed ytd-browse[page-subtype="home"] ytd-two-column-browse-results-renderer {
+  display: none !important;
+}
+
+
+
+/* 2b. HIDE SUBSCRIPTIONS SECTION */
+.yt-hide-subscriptions ytd-guide-section-renderer:has(a[href*="/feed/subscriptions"]),
+.yt-hide-subscriptions ytd-mini-guide-entry-renderer:has(a[href*="/feed/subscriptions"]) {
+  display: none !important;
+}
+
+/* 2c. HIDE EXPLORE SECTION */
+.yt-hide-explore ytd-guide-section-renderer:has(a[href*="/feed/trending"]),
+.yt-hide-explore ytd-guide-section-renderer:has(a[href*="/feed/guide_builder"]),
+.yt-hide-explore ytd-guide-section-renderer:has(a[href*="UC6bPxPxDez_F8D8M71nZ0XQ"]), /* Shopping */
+.yt-hide-explore ytd-guide-section-renderer:has(a[href*="UCqVDpXKLmKeBU_yyt_QkItQ"]), /* Music */
+.yt-hide-explore ytd-guide-section-renderer:has(a[href*="UCF0pVplsI8R5kcAqgG8ag5A"]), /* Films */
+.yt-hide-explore ytd-guide-section-renderer:has(a[href*="UClgRkhTL3_hImCAmdLfDE4g"]), /* Gaming */
+.yt-hide-explore ytd-mini-guide-entry-renderer:has(a[href*="/feed/trending"]),
+.yt-hide-explore ytd-mini-guide-entry-renderer:has(a[href*="UCqVDpXKLmKeBU_yyt_QkItQ"]),
+.yt-hide-explore ytd-mini-guide-entry-renderer:has(a[href*="UClgRkhTL3_hImCAmdLfDE4g"]) {
+  display: none !important;
+}
+
+/* 2d. HIDE MORE FROM YOUTUBE SECTION */
+.yt-hide-more-from-youtube ytd-guide-section-renderer:has(a[href*="/premium"]),
+.yt-hide-more-from-youtube ytd-guide-section-renderer:has(a[href*="music.youtube.com"]),
+.yt-hide-more-from-youtube ytd-guide-section-renderer:has(a[href*="kids.youtube.com"]) {
+  display: none !important;
+}
+
+/* 3. HIDE SHORTS & PLAYABLES */
+.yt-hide-shorts ytd-guide-entry-renderer:has(a[href*="/shorts"]),
+.yt-hide-shorts ytd-mini-guide-entry-renderer:has(a[href*="/shorts"]),
+.yt-hide-shorts ytd-guide-entry-renderer:has(a[href*="/playables"]),
+.yt-hide-shorts ytd-mini-guide-entry-renderer:has(a[href*="/playables"]),
+.yt-hide-shorts ytd-reel-shelf-renderer,
+.yt-hide-shorts grid-shelf-view-model,
+.yt-hide-shorts ytd-rich-shelf-renderer[is-shorts],
+.yt-hide-shorts ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+.yt-hide-shorts ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-playables]),
+.yt-hide-shorts #shorts-container,
+.yt-hide-shorts ytd-shelf-renderer:has(a[href*="/shorts"]),
+.yt-hide-shorts yt-tab-shape:has(a[href*="/shorts"]),
+.yt-hide-shorts tp-yt-paper-tab:has(a[href*="/shorts"]),
+.yt-hide-shorts[yt-on-shorts-tab] #primary,
+.yt-hide-shorts[yt-on-shorts-tab] ytd-browse #primary {
+  display: none !important;
+}
+
+
+
+
+
+
+/* 4. HIDE RECOMMENDED VIDEOS SIDEBAR */
+.yt-hide-recommended ytd-watch-flexy #columns #secondary ytd-watch-next-secondary-results-renderer {
+  display: none !important;
+}
+
+.yt-hide-recommended:not(.yt-sidebar-active) ytd-watch-flexy #columns #secondary {
+  display: none !important;
+}
+
+.yt-hide-recommended:not(.yt-sidebar-active) ytd-watch-flexy #columns #primary {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-right: 0 !important;
+}
+
+/* Center the video player when no engagement panel/chat/playlist is open in the sidebar */
+.yt-hide-recommended:not(.yt-sidebar-active) ytd-watch-flexy:not([theater]):not([fullscreen]) #player-container-outer {
+  padding-right: var(--ytd-watch-flexy-left-margin, 24px) !important;
+  padding-left: var(--ytd-watch-flexy-left-margin, 24px) !important;
+}
+
+/* 5. HIDE COMMENTS & CHAT */
+.yt-hide-comments #comments,
+.yt-hide-comments ytd-comments,
+.yt-hide-comments #chat,
+.yt-hide-comments ytd-live-chat-frame {
+  display: none !important;
+}
+
+/* 6. HIDE BUTTONS & STATS */
+/* Hide subscribe button */
+.yt-hide-buttons-stats #subscribe-button,
+.yt-hide-buttons-stats ytd-subscribe-button-renderer {
+  display: none !important;
+}
+
+/* Hide likes, share, download action buttons under video */
+.yt-hide-buttons-stats ytd-menu-renderer.ytd-watch-metadata {
+  display: none !important;
+}
+
+/* Hide views and date in the description snippet */
+.yt-hide-buttons-stats ytd-watch-info-text,
+.yt-hide-buttons-stats #info-container,
+.yt-hide-buttons-stats #description-inner #info {
+  display: none !important;
+}
+
+/* 7. HIDE TOP HEADER BAR */
+.yt-hide-header #masthead-container,
+.yt-hide-header ytd-masthead {
+  display: none !important;
+}
+
+.yt-hide-header ytd-app {
+  --ytd-masthead-height: 0px !important;
+}
+
+.yt-hide-header #page-manager {
+  padding-top: 0 !important;
+}
+
+/* 8. BLACK & WHITE MODE (Entire Page) */
+html.yt-grayscale-mode {
+  filter: grayscale(100%) !important;
+}
+
+
+/* 9. BLUR THUMBNAILS (Unblurs on Hover) */
+.yt-blur-thumbnails img[src*="ytimg.com"],
+.yt-blur-thumbnails img[src*="i.ytimg.com"] {
+  filter: blur(8px) !important;
+  transition: filter 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  will-change: filter !important;
+}
+
+html:not(.yt-no-hover-unblur).yt-blur-thumbnails a:hover img[src*="ytimg.com"],
+html:not(.yt-no-hover-unblur).yt-blur-thumbnails a:hover img[src*="i.ytimg.com"],
+html:not(.yt-no-hover-unblur).yt-blur-thumbnails ytd-thumbnail:hover img[src*="ytimg.com"],
+html:not(.yt-no-hover-unblur).yt-blur-thumbnails ytd-thumbnail:hover img[src*="i.ytimg.com"] {
+  filter: blur(0px) !important;
+}
+
+
+.ytp-screenshot-button {
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: middle !important;
+}
+
+/* Show it only when the setting is enabled */
+.yt-show-screenshot-btn .ytp-screenshot-button {
+  display: inline-flex !important;
+}
+
+/* Shutter flash effect overlay */
+.yt-screenshot-flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 1000;
+  transition: opacity 0.15s ease-out;
+}
+
+/* 12. MINI FULLSCREEN STYLES */
+/* Hide mini fullscreen button by default */
+.ytp-mini-fullscreen-button {
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: middle !important;
+}
+
+/* Show it only when the setting is enabled */
+.yt-show-mini-fullscreen-btn .ytp-mini-fullscreen-button {
+  display: inline-flex !important;
+}
+
+/* Fixed Web Fullscreen layout rules */
+.yt-web-fullscreen-active #player {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  background-color: #000000 !important;
+}
+
+/* Stretch all nested player elements to fill the fixed #player container */
+.yt-web-fullscreen-active #player-container-outer,
+.yt-web-fullscreen-active #player-container-inner,
+.yt-web-fullscreen-active #player-container,
+.yt-web-fullscreen-active #movie_player,
+.yt-web-fullscreen-active .html5-video-container,
+.yt-web-fullscreen-active .html5-main-video {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  top: 0 !important;
+  left: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Hide document scrollbars and masthead header to prevent overflow issues */
+.yt-web-fullscreen-active {
+  overflow: hidden !important;
+}
+
+.yt-web-fullscreen-active #masthead-container,
+.yt-web-fullscreen-active ytd-masthead {
+  display: none !important;
+}
+
+/* 13. TWO SCROLL WHEEL SPLIT PANE LAYOUT */
+/* Lock the main browser scroll and fit container manager to viewport height (only when actively viewing a video, and NOT in native fullscreen) */
+.yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen])),
+.yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen])) body {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+.yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen])) #page-manager {
+  height: calc(100vh - 56px) !important;
+  max-height: calc(100vh - 56px) !important;
+  overflow: hidden !important;
+}
+
+.yt-hide-header.yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen])) #page-manager {
+  height: 100vh !important;
+  max-height: 100vh !important;
+}
+
+/* Lock columns container to viewport height and disable columns-level scroll */
+.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]) #columns {
+  height: calc(100vh - 56px) !important;
+  max-height: calc(100vh - 56px) !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+.yt-hide-header.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]) #columns {
+  height: 100vh !important;
+  max-height: 100vh !important;
+}
+
+/* Lock left column and make it scrollable as a single unit (video player + comments scroll together) */
+.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]) #columns #primary {
+  height: 100% !important;
+  max-height: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  box-sizing: border-box !important;
+  padding-right: 8px !important;
+}
+
+/* Make the recommended videos sidebar scroll independently */
+.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]) #columns #secondary {
+  height: 100% !important;
+  max-height: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  box-sizing: border-box !important;
+  padding-right: 8px !important;
+}
+
+/* Premium clean scrollbars for both independent panes (disabled in native fullscreen) */
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #secondary::-webkit-scrollbar,
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #primary::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #secondary::-webkit-scrollbar-track,
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #primary::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #secondary::-webkit-scrollbar-thumb,
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #primary::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-radius: 3px !important;
+}
+
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #secondary::-webkit-scrollbar-thumb:hover,
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #primary::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* 14. BORDER AND OUTLINE CLEANUPS (disabled in native fullscreen) */
+/* Remove bottom border of the top header bar */
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #masthead-container {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove any outlines, borders, or shadows around the player containers */
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #player,
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #player-container-outer,
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #player-container-inner,
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #player-container,
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #movie_player {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove any column divider lines */
+.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]) #columns #primary {
+  border-right: none !important;
+}
+
+.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]) #columns #secondary {
+  border-left: none !important;
+}
+
+/* Clear borders from scrollbar tracks and thumbs */
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #secondary::-webkit-scrollbar-track,
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #primary::-webkit-scrollbar-track,
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #secondary::-webkit-scrollbar-thumb,
+.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #primary::-webkit-scrollbar-thumb {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ==========================================================================
+   15. SIDEBAR COMMENTS DOCKING FEATURE
+   ========================================================================== */
+
+/* Toggle Docking Button Style */
+/* Toggle Docking Button Style */
+ytd-comments-header-renderer {
+  position: relative !important;
+}
+
+.yt-dock-comments-btn {
+  display: none !important; /* Hidden by default */
+  position: absolute !important;
+  right: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: transparent !important;
+  border: none !important;
+  color: #ffffff !important; /* Force solid white color */
+  fill: #ffffff !important;  /* Force solid white fill */
+  cursor: pointer !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 6px !important;
+  border-radius: 50% !important;
+  transition: background 0.2s, color 0.2s !important;
+  z-index: 10 !important;
+}
+
+/* Only display button when feature is enabled in popup */
+.yt-enable-comments-dock .yt-dock-comments-btn {
+  display: inline-flex !important;
+}
+
+/* Add padding to comments header to prevent overlap with native elements (like Sort By) only when button is active */
+.yt-enable-comments-dock ytd-comments-header-renderer {
+  padding-right: 48px !important;
+}
+
+.yt-dock-comments-btn:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+}
+
+.yt-dock-comments-btn.active {
+  color: var(--accent-active, #FF1E27) !important;
+  background: rgba(255, 30, 39, 0.15) !important;
+}
+
+.yt-comments-docked .yt-dock-comments-btn.active {
+  color: #ffffff !important;
+  background: transparent !important;
+}
+
+.yt-comments-docked .yt-dock-comments-btn.active:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+.yt-dock-comments-btn svg {
+  display: block;
+}
+
+/* Layout modifications when comments are docked to the sidebar (Option B) */
+.yt-comments-docked #secondary-inner #comments {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 600px !important;
+  max-height: calc(100vh - 120px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background-color: #0f0f0f !important;
+  border-radius: 12px !important;
+  padding: 0 !important;
+  margin: 0 0 16px 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+/* Comments header inside the docked container */
+.yt-comments-docked #secondary-inner #comments ytd-comments-header-renderer {
+  flex-shrink: 0 !important;
+  padding: 8px 16px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background-color: #0f0f0f !important;
+  margin: 0 !important;
+  border-radius: 12px 12px 0 0 !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  min-height: 52px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Comments sections scroll wrapper inside the docked container */
+.yt-comments-docked #secondary-inner #comments #sections {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 12px 16px !important;
+  box-sizing: border-box !important;
+  scrollbar-width: thin !important;
+}
+
+/* Scrollbar customizations for comments sections in the sidebar */
+.yt-comments-docked #secondary-inner #comments #sections::-webkit-scrollbar {
+  width: 6px !important;
+}
+.yt-comments-docked #secondary-inner #comments #sections::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+.yt-comments-docked #secondary-inner #comments #sections::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-radius: 3px !important;
+}
+.yt-comments-docked #secondary-inner #comments #sections::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Clean up input box and contents margins when docked */
+.yt-comments-docked #secondary-inner #comments ytd-comment-simplebox-renderer {
+  margin-bottom: 16px !important;
+}
+
+.yt-comments-docked #secondary-inner #comments ytd-comment-simplebox-renderer #buttons {
+  flex-wrap: wrap !important;
+  justify-content: flex-end !important;
+  gap: 8px !important;
+}
+
+
