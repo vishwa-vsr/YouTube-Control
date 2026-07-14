@@ -18,3 +18,10 @@ Thumbs.db
 # Ignore assets and AI settings
 /assets/
 /skills/
+
+# Ignore roadmap file
+/roadmap.md
+
+# Ignore reference files
+/unnamed.png
+/unnamed (1).png

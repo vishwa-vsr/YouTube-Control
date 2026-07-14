@@ -15,7 +15,9 @@ const configKeys = [
   'showScreenshotBtn',
   'showMiniFullscreenBtn',
   'stickyPlayer',
-  'dockCommentsSidebar'
+  'dockCommentsSidebar',
+  'hideAmbientMode',
+  'blockAutoplay'
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -123,9 +125,18 @@ document.addEventListener('DOMContentLoaded', () => {
   Object.keys(checkboxes).forEach(key => {
     checkboxes[key].addEventListener('change', (e) => {
       const checked = e.target.checked;
+      const updateData = { [key]: checked };
+      
+      // Auto-enable Ambient Mode Blocker when Sticky Player is turned on
+      if (key === 'stickyPlayer' && checked) {
+        updateData.hideAmbientMode = true;
+        if (checkboxes.hideAmbientMode) {
+          checkboxes.hideAmbientMode.checked = true;
+        }
+      }
       
       // Save to storage
-      chrome.storage.local.set({ [key]: checked }, () => {
+      chrome.storage.local.set(updateData, () => {
         // Send updated settings to the active YouTube tab (including master toggle state)
         chrome.storage.local.get('extensionEnabled', (res) => {
           const extensionEnabled = res.extensionEnabled !== false;
