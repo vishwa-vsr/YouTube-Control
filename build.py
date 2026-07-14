@@ -19,8 +19,8 @@ import json
 import subprocess
 
 # --- Config ---
-SRC_DIR = os.path.dirname(os.path.abspath(__file__))
-ROOT_DIR = os.path.dirname(SRC_DIR)
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+SRC_DIR = os.path.join(ROOT_DIR, "src")
 
 # Files/folders to skip copying inside the src directory
 SKIP = {
@@ -508,7 +508,9 @@ if __name__ == "__main__":
             import zipfile
             def zip_target(name):
                 target_dir = os.path.join(ROOT_DIR, name)
-                zip_file_path = os.path.join(ROOT_DIR, f"{name}-v{version}.zip")
+                releases_dir = os.path.join(ROOT_DIR, "releases")
+                os.makedirs(releases_dir, exist_ok=True)
+                zip_file_path = os.path.join(releases_dir, f"{name}-v{version}.zip")
                 if os.path.exists(zip_file_path):
                     os.remove(zip_file_path)
                 with zipfile.ZipFile(zip_file_path, 'w', zipfile.ZIP_DEFLATED) as zipf:

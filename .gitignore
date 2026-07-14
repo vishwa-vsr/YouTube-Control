@@ -1,7 +1,20 @@
-# Python cache
+# Ignore generated builds
+/dist/
+/firefox/
+/backup/
+
+# Ignore zip releases
+/*.zip
+/releases/
+
+# Ignore Python cache
 __pycache__/
 *.pyc
 
-# System files
+# Ignore operating system junk
 .DS_Store
 Thumbs.db
+
+# Ignore assets and AI settings
+/assets/
+/skills/

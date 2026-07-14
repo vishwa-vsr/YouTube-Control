@@ -28,7 +28,7 @@ A beautiful, premium, and distraction-free browser extension that helps you recl
 ```
 youtube control/
 ├── build.py          # Script to minify code and create Firefox/Chrome packages
-├── source/           # Source code directory (where you make edits)
+├── src/              # Source code directory (where you make edits)
 │   ├── manifest.json # Extension configuration blueprint
 │   ├── popup.html    # Settings panel interface
 │   ├── popup.css     # Settings panel visual styling (Calm Obsidian dark theme)
