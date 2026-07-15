@@ -359,7 +359,8 @@ function hideSidebarElements() {
   sections.forEach(section => {
     const hasChannelLinks = !!section.querySelector('a[href*="/channel/"], a[href*="/@"], a[href*="guide_builder"]');
     const isYouSection = !!section.querySelector('a[href*="/feed/history"], a[href*="/feed/playlists"], a[href*="/feed/library"]');
-    if (hasChannelLinks && !isYouSection) {
+    const isExploreSection = !!section.querySelector('a[href*="UC6bPxPxDez_F8D8M71nZ0XQ"], a[href*="UCqVDpXKLmKeBU_yyt_QkItQ"], a[href*="UCF0pVplsI8R5kcAqgG8ag5A"], a[href*="UClgRkhTL3_hImCAmdLfDE4g"], a[href*="/feed/trending"], a[href*="/trending"]');
+    if (hasChannelLinks && !isYouSection && !isExploreSection) {
       if (isEnabled && hideSubs) {
         section.style.setProperty('display', 'none', 'important');
       } else {
