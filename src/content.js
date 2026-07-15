@@ -491,6 +491,20 @@ observer.observe(document.documentElement, { childList: true, subtree: true });
 // Load settings into cache once on startup
 try {
   chrome.storage.local.get(['extensionEnabled', 'unblurOnHover', ...Object.keys(classMap)], (settings) => {
+    // Set default for certain keys to true if they are undefined
+    const defaultTrueKeys = [
+      'unblurOnHover',
+      'dockCommentsSidebar',
+      'stickyPlayer',
+      'showMiniFullscreenBtn',
+      'hideShorts',
+      'hideAmbientMode'
+    ];
+    defaultTrueKeys.forEach(key => {
+      if (settings[key] === undefined) {
+        settings[key] = true;
+      }
+    });
     cachedSettings = settings;
     applySettings(cachedSettings);
   });

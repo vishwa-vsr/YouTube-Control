@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the **YouTube Control** extension will be documented in this file.
+All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
 ---
 

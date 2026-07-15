@@ -269,7 +269,7 @@ def process_file(src_path, dst_path):
 def build_target(target_name, is_firefox=False):
     target_dir = os.path.join(ROOT_DIR, target_name)
     print("=" * 60)
-    print(f"  YouTube Control Build: {target_name}")
+    print(f"  YouTube Control: Shorts Blocker & Detox Build: {target_name}")
     print("=" * 60)
     print(f"\n  Source:  {SRC_DIR}")
     print(f"  Output:  {target_dir}\n")
@@ -349,7 +349,7 @@ def build_target(target_name, is_firefox=False):
 
     readme_path = os.path.join(target_dir, "RESTORE_INSTRUCTIONS.txt")
     if is_firefox:
-        instructions = f"""YouTube Control Firefox Build - Version {version}
+        instructions = f"""YouTube Control: Shorts Blocker & Detox Firefox Build - Version {version}
 ======================================================
 
 How to load this extension temporarily in Mozilla Firefox:
@@ -359,7 +359,7 @@ How to load this extension temporarily in Mozilla Firefox:
 4. Select the 'manifest.json' file inside this folder ('{target_name}').
 """
     else:
-        instructions = f"""YouTube Control Chrome Build - Version {version}
+        instructions = f"""YouTube Control: Shorts Blocker & Detox Chrome Build - Version {version}
 ====================================================
 
 How to load this extension in Google Chrome / Chromium browsers:
@@ -444,7 +444,7 @@ def check_version_and_backup():
             # Create a simple instruction file on how to restore
             readme_path = os.path.join(backup_folder, "RESTORE_INSTRUCTIONS.txt")
             with open(readme_path, "w", encoding="utf-8") as rf:
-                rf.write(f"YouTube Control Backup - Version {current_version}\n")
+                rf.write(f"YouTube Control: Shorts Blocker & Detox Backup - Version {current_version}\n")
                 rf.write("=" * 40 + "\n\n")
                 rf.write("How to restore this version:\n")
                 rf.write("1. Delete or rename the active 'source' directory.\n")

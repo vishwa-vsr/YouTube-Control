@@ -73,10 +73,20 @@ document.addEventListener('DOMContentLoaded', () => {
     
     updateMasterToggleUI(extensionEnabled);
 
-    // Set default for unblurOnHover to true if it is undefined
-    if (settings.unblurOnHover === undefined) {
-      settings.unblurOnHover = true;
-    }
+    // Set default for certain keys to true if they are undefined
+    const defaultTrueKeys = [
+      'unblurOnHover',
+      'dockCommentsSidebar',
+      'stickyPlayer',
+      'showMiniFullscreenBtn',
+      'hideShorts',
+      'hideAmbientMode'
+    ];
+    defaultTrueKeys.forEach(key => {
+      if (settings[key] === undefined) {
+        settings[key] = true;
+      }
+    });
     
     configKeys.forEach(key => {
       const val = settings[key] !== undefined ? settings[key] : false;

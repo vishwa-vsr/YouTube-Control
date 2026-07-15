@@ -1,4 +1,4 @@
-# <img src="assets/logo_transparent.png" width="38" height="38" valign="middle"> YouTube Control
+# <img src="assets/logo_transparent.png" width="38" height="38" valign="middle"> YouTube Control: Shorts Blocker & Detox
 
 A beautiful, premium, and distraction-free browser extension that helps you reclaim your focus on YouTube. Tailor your learning environment by toggling visual elements off or blurring bait thumbnails.
 
