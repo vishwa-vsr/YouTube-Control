@@ -413,8 +413,9 @@ function hideSidebarElements() {
   // 3. Hide Explore Elements
   const hideExplore = cachedSettings.hideExplore === true;
   sections.forEach(section => {
-    const hasExplore = !!section.querySelector('a[href*="/feed/trending"], a[href*="/feed/guide_builder"], a[href*="/gaming"], a[href*="/trending"]');
-    if (hasExplore && !section.querySelector('a[href*="/channel/"], a[href*="/@"]')) {
+    // Target Explore by static YouTube hub channel IDs (Shopping, Music, Films, Gaming, etc.) or feed paths
+    const hasExplore = !!section.querySelector('a[href*="UC6bPxPxDez_F8D8M71nZ0XQ"], a[href*="UCqVDpXKLmKeBU_yyt_QkItQ"], a[href*="UCF0pVplsI8R5kcAqgG8ag5A"], a[href*="UClgRkhTL3_hImCAmdLfDE4g"], a[href*="/feed/trending"], a[href*="/trending"]');
+    if (hasExplore) {
       if (isEnabled && hideExplore) {
         section.style.setProperty('display', 'none', 'important');
       } else {
