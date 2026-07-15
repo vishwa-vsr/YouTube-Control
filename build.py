@@ -7,8 +7,9 @@ Copies the extension to a distribution folder with:
   - Everything else copied as-is (CSS, manifest, etc.)
 
 Usage:  python build.py
-Output: ./dist/     (Chrome/Chromium)
-        ./firefox/  (Firefox)
+Output: ./dist/chrome/   (Chrome)
+        ./dist/firefox/  (Firefox)
+        ./dist/edge/     (Edge)
 """
 
 import os
@@ -475,7 +476,7 @@ if __name__ == "__main__":
         should_build = True
     else:
         try:
-            ans = input("Would you like to compile/build the Chrome (dist) and Firefox folders now? (y/n) [n]: ").strip().lower()
+            ans = input("Would you like to compile/build the Chrome, Firefox, and Edge extension folders inside dist/ now? (y/n) [n]: ").strip().lower()
             if ans in ("y", "yes"):
                 should_build = True
         except (KeyboardInterrupt, EOFError):
@@ -483,12 +484,13 @@ if __name__ == "__main__":
             sys.exit(0)
             
     if should_build:
-        build_target("dist", is_firefox=False)
-        build_target("firefox", is_firefox=True)
+        build_target(os.path.join("dist", "chrome"), is_firefox=False)
+        build_target(os.path.join("dist", "firefox"), is_firefox=True)
+        build_target(os.path.join("dist", "edge"), is_firefox=False)
         
         # Remove any existing zip files in the root directory to keep workspace clean
         for item in os.listdir(ROOT_DIR):
-            if item.endswith(".zip") and (item.startswith("dist-v") or item.startswith("firefox-v")):
+            if item.endswith(".zip") and (item.startswith("dist-v") or item.startswith("firefox-v") or item.startswith("chrome-v") or item.startswith("edge-v")):
                 try:
                     os.remove(os.path.join(ROOT_DIR, item))
                     print(f"  [Cleanup] Removed old archive: {item}")
@@ -510,7 +512,8 @@ if __name__ == "__main__":
                 target_dir = os.path.join(ROOT_DIR, name)
                 releases_dir = os.path.join(ROOT_DIR, "releases")
                 os.makedirs(releases_dir, exist_ok=True)
-                zip_file_path = os.path.join(releases_dir, f"{name}-v{version}.zip")
+                base_name = os.path.basename(name)
+                zip_file_path = os.path.join(releases_dir, f"{base_name}-v{version}.zip")
                 if os.path.exists(zip_file_path):
                     os.remove(zip_file_path)
                 with zipfile.ZipFile(zip_file_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
@@ -527,8 +530,9 @@ if __name__ == "__main__":
             print("=" * 60)
             print("  Packaging Zip Archives for Store Uploads")
             print("=" * 60)
-            zip_target("dist")
-            zip_target("firefox")
+            zip_target(os.path.join("dist", "chrome"))
+            zip_target(os.path.join("dist", "firefox"))
+            zip_target(os.path.join("dist", "edge"))
             print("=" * 60 + "\n")
         else:
             print("  [Build] Skipping zip packaging (run with '--zip' flag if you want to generate store upload zip packages).")

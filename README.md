@@ -33,7 +33,7 @@
 ```text
 youtube control/
 ├── CHANGELOG.md      # History of version updates
-├── build.py          # Script to minify code and create Firefox/Chrome packages
+├── build.py          # Script to package extensions for all browsers
 ├── src/              # Source code directory (where you make edits)
 │   ├── manifest.json # Extension configuration blueprint
 │   ├── popup.html    # Settings panel interface
@@ -41,8 +41,10 @@ youtube control/
 │   ├── popup.js      # Settings panel controller logic
 │   ├── content.js    # Script injecting class tags into YouTube
 │   └── content.css   # Hiding styles injected into YouTube
-├── dist/             # Minified, ready-to-load Chrome/Edge build (Generated)
-└── firefox/          # Minified, ready-to-load Firefox build (Generated)
+└── dist/             # Generated browser-ready packages (Ignored in Git)
+    ├── chrome/       # Ready-to-load Chrome build
+    ├── firefox/      # Ready-to-load Firefox build
+    └── edge/         # Ready-to-load Edge build
 ```
 
 ---
@@ -60,17 +62,24 @@ python build.py -y
 ### 2. Loading the Extension
 
 > [!TIP]
-> **Loading in Google Chrome / Chromium (Edge, Brave, Opera):**
+> **Loading in Google Chrome (or Chromium-based browsers like Brave, Opera):**
 > 1. Open `chrome://extensions/` in your browser.
 > 2. Turn on the **Developer mode** toggle in the top-right corner.
 > 3. Click the **Load unpacked** button in the top-left corner.
-> 4. Select the **`dist`** folder inside this directory.
+> 4. Select the **`dist/chrome`** folder.
+
+> [!IMPORTANT]
+> **Loading in Microsoft Edge:**
+> 1. Open `edge://extensions/` in your browser.
+> 2. Turn on the **Developer mode** toggle in the bottom-left corner.
+> 3. Click the **Load unpacked** button in the top-right section.
+> 4. Select the **`dist/edge`** folder.
 
 > [!NOTE]
 > **Loading in Mozilla Firefox:**
 > 1. Open `about:debugging#/runtime/this-firefox` in your browser.
 > 2. Click the **Load Temporary Add-on...** button.
-> 3. Select the `manifest.json` file inside the **`firefox`** folder inside this directory.
+> 3. Select the `manifest.json` file inside the **`dist/firefox`** folder.
 
 ---
 
