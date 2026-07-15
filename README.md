@@ -18,11 +18,11 @@
 
 | Category | Feature | Description |
 | :--- | :--- | :--- |
-| 📊 **Focus Tracking** | **Calm Meter** | A visual progress ring showing how focus-friendly your configuration is. |
 | 👁️ **Visual Detox** | **Blur Thumbnails** | Blurs thumbnail images until hovered to prevent clickbait trap. |
 | 🎨 **Styling** | **Black & White Mode** | Makes the entire YouTube interface grayscale to reduce visual stimulation. |
 | ⚙️ **Custom Hiding** | **Clutter Control** | Hide comments, recommended sidebar, home feed, search, and more. |
 | 📐 **Layouts** | **Sticky Player** | Locked scrolling with independent panels for comments and player. |
+| 💬 **Comments** | **Dock Comments** | Moves comments to a clean sidebar layout next to the video for distraction-free reading. |
 | 📺 **Modes** | **Mini Fullscreen** | Fills the viewport while keeping search, tabs, and bookmarks active. |
 | 📸 **Utilities** | **Video Screenshot** | Capture clean video frames instantly as high-quality PNGs with one click. |
 
@@ -38,7 +38,7 @@ youtube control/
 │   ├── manifest.json # Extension configuration blueprint
 │   ├── popup.html    # Settings panel interface
 │   ├── popup.css     # Settings panel visual styling (Calm Obsidian dark theme)
-│   ├── popup.js      # Settings panel controller logic & Calm Meter animation
+│   ├── popup.js      # Settings panel controller logic
 │   ├── content.js    # Script injecting class tags into YouTube
 │   └── content.css   # Hiding styles injected into YouTube
 ├── dist/             # Minified, ready-to-load Chrome/Edge build (Generated)
