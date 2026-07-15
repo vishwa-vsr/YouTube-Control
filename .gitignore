@@ -15,13 +15,7 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Ignore assets and AI settings
-/assets/
+# Ignore assets and AI settings but keep README assets
+/assets/webstore/
+/assets/promotional-posters/
 /skills/
-
-# Ignore roadmap file
-/roadmap.md
-
-# Ignore reference files
-/unnamed.png
-/unnamed (1).png

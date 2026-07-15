@@ -1,4 +1,4 @@
-# <img src="assets/logo_transparent.png" width="38" height="38" valign="middle"> YouTube Control: Shorts Blocker & Detox
+# <img src="assets/logo.png" width="38" height="38" valign="middle"> YouTube Control: Shorts Blocker & Detox
 
 A beautiful, premium, and distraction-free browser extension that helps you reclaim your focus on YouTube. Tailor your learning environment by toggling visual elements off or blurring bait thumbnails.
 
@@ -27,6 +27,7 @@ A beautiful, premium, and distraction-free browser extension that helps you recl
 
 ```
 youtube control/
+├── CHANGELOG.md      # History of version updates
 ├── build.py          # Script to minify code and create Firefox/Chrome packages
 ├── src/              # Source code directory (where you make edits)
 │   ├── manifest.json # Extension configuration blueprint
@@ -67,10 +68,10 @@ python build.py -y
 ## Previews & Screenshots
 
 ### Settings Menu (Popup)
-![Settings Menu](assets/store_screenshot_popup.png)
+![Settings Menu](assets/Comp%201%20.jpg)
 
 ### Split Pane Independent Scrolling
-![Split Scroll Pane Layout](assets/store_screenshot_split.png)
+![Split Scroll Pane Layout](assets/Comp%203%20.jpg)
 
 ### Mini Fullscreen Layout
-![Mini Fullscreen](assets/store_screenshot_mini.png)
+![Mini Fullscreen](assets/Comp%202%20.jpg)
