@@ -157,7 +157,7 @@ function injectSidebarCommentsButton() {
   const btn = document.createElement('button');
   btn.className = 'yt-dock-comments-btn';
   btn.title = 'Move comments to sidebar';
-  btn.innerHTML = getCommentsBtnIcon(false);
+  setCommentsBtnIcon(btn, false);
   
   btn.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -167,10 +167,22 @@ function injectSidebarCommentsButton() {
   header.appendChild(btn);
 }
 
-function getCommentsBtnIcon(isActive) {
-  return isActive 
-    ? `<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>`
-    : `<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-8-2h6v-2h-6v2zm0-4h6v-2h-6v2zm0-4h6V7h-6v2zM7 7h2v10H7V7z"/></svg>`;
+function setCommentsBtnIcon(button, isActive) {
+  button.textContent = '';
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', '0 0 24 24');
+  svg.setAttribute('width', '18');
+  svg.setAttribute('height', '18');
+  svg.setAttribute('fill', 'currentColor');
+  
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  if (isActive) {
+    path.setAttribute('d', 'M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z');
+  } else {
+    path.setAttribute('d', 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-8-2h6v-2h-6v2zm0-4h6v-2h-6v2zm0-4h6V7h-6v2zM7 7h2v10H7V7z');
+  }
+  svg.appendChild(path);
+  button.appendChild(svg);
 }
 
 function toggleSidebarComments(isAuto = false) {
@@ -187,7 +199,7 @@ function toggleSidebarComments(isAuto = false) {
     document.querySelectorAll('.yt-dock-comments-btn').forEach(b => {
       b.title = 'Restore comments below player';
       b.classList.add('active');
-      b.innerHTML = getCommentsBtnIcon(true);
+      setCommentsBtnIcon(b, true);
     });
   } else {
     const aboveFold = document.getElementById('above-the-fold') || document.querySelector('ytd-watch-metadata');
@@ -203,7 +215,7 @@ function toggleSidebarComments(isAuto = false) {
     document.querySelectorAll('.yt-dock-comments-btn').forEach(b => {
       b.title = 'Move comments to sidebar';
       b.classList.remove('active');
-      b.innerHTML = getCommentsBtnIcon(false);
+      setCommentsBtnIcon(b, false);
     });
   }
   dispatchResize();
