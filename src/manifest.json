@@ -4,8 +4,7 @@
   "version": "1.0.0",
   "description": "Create a distraction-free, beautiful environment on YouTube.",
   "permissions": [
-    "storage",
-    "activeTab"
+    "storage"
   ],
   "icons": {
     "16": "icons/icon16.png",

@@ -14,9 +14,10 @@ We do not collect, store, track, or share any personal data, browsing history, o
 ---
 
 ### 2. Browser Permissions Explained
-The extension requests two permissions to function. Here is exactly why they are needed:
+The extension requests only one browser permission to function:
 * **`storage`**: Used solely to save your setting preferences (e.g., whether you turned on "Hide Shorts" or "Blur Thumbnails"). This data is saved locally inside your browser's private storage.
-* **`activeTab`**: Used to apply the visual styling changes (like hiding feeds or docking comments) when you actively visit a YouTube page. We do not access or read your tabs on any other website.
+
+The extension does not request access to read your web activity, history, or personal tabs.
 
 ---
 
