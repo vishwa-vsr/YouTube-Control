@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const masterToggle = document.getElementById('masterToggle');
   const tabsNav = document.querySelector('.tabs-navigation');
   const optionsScroll = document.getElementById('options-scroll-area');
-  const statusText = masterToggle ? masterToggle.querySelector('.status-text') : null;
 
   function updateSubOptionState() {
     if (blurThumbnailsCheckbox.checked) {
@@ -53,14 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateMasterToggleUI(enabled) {
     if (!masterToggle) return;
+    masterToggle.checked = enabled;
     if (enabled) {
-      masterToggle.classList.remove('inactive');
-      if (statusText) statusText.textContent = 'active';
       if (tabsNav) tabsNav.classList.remove('disabled-mode');
       if (optionsScroll) optionsScroll.classList.remove('disabled-mode');
     } else {
-      masterToggle.classList.add('inactive');
-      if (statusText) statusText.textContent = 'inactive';
       if (tabsNav) tabsNav.classList.add('disabled-mode');
       if (optionsScroll) optionsScroll.classList.add('disabled-mode');
     }
@@ -111,23 +107,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Master Toggle click listener
+  // Master Toggle change listener
   if (masterToggle) {
-    masterToggle.addEventListener('click', () => {
-      chrome.storage.local.get('extensionEnabled', (res) => {
-        const currentlyEnabled = res.extensionEnabled !== false;
-        const newEnabled = !currentlyEnabled;
+    masterToggle.addEventListener('change', () => {
+      const newEnabled = masterToggle.checked;
+      chrome.storage.local.set({ extensionEnabled: newEnabled }, () => {
+        updateMasterToggleUI(newEnabled);
         
-        chrome.storage.local.set({ extensionEnabled: newEnabled }, () => {
-          updateMasterToggleUI(newEnabled);
-          
-          // Send all settings including master state to the tab
-          const updatedSettings = { extensionEnabled: newEnabled };
-          Object.keys(checkboxes).forEach(k => {
-            updatedSettings[k] = checkboxes[k].checked;
-          });
-          sendSettingsToActiveTab(updatedSettings);
+        // Send all settings including master state to the tab
+        const updatedSettings = { extensionEnabled: newEnabled };
+        Object.keys(checkboxes).forEach(k => {
+          updatedSettings[k] = checkboxes[k].checked;
         });
+        sendSettingsToActiveTab(updatedSettings);
       });
     });
   }

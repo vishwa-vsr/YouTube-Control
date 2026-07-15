@@ -73,43 +73,55 @@ body {
 }
 
 /* Active Status Badge & Pulse Dot */
-.status-badge {
-  display: flex;
-  align-items: center;
-  font-size: 9px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #10B981;
-  background-color: rgba(16, 185, 129, 0.08);
-  padding: 3px 8px;
-  border-radius: 20px;
-  border: 1px solid rgba(16, 185, 129, 0.15);
+/* Header Toggle Switch (iOS style) */
+.header-toggle {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.header-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.header-slider {
+  position: absolute;
   cursor: pointer;
-  user-select: none;
-  transition: all 0.2s ease;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #1E212A;
+  transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 34px;
+  border: 1px solid var(--border-color);
 }
 
-.status-badge:hover {
-  background-color: rgba(16, 185, 129, 0.15);
-  border-color: rgba(16, 185, 129, 0.3);
+.header-slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--text-muted);
+  transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50%;
 }
 
-.status-badge.inactive {
-  color: #9CA3AF;
-  background-color: rgba(156, 163, 175, 0.08);
-  border-color: rgba(156, 163, 175, 0.15);
+.header-toggle input:checked + .header-slider {
+  background-color: #10B981; /* Glowing green when active */
+  border-color: #10B981;
 }
 
-.status-badge.inactive:hover {
-  background-color: rgba(156, 163, 175, 0.15);
-  border-color: rgba(156, 163, 175, 0.3);
-}
-
-.status-badge.inactive .badge-pulse-dot {
-  background-color: #9CA3AF;
-  box-shadow: none;
-  animation: none;
+.header-toggle input:checked + .header-slider:before {
+  transform: translateX(16px);
+  background-color: var(--text-primary);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 /* Dim popup options when master toggle is off */
@@ -117,32 +129,6 @@ body {
 #options-scroll-area.disabled-mode {
   opacity: 0.35 !important;
   pointer-events: none !important;
-}
-
-.badge-pulse-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  background-color: #10B981;
-  border-radius: 50%;
-  margin-right: 6px;
-  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-  animation: badge-pulse 2s infinite;
-}
-
-@keyframes badge-pulse {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
-  }
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0);
-  }
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
-  }
 }
 
 
