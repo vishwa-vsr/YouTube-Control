@@ -2,6 +2,7 @@
 const classMap = {
   hideHomeFeed: 'yt-hide-home-feed',
   hideSubscriptions: 'yt-hide-subscriptions',
+  hideYou: 'yt-hide-you',
   hideExplore: 'yt-hide-explore',
   hideMoreFromYoutube: 'yt-hide-more-from-youtube',
   hideShorts: 'yt-hide-shorts',
@@ -352,13 +353,13 @@ function hideSidebarElements() {
     }
   });
 
-  // 2. Hide Subscriptions Sidebar Elements
+  // 2. Hide Subscriptions Sidebar Elements (Strictly Channel List only)
   const hideSubs = cachedSettings.hideSubscriptions === true;
   const sections = document.querySelectorAll('ytd-guide-section-renderer, yt-guide-section-view-model');
   sections.forEach(section => {
-    // Check if it's the subscription list section
     const hasChannelLinks = !!section.querySelector('a[href*="/channel/"], a[href*="/@"], a[href*="guide_builder"]');
-    if (hasChannelLinks) {
+    const isYouSection = !!section.querySelector('a[href*="/feed/history"], a[href*="/feed/playlists"], a[href*="/feed/library"]');
+    if (hasChannelLinks && !isYouSection) {
       if (isEnabled && hideSubs) {
         section.style.setProperty('display', 'none', 'important');
       } else {
@@ -375,6 +376,33 @@ function hideSidebarElements() {
     const isSubs = href.includes('subscriptions') || text.toLowerCase().includes('subscriptions');
     if (isSubs) {
       if (isEnabled && hideSubs) {
+        entry.style.setProperty('display', 'none', 'important');
+      } else {
+        entry.style.removeProperty('display');
+      }
+    }
+  });
+
+  // 2b. Hide 'You' Sidebar Elements
+  const hideYou = cachedSettings.hideYou === true;
+  sections.forEach(section => {
+    const isYouSection = !!section.querySelector('a[href*="/feed/history"], a[href*="/feed/playlists"], a[href*="/feed/library"]');
+    if (isYouSection) {
+      if (isEnabled && hideYou) {
+        section.style.setProperty('display', 'none', 'important');
+      } else {
+        section.style.removeProperty('display');
+      }
+    }
+  });
+
+  // Collapsed mini sidebar "You" icon
+  miniEntries.forEach(entry => {
+    const href = entry.querySelector('a')?.getAttribute('href') || entry.getAttribute('href') || '';
+    const text = entry.textContent || '';
+    const isYou = href.includes('history') || href.includes('playlists') || href.includes('library') || text.toLowerCase().includes('you') || text.toLowerCase().includes('library');
+    if (isYou) {
+      if (isEnabled && hideYou) {
         entry.style.setProperty('display', 'none', 'important');
       } else {
         entry.style.removeProperty('display');

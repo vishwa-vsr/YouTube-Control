@@ -11,9 +11,17 @@
 
 /* 2b. HIDE SUBSCRIPTIONS SECTION */
 .yt-hide-subscriptions :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="guide_builder"]),
-.yt-hide-subscriptions :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="/channel/"]),
-.yt-hide-subscriptions :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="/@"]),
 .yt-hide-subscriptions :is(ytd-mini-guide-entry-renderer, yt-mini-guide-entry-view-model):has([href*="/feed/subscriptions"]) {
+  display: none !important;
+}
+
+/* 2bb. HIDE YOU SECTION */
+.yt-hide-you :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="/feed/history"]),
+.yt-hide-you :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="/feed/playlists"]),
+.yt-hide-you :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="/feed/library"]),
+.yt-hide-you :is(ytd-mini-guide-entry-renderer, yt-mini-guide-entry-view-model):has([href*="/feed/history"]),
+.yt-hide-you :is(ytd-mini-guide-entry-renderer, yt-mini-guide-entry-view-model):has([href*="/feed/playlists"]),
+.yt-hide-you :is(ytd-mini-guide-entry-renderer, yt-mini-guide-entry-view-model):has([href*="/feed/library"]) {
   display: none !important;
 }
 

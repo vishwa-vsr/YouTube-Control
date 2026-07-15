@@ -2,6 +2,7 @@
 const configKeys = [
   'hideHomeFeed',
   'hideSubscriptions',
+  'hideYou',
   'hideExplore',
   'hideMoreFromYoutube',
   'hideShorts',
