@@ -357,10 +357,21 @@ function hideSidebarElements() {
   const hideSubs = cachedSettings.hideSubscriptions === true;
   const sections = document.querySelectorAll('ytd-guide-section-renderer, yt-guide-section-view-model');
   sections.forEach(section => {
+    const titleEl = section.querySelector('#guide-section-title');
+    const titleText = titleEl ? titleEl.textContent.trim().toLowerCase() : '';
+
     const hasChannelLinks = !!section.querySelector('a[href*="/channel/"], a[href*="/@"], a[href*="guide_builder"]');
     const isYouSection = !!section.querySelector('a[href*="/feed/history"], a[href*="/feed/playlists"], a[href*="/feed/library"]');
-    const isExploreSection = !!section.querySelector('a[href*="UC6bPxPxDez_F8D8M71nZ0XQ"], a[href*="UCqVDpXKLmKeBU_yyt_QkItQ"], a[href*="UCF0pVplsI8R5kcAqgG8ag5A"], a[href*="UClgRkhTL3_hImCAmdLfDE4g"], a[href*="/feed/trending"], a[href*="/trending"]');
-    if (hasChannelLinks && !isYouSection && !isExploreSection) {
+    
+    const isExploreSection = [
+      'explore', 'explorar', 'explorer', 'entdecken', '探索', '탐색', 'navigator', 'навигатор'
+    ].includes(titleText) || !!section.querySelector('a[href*="/feed/trending"], a[href*="/trending"], a[href*="/gaming"], a[href*="/feed/gaming"], a[href*="/podcasts"]');
+
+    const isMoreSection = [
+      'more from youtube', 'más de youtube', 'mehr von youtube', 'autres contenus youtube', 'youtube से और भी बहुत कुछ', 'другие возможности'
+    ].includes(titleText) || !!section.querySelector('a[href*="/premium"], a[href*="music.youtube.com"], a[href*="kids.youtube.com"]');
+
+    if (hasChannelLinks && !isYouSection && !isExploreSection && !isMoreSection) {
       if (isEnabled && hideSubs) {
         section.style.setProperty('display', 'none', 'important');
       } else {
@@ -414,9 +425,14 @@ function hideSidebarElements() {
   // 3. Hide Explore Elements
   const hideExplore = cachedSettings.hideExplore === true;
   sections.forEach(section => {
-    // Target Explore by static YouTube hub channel IDs (Shopping, Music, Films, Gaming, etc.) or feed paths
-    const hasExplore = !!section.querySelector('a[href*="UC6bPxPxDez_F8D8M71nZ0XQ"], a[href*="UCqVDpXKLmKeBU_yyt_QkItQ"], a[href*="UCF0pVplsI8R5kcAqgG8ag5A"], a[href*="UClgRkhTL3_hImCAmdLfDE4g"], a[href*="/feed/trending"], a[href*="/trending"]');
-    if (hasExplore) {
+    const titleEl = section.querySelector('#guide-section-title');
+    const titleText = titleEl ? titleEl.textContent.trim().toLowerCase() : '';
+
+    const isExploreSection = [
+      'explore', 'explorar', 'explorer', 'entdecken', '探索', '탐색', 'navigator', 'навигатор'
+    ].includes(titleText) || !!section.querySelector('a[href*="UC6bPxPxDez_F8D8M71nZ0XQ"], a[href*="UCqVDpXKLmKeBU_yyt_QkItQ"], a[href*="UCF0pVplsI8R5kcAqgG8ag5A"], a[href*="UClgRkhTL3_hImCAmdLfDE4g"], a[href*="/feed/trending"], a[href*="/trending"], a[href*="/gaming"], a[href*="/feed/gaming"], a[href*="/podcasts"]');
+
+    if (isExploreSection) {
       if (isEnabled && hideExplore) {
         section.style.setProperty('display', 'none', 'important');
       } else {
