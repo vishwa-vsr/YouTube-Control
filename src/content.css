@@ -10,45 +10,43 @@
 
 
 /* 2b. HIDE SUBSCRIPTIONS SECTION */
-.yt-hide-subscriptions ytd-guide-section-renderer:has(a[href*="/feed/subscriptions"]),
-.yt-hide-subscriptions ytd-mini-guide-entry-renderer:has(a[href*="/feed/subscriptions"]) {
+.yt-hide-subscriptions :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="guide_builder"]),
+.yt-hide-subscriptions :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="/channel/"]),
+.yt-hide-subscriptions :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="/@"]),
+.yt-hide-subscriptions :is(ytd-mini-guide-entry-renderer, yt-mini-guide-entry-view-model):has([href*="/feed/subscriptions"]) {
   display: none !important;
 }
 
 /* 2c. HIDE EXPLORE SECTION */
-.yt-hide-explore ytd-guide-section-renderer:has(a[href*="/feed/trending"]),
-.yt-hide-explore ytd-guide-section-renderer:has(a[href*="/feed/guide_builder"]),
-.yt-hide-explore ytd-guide-section-renderer:has(a[href*="UC6bPxPxDez_F8D8M71nZ0XQ"]), /* Shopping */
-.yt-hide-explore ytd-guide-section-renderer:has(a[href*="UCqVDpXKLmKeBU_yyt_QkItQ"]), /* Music */
-.yt-hide-explore ytd-guide-section-renderer:has(a[href*="UCF0pVplsI8R5kcAqgG8ag5A"]), /* Films */
-.yt-hide-explore ytd-guide-section-renderer:has(a[href*="UClgRkhTL3_hImCAmdLfDE4g"]), /* Gaming */
-.yt-hide-explore ytd-mini-guide-entry-renderer:has(a[href*="/feed/trending"]),
-.yt-hide-explore ytd-mini-guide-entry-renderer:has(a[href*="UCqVDpXKLmKeBU_yyt_QkItQ"]),
-.yt-hide-explore ytd-mini-guide-entry-renderer:has(a[href*="UClgRkhTL3_hImCAmdLfDE4g"]) {
+.yt-hide-explore :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="/feed/trending"]),
+.yt-hide-explore :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="/feed/guide_builder"]),
+.yt-hide-explore :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="UC6bPxPxDez_F8D8M71nZ0XQ"]), /* Shopping */
+.yt-hide-explore :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="UCqVDpXKLmKeBU_yyt_QkItQ"]), /* Music */
+.yt-hide-explore :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="UCF0pVplsI8R5kcAqgG8ag5A"]), /* Films */
+.yt-hide-explore :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="UClgRkhTL3_hImCAmdLfDE4g"]), /* Gaming */
+.yt-hide-explore :is(ytd-mini-guide-entry-renderer, yt-mini-guide-entry-view-model):has([href*="/feed/trending"]),
+.yt-hide-explore :is(ytd-mini-guide-entry-renderer, yt-mini-guide-entry-view-model):has([href*="UCqVDpXKLmKeBU_yyt_QkItQ"]),
+.yt-hide-explore :is(ytd-mini-guide-entry-renderer, yt-mini-guide-entry-view-model):has([href*="UClgRkhTL3_hImCAmdLfDE4g"]) {
   display: none !important;
 }
 
 /* 2d. HIDE MORE FROM YOUTUBE SECTION */
-.yt-hide-more-from-youtube ytd-guide-section-renderer:has(a[href*="/premium"]),
-.yt-hide-more-from-youtube ytd-guide-section-renderer:has(a[href*="music.youtube.com"]),
-.yt-hide-more-from-youtube ytd-guide-section-renderer:has(a[href*="kids.youtube.com"]) {
+.yt-hide-more-from-youtube :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="/premium"]),
+.yt-hide-more-from-youtube :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="music.youtube.com"]),
+.yt-hide-more-from-youtube :is(ytd-guide-section-renderer, yt-guide-section-view-model):has([href*="kids.youtube.com"]) {
   display: none !important;
 }
 
 /* 3. HIDE SHORTS & PLAYABLES */
-.yt-hide-shorts ytd-guide-entry-renderer:has(a[href*="/shorts"]),
-.yt-hide-shorts ytd-mini-guide-entry-renderer:has(a[href*="/shorts"]),
-.yt-hide-shorts ytd-guide-entry-renderer:has(a[href*="/playables"]),
-.yt-hide-shorts ytd-mini-guide-entry-renderer:has(a[href*="/playables"]),
+.yt-hide-shorts :is(ytd-guide-entry-renderer, yt-guide-entry-view-model, ytd-mini-guide-entry-renderer, yt-mini-guide-entry-view-model):has([href*="shorts"]),
+.yt-hide-shorts :is(ytd-guide-entry-renderer, yt-guide-entry-view-model, ytd-mini-guide-entry-renderer, yt-mini-guide-entry-view-model):has([href*="playables"]),
 .yt-hide-shorts ytd-reel-shelf-renderer,
 .yt-hide-shorts grid-shelf-view-model,
 .yt-hide-shorts ytd-rich-shelf-renderer[is-shorts],
 .yt-hide-shorts ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
 .yt-hide-shorts ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-playables]),
 .yt-hide-shorts #shorts-container,
-.yt-hide-shorts ytd-shelf-renderer:has(a[href*="/shorts"]),
-.yt-hide-shorts yt-tab-shape:has(a[href*="/shorts"]),
-.yt-hide-shorts tp-yt-paper-tab:has(a[href*="/shorts"]),
+.yt-hide-shorts :is(ytd-shelf-renderer, yt-tab-shape, tp-yt-paper-tab):has([href*="shorts"]),
 .yt-hide-shorts[yt-on-shorts-tab] #primary,
 .yt-hide-shorts[yt-on-shorts-tab] ytd-browse #primary {
   display: none !important;
