@@ -1,31 +1,36 @@
-# <img src="assets/logo.png" width="38" height="38" valign="middle"> YouTube Control: Shorts Blocker & Detox
+<p align="center">
+  <img src="assets/logo.png" width="96" height="96" alt="YouTube Control Logo">
+</p>
 
-A beautiful, premium, and distraction-free browser extension that helps you reclaim your focus on YouTube. Tailor your learning environment by toggling visual elements off or blurring bait thumbnails.
+<h1 align="center">YouTube Control</h1>
+<p align="center"><b>Shorts Blocker & Detox</b></p>
+<p align="center"><i>A beautiful, premium, and distraction-free browser extension that helps you reclaim your focus on YouTube.</i></p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Chrome-Supported-success.svg?style=flat-square&logo=googlechrome" alt="Chrome">
+  <img src="https://img.shields.io/badge/Firefox-Supported-orange.svg?style=flat-square&logo=firefox" alt="Firefox">
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License">
+</p>
 
 ---
 
-## Features
+## Key Features
 
-- **Calm Meter**: A signature visual progress ring that tracks how calm and focus-friendly your setup is.
-- **Custom Hiding**: Selectively hide individual distracting features:
-  - Home Page Video Feed
-  - Left Navigation Sidebar (Subscriptions, Explore, Trending)
-  - Shorts & Playables (Games)
-  - Recommended Videos Sidebar on watch page
-  - Comments Section and Live Chat
-  - Action Buttons (Likes count, views count, subscribe button)
-  - Top Navigation Header and Search Box
-- **Black & White Mode**: Make the entire YouTube page (including the video player) grayscale to lower visual stimulation.
-- **Blur Thumbnails**: Soften thumbnail images until hovered to block clickbait.
-- **Video Screenshot Button**: Save a clean frame capture as a PNG directly named after the video title, with a white visual shutter flash feedback.
-- **Mini Fullscreen Mode**: Expand the video player to fill the viewport while keeping the browser tabs, search, and bookmarks active.
-- **Sticky Video Player (Split Pane Layout)**: lock the browser scrolling, locking the video player on the top-left while recommended sidebars and comments scroll independently.
+| Category | Feature | Description |
+| :--- | :--- | :--- |
+| 📊 **Focus Tracking** | **Calm Meter** | A visual progress ring showing how focus-friendly your configuration is. |
+| 👁️ **Visual Detox** | **Blur Thumbnails** | Blurs thumbnail images until hovered to prevent clickbait trap. |
+| 🎨 **Styling** | **Black & White Mode** | Makes the entire YouTube interface grayscale to reduce visual stimulation. |
+| ⚙️ **Custom Hiding** | **Clutter Control** | Hide comments, recommended sidebar, home feed, search, and more. |
+| 📐 **Layouts** | **Sticky Player** | Locked scrolling with independent panels for comments and player. |
+| 📺 **Modes** | **Mini Fullscreen** | Fills the viewport while keeping search, tabs, and bookmarks active. |
+| 📸 **Utilities** | **Video Screenshot** | Capture clean video frames instantly as high-quality PNGs with one click. |
 
 ---
 
 ## Folder Structure
 
-```
+```text
 youtube control/
 ├── CHANGELOG.md      # History of version updates
 ├── build.py          # Script to minify code and create Firefox/Chrome packages
@@ -45,33 +50,47 @@ youtube control/
 ## Getting Started
 
 ### 1. Build the Extension
-To compile and minify the source code into optimized browser packages, run this command in your command line:
+
+To compile and compress the source code into optimized browser folders, run this command in your command terminal:
+
 ```bash
 python build.py -y
 ```
 
 ### 2. Loading the Extension
 
-#### Google Chrome / Chromium (Edge, Brave, Opera)
-1. Go to `chrome://extensions/` in your browser.
-2. Turn on **Developer mode** (top right toggle).
-3. Click **Load unpacked** (top left button).
-4. Select the **`dist`** folder inside this directory.
+> [!TIP]
+> **Loading in Google Chrome / Chromium (Edge, Brave, Opera):**
+> 1. Open `chrome://extensions/` in your browser.
+> 2. Turn on the **Developer mode** toggle in the top-right corner.
+> 3. Click the **Load unpacked** button in the top-left corner.
+> 4. Select the **`dist`** folder inside this directory.
 
-#### Mozilla Firefox
-1. Go to `about:debugging#/runtime/this-firefox` in your browser.
-2. Click **Load Temporary Add-on...**
-3. Select the `manifest.json` file inside the **`firefox`** folder inside this directory.
+> [!NOTE]
+> **Loading in Mozilla Firefox:**
+> 1. Open `about:debugging#/runtime/this-firefox` in your browser.
+> 2. Click the **Load Temporary Add-on...** button.
+> 3. Select the `manifest.json` file inside the **`firefox`** folder inside this directory.
 
 ---
 
 ## Previews & Screenshots
 
-### Settings Menu (Popup)
-![Settings Menu](assets/Comp%201%20.jpg)
+<p align="center">
+  <b>Settings Menu (Popup Interface)</b><br>
+  <img src="assets/Comp%201%20.jpg" width="80%" alt="Settings Menu Popup">
+</p>
 
-### Split Pane Independent Scrolling
-![Split Scroll Pane Layout](assets/Comp%203%20.jpg)
+<br>
 
-### Mini Fullscreen Layout
-![Mini Fullscreen](assets/Comp%202%20.jpg)
+<p align="center">
+  <b>Split Scroll Pane Layout</b><br>
+  <img src="assets/Comp%203%20.jpg" width="80%" alt="Split Scroll Pane Layout">
+</p>
+
+<br>
+
+<p align="center">
+  <b>Mini Fullscreen Layout</b><br>
+  <img src="assets/Comp%202%20.jpg" width="80%" alt="Mini Fullscreen Layout">
+</p>
