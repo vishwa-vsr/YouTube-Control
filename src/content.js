@@ -132,6 +132,9 @@ function applySettings(settings) {
     const btn = document.querySelector('.yt-dock-comments-btn');
     if (btn) btn.remove();
     if (root.classList.contains('yt-comments-docked')) toggleSidebarComments();
+  }
+
+  hideSidebarElements();
   dispatchResize();
 }
 
@@ -329,6 +332,94 @@ document.addEventListener('fullscreenchange', () => {
   }
 });
 
+function hideSidebarElements() {
+  const isEnabled = cachedSettings.extensionEnabled !== false;
+  
+  // 1. Hide Shorts Sidebar Elements
+  const hideShorts = cachedSettings.hideShorts === true;
+  const shortsEntries = document.querySelectorAll('ytd-guide-entry-renderer, yt-guide-entry-view-model, ytd-mini-guide-entry-renderer, yt-mini-guide-entry-view-model, tp-yt-paper-item');
+  shortsEntries.forEach(entry => {
+    const text = entry.textContent || '';
+    const href = entry.querySelector('a')?.getAttribute('href') || entry.getAttribute('href') || '';
+    const isShorts = text.toLowerCase().includes('shorts') || href.toLowerCase().includes('shorts') || text.toLowerCase().includes('playables') || href.toLowerCase().includes('playables');
+    if (isShorts) {
+      if (isEnabled && hideShorts) {
+        entry.style.setProperty('display', 'none', 'important');
+      } else {
+        entry.style.removeProperty('display');
+      }
+    }
+  });
+
+  // 2. Hide Subscriptions Sidebar Elements
+  const hideSubs = cachedSettings.hideSubscriptions === true;
+  const sections = document.querySelectorAll('ytd-guide-section-renderer, yt-guide-section-view-model');
+  sections.forEach(section => {
+    // Check if it's the subscription list section
+    const hasChannelLinks = !!section.querySelector('a[href*="/channel/"], a[href*="/@"], a[href*="guide_builder"]');
+    if (hasChannelLinks) {
+      if (isEnabled && hideSubs) {
+        section.style.setProperty('display', 'none', 'important');
+      } else {
+        section.style.removeProperty('display');
+      }
+    }
+  });
+  
+  // Collapsed mini sidebar subscriptions icon
+  const miniEntries = document.querySelectorAll('ytd-mini-guide-entry-renderer, yt-mini-guide-entry-view-model');
+  miniEntries.forEach(entry => {
+    const href = entry.querySelector('a')?.getAttribute('href') || entry.getAttribute('href') || '';
+    const text = entry.textContent || '';
+    const isSubs = href.includes('subscriptions') || text.toLowerCase().includes('subscriptions');
+    if (isSubs) {
+      if (isEnabled && hideSubs) {
+        entry.style.setProperty('display', 'none', 'important');
+      } else {
+        entry.style.removeProperty('display');
+      }
+    }
+  });
+
+  // 3. Hide Explore Elements
+  const hideExplore = cachedSettings.hideExplore === true;
+  sections.forEach(section => {
+    const hasExplore = !!section.querySelector('a[href*="/feed/trending"], a[href*="/feed/guide_builder"], a[href*="/gaming"], a[href*="/trending"]');
+    if (hasExplore && !section.querySelector('a[href*="/channel/"], a[href*="/@"]')) {
+      if (isEnabled && hideExplore) {
+        section.style.setProperty('display', 'none', 'important');
+      } else {
+        section.style.removeProperty('display');
+      }
+    }
+  });
+  miniEntries.forEach(entry => {
+    const href = entry.querySelector('a')?.getAttribute('href') || entry.getAttribute('href') || '';
+    const text = entry.textContent || '';
+    const isExplore = href.includes('trending') || href.includes('gaming') || text.toLowerCase().includes('trending') || text.toLowerCase().includes('gaming');
+    if (isExplore) {
+      if (isEnabled && hideExplore) {
+        entry.style.setProperty('display', 'none', 'important');
+      } else {
+        entry.style.removeProperty('display');
+      }
+    }
+  });
+
+  // 4. Hide More From YouTube
+  const hideMore = cachedSettings.hideMoreFromYoutube === true;
+  sections.forEach(section => {
+    const hasMore = !!section.querySelector('a[href*="/premium"], a[href*="music.youtube.com"], a[href*="kids.youtube.com"]');
+    if (hasMore) {
+      if (isEnabled && hideMore) {
+        section.style.setProperty('display', 'none', 'important');
+      } else {
+        section.style.removeProperty('display');
+      }
+    }
+  });
+}
+
 // Debounced observer to inject buttons - runs at most once every 500ms
 function scheduleButtonInjection() {
   if (_pendingInject) return;
@@ -341,6 +432,7 @@ function scheduleButtonInjection() {
       if (cachedSettings.showMiniFullscreenBtn === true) injectMiniFullscreenButton();
       if (cachedSettings.dockCommentsSidebar === true) injectSidebarCommentsButton();
       updateSidebarState();
+      hideSidebarElements();
     }
   }, 500);
 }
