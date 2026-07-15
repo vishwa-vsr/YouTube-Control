@@ -16,7 +16,8 @@ const configKeys = [
   'showMiniFullscreenBtn',
   'stickyPlayer',
   'dockCommentsSidebar',
-  'hideAmbientMode'
+  'hideAmbientMode',
+  'hideSidebarFooter'
 ];
 
 document.addEventListener('DOMContentLoaded', () => {

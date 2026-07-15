@@ -15,7 +15,8 @@ const classMap = {
   showMiniFullscreenBtn: 'yt-show-mini-fullscreen-btn',
   stickyPlayer: 'yt-sticky-player',
   dockCommentsSidebar: 'yt-enable-comments-dock',
-  hideAmbientMode: 'yt-hide-ambient-mode'
+  hideAmbientMode: 'yt-hide-ambient-mode',
+  hideSidebarFooter: 'yt-hide-sidebar-footer'
 };
 
 // Global memory cache to hold settings and save battery/CPU

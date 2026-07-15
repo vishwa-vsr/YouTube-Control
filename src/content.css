@@ -53,6 +53,14 @@
 }
 
 
+/* 3b. HIDE SIDEBAR FOOTER */
+.yt-hide-sidebar-footer #footer,
+.yt-hide-sidebar-footer ytd-guide-renderer #footer,
+.yt-hide-sidebar-footer yt-guide-renderer #footer {
+  display: none !important;
+}
+
+
 
 
 
