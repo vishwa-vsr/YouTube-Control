@@ -152,17 +152,6 @@ html:not(.yt-no-hover-unblur).yt-blur-thumbnails ytd-thumbnail:hover img[src*="i
 .yt-hide-ambient-mode ytd-watch-flexy[cinematic-active] #cinematics-full-bleed-container {
   display: none !important;
 }
-
-
-/* 11. BLOCK AUTOPLAY & NEXT VIDEO */
-.yt-block-autoplay .ytp-autonav-toggle-button,
-.yt-block-autoplay [data-tooltip-target-id="ytp-autonav-toggle-button"],
-.yt-block-autoplay .ytp-autonav-endscreen,
-.yt-block-autoplay .ytp-upnext {
-  display: none !important;
-}
-
-
 .ytp-screenshot-button {
   display: none !important;
   align-items: center !important;

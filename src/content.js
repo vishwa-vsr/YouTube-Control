@@ -15,8 +15,7 @@ const classMap = {
   showMiniFullscreenBtn: 'yt-show-mini-fullscreen-btn',
   stickyPlayer: 'yt-sticky-player',
   dockCommentsSidebar: 'yt-enable-comments-dock',
-  hideAmbientMode: 'yt-hide-ambient-mode',
-  blockAutoplay: 'yt-block-autoplay'
+  hideAmbientMode: 'yt-hide-ambient-mode'
 };
 
 // Global memory cache to hold settings and save battery/CPU
@@ -133,12 +132,6 @@ function applySettings(settings) {
     const btn = document.querySelector('.yt-dock-comments-btn');
     if (btn) btn.remove();
     if (root.classList.contains('yt-comments-docked')) toggleSidebarComments();
-  }
-
-  if (settings.blockAutoplay === true) {
-    blockAutoplayVideo();
-  }
-
   dispatchResize();
 }
 
@@ -337,16 +330,6 @@ document.addEventListener('fullscreenchange', () => {
 });
 
 // Debounced observer to inject buttons - runs at most once every 500ms
-function blockAutoplayVideo() {
-  const autoplayBtn = document.querySelector('.ytp-autonav-toggle-button, [data-tooltip-target-id="ytp-autonav-toggle-button"]');
-  if (autoplayBtn) {
-    const isChecked = autoplayBtn.getAttribute('aria-checked') === 'true';
-    if (isChecked) {
-      autoplayBtn.click();
-    }
-  }
-}
-
 function scheduleButtonInjection() {
   if (_pendingInject) return;
   _pendingInject = setTimeout(() => {
@@ -357,7 +340,6 @@ function scheduleButtonInjection() {
       if (cachedSettings.showScreenshotBtn === true) injectScreenshotButton();
       if (cachedSettings.showMiniFullscreenBtn === true) injectMiniFullscreenButton();
       if (cachedSettings.dockCommentsSidebar === true) injectSidebarCommentsButton();
-      if (cachedSettings.blockAutoplay === true) blockAutoplayVideo();
       updateSidebarState();
     }
   }, 500);
