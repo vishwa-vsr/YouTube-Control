@@ -4,20 +4,32 @@ All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension
 
 ---
 
-## [1.0.0] - 2026-06-28
+## [1.0.0] - 2026-07-15
+
+This is the initial public release of the **YouTube Control: Shorts Blocker & Detox** extension. It introduces a complete suite of focus-enhancing options, clean layouts, and styling controls to create a distraction-free experience on YouTube.
 
 ### Added
-- **Phase 1 Elements**:
-  - Hides home feed, sidebar links, comments, playables, and recommended videos using clean stylesheet filters.
-  - Hides subscribe button, action buttons, likes count, and views count.
-  - Hides top navigation header and search box.
-  - Adds grayscale mode (keeps video player in full color to preserve video quality).
-  - Adds hover-to-reveal thumbnail blurring.
-- **Calm Meter**: Custom settings menu signature element showing a progress ring that calculates how clean your setup is.
-- **Chrome & Firefox build scripts**: Automated code compiler script (`build.py`) that minifies files (reducing file size by 20%+) and outputs custom Chrome (`dist`) and Firefox (`firefox`) bundles.
-- **Documentation**: Initial project `README.md` and `CHANGELOG.md` files.
-
-### Changed
-- Organized the project layout:
-  - Moved original script files into a central `/source` folder.
-  - Redirected build outputs into local `/dist` and `/firefox` directories.
+- **Navigation & Feeds Controls**:
+  - Hides home feed recommended videos to prevent click-traps.
+  - Hides the subscriptions section and explore menu from the sidebar.
+  - Removes the distracting Shorts and Playables feeds entirely.
+  - Hides sidebar footer links for a cleaner look.
+- **Watch Experience Options**:
+  - Hides recommended video list on video watch pages.
+  - Disables comments feed and live chat boxes.
+  - Hides video details like channel stats, likes count, and action buttons.
+  - Hides the top navigation header bar (search and user menu).
+- **Visual Styling & Detox**:
+  - Adds **Black & White Mode** to render YouTube elements in calm grayscale.
+  - Adds **Blur Thumbnails** with optional hover reveal to disable clickbait visual traps.
+  - Blocks YouTube's ambient glowing background mode to save CPU/battery.
+- **Premium Layouts & Utilities**:
+  - Adds **Sticky Player** that holds the video player at the top while scrolling comments.
+  - Adds **Dock Comments to Sidebar** to move comments next to the video.
+  - Adds **Screenshot Button** to capture clean, full-resolution video frames instantly.
+  - Adds **Mini Fullscreen Mode** to fill the browser viewport.
+- **Dashboard Interface**:
+  - Features the **Calm Obsidian Dark Theme** panel for managing settings.
+  - Includes a visual "Calm Meter" progress ring indicating how clean your current layout is.
+- **Automated Tooling**:
+  - Included a developer build script (`build.py`) to minify code and package ready-to-load extension folders for Chrome, Firefox, and Edge.
