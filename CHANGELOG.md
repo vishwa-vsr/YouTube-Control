@@ -2,6 +2,11 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.0.1] - 2026-07-18
+
+### Fixed
+- **Comments Docking**: Fixed a layout bug on live streams where enabling "Dock Comments to Sidebar" would place an empty, styled black box in the sidebar next to the live chat. The extension now automatically detects live streams and active chats to prevent docking, ensuring a clean sidebar layout.
+
 ---
 
 ## [1.0.0] - 2026-07-15

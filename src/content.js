@@ -26,6 +26,18 @@ let lastSidebarActiveState = null;
 let _pendingInject = null;
 let userManuallyUndocked = false;
 
+function isLiveStreamOrChatActive() {
+  const isLive = !!(
+    document.querySelector('ytd-watch-flexy[is-live]') || 
+    document.querySelector('.html5-video-player.ytp-live') ||
+    document.querySelector('.ytp-live-badge[aria-disabled="false"]') ||
+    document.querySelector('ytd-playability-executor-renderer[key="live-message"]')
+  );
+  const chatPanel = document.getElementById('chat') || document.querySelector('ytd-live-chat-frame');
+  const hasActiveChat = chatPanel && !chatPanel.hasAttribute('hidden') && !chatPanel.hasAttribute('collapsed') && chatPanel.style.display !== 'none';
+  return isLive || hasActiveChat;
+}
+
 function updateSidebarState() {
   const root = document.documentElement;
   const hasExpandedPanel = !!document.querySelector('ytd-engagement-panel-section-list-renderer[visibility="ENGAGEMENT_PANEL_VISIBILITY_EXPANDED"]');
@@ -130,11 +142,13 @@ function applySettings(settings) {
     }
   }
   
-  if (settings.dockCommentsSidebar === true) injectSidebarCommentsButton();
-  else {
+  const isLiveOrChat = isLiveStreamOrChatActive();
+  if (settings.dockCommentsSidebar === true && !isLiveOrChat) {
+    injectSidebarCommentsButton();
+  } else {
     const btn = document.querySelector('.yt-dock-comments-btn');
     if (btn) btn.remove();
-    if (root.classList.contains('yt-comments-docked')) toggleSidebarComments();
+    if (root.classList.contains('yt-comments-docked')) toggleSidebarComments(true);
   }
 
   hideSidebarElements();
@@ -151,6 +165,11 @@ function checkShortsTab() {
 }
 
 function injectSidebarCommentsButton() {
+  if (isLiveStreamOrChatActive()) {
+    const btn = document.querySelector('.yt-dock-comments-btn');
+    if (btn) btn.remove();
+    return;
+  }
   const header = document.querySelector('ytd-comments-header-renderer');
   if (!header || header.querySelector('.yt-dock-comments-btn')) return;
   
@@ -493,11 +512,23 @@ function scheduleButtonInjection() {
     if (isEnabled) {
       if (cachedSettings.showScreenshotBtn === true) injectScreenshotButton();
       if (cachedSettings.showMiniFullscreenBtn === true) injectMiniFullscreenButton();
-      if (cachedSettings.dockCommentsSidebar === true) injectSidebarCommentsButton();
+      
+      const isLiveOrChat = isLiveStreamOrChatActive();
+      if (cachedSettings.dockCommentsSidebar === true && !isLiveOrChat) {
+        injectSidebarCommentsButton();
+      } else {
+        const btn = document.querySelector('.yt-dock-comments-btn');
+        if (btn) btn.remove();
+      }
       
       // Auto-dock comments if enabled in settings and not manually undocked by user
       const root = document.documentElement;
-      if (cachedSettings.dockCommentsSidebar === true && !userManuallyUndocked && !root.classList.contains('yt-comments-docked')) {
+      if (cachedSettings.dockCommentsSidebar === true && !isLiveOrChat && !userManuallyUndocked && !root.classList.contains('yt-comments-docked')) {
+        toggleSidebarComments(true);
+      }
+      
+      // If we are on a live stream / active chat, make sure comments are undocked
+      if (isLiveOrChat && root.classList.contains('yt-comments-docked')) {
         toggleSidebarComments(true);
       }
       
