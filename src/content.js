@@ -576,12 +576,21 @@ if (chrome.runtime && chrome.runtime.id) {
   } catch (err) {}
 }
 
+function resetPaneScrolls() {
+  const primary = document.querySelector('#primary');
+  const secondary = document.querySelector('#secondary');
+  if (primary) primary.scrollTop = 0;
+  if (secondary) secondary.scrollTop = 0;
+}
+
 // Re-apply settings on YouTube single-page navigation transitions
 window.addEventListener('yt-navigate-finish', () => {
+  resetPaneScrolls();
   applySettings(cachedSettings);
 });
 
 window.addEventListener('yt-navigate-start', () => {
+  resetPaneScrolls();
   userManuallyUndocked = false;
   if (document.documentElement.classList.contains('yt-comments-docked')) {
     toggleSidebarComments(true); // pass true so we don't treat navigation-based reset as a manual user undock
@@ -589,5 +598,6 @@ window.addEventListener('yt-navigate-start', () => {
 });
 
 window.addEventListener('yt-page-data-updated', () => {
+  resetPaneScrolls();
   applySettings(cachedSettings);
 });
