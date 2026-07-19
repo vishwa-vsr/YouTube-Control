@@ -6,6 +6,7 @@ All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension
 
 ### Fixed
 - **Comments Docking**: Fixed a layout bug on live streams where enabling "Dock Comments to Sidebar" would place an empty, styled black box in the sidebar next to the live chat. The extension now automatically detects live streams and active chats to prevent docking, ensuring a clean sidebar layout.
+- **Navigation Scroll**: Fixed an issue in "Sticky Player" mode where the left (player) and right (recommended videos) columns would remain scrolled down when loading a new video. The columns now automatically reset to the top upon page navigation.
 
 ---
 
