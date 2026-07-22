@@ -18,4 +18,5 @@ Thumbs.db
 # Ignore assets and AI settings but keep README assets
 /assets/webstore/
 /assets/promotional-posters/
+/assets/idea.md
 /skills/
