@@ -315,7 +315,7 @@ def build_target(target_name, is_firefox=False):
                 # Add Gecko ID and Telemetry declaration
                 manifest["browser_specific_settings"] = {
                     "gecko": {
-                        "id": "youtubefocusflow@vibe-coding",
+                        "id": "youtube-control@extension",
                         "strict_min_version": "140.0",
                         "data_collection_permissions": {
                             "required": [
