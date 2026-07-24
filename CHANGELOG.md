@@ -2,6 +2,13 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.0.2.5] - 2026-07-24
+
+### Changed
+- **Version Release Update**: Updated extension version to `1.0.2.5` for store submission.
+
+---
+
 ## [1.0.1] - 2026-07-18
 
 ### Fixed
