@@ -2,6 +2,13 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.0.4] - 2026-07-24
+
+### Fixed
+- **Light Theme Comments Docking**: Fixed an issue where docking comments to the sidebar on YouTube's Light Theme displayed a dark `#0f0f0f` container with low contrast. Updated container backgrounds, borders, scrollbars, and toggle button colors to dynamically adapt to both Light and Dark YouTube themes.
+
+---
+
 ## [1.0.3] - 2026-07-24
 
 ### Fixed

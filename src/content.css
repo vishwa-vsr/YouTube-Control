@@ -403,8 +403,8 @@ ytd-comments-header-renderer {
   transform: translateY(-50%) !important;
   background: transparent !important;
   border: none !important;
-  color: #ffffff !important; /* Force solid white color */
-  fill: #ffffff !important;  /* Force solid white fill */
+  color: var(--yt-spec-text-primary, currentColor) !important;
+  fill: var(--yt-spec-text-primary, currentColor) !important;
   cursor: pointer !important;
   align-items: center !important;
   justify-content: center !important;
@@ -425,8 +425,7 @@ ytd-comments-header-renderer {
 }
 
 .yt-dock-comments-btn:hover {
-  background: rgba(255, 255, 255, 0.15) !important;
-  color: #ffffff !important;
+  background: var(--yt-spec-badge-chip-background, rgba(128, 128, 128, 0.2)) !important;
 }
 
 .yt-dock-comments-btn.active {
@@ -435,12 +434,12 @@ ytd-comments-header-renderer {
 }
 
 .yt-comments-docked .yt-dock-comments-btn.active {
-  color: #ffffff !important;
+  color: var(--yt-spec-text-primary, currentColor) !important;
   background: transparent !important;
 }
 
 .yt-comments-docked .yt-dock-comments-btn.active:hover {
-  background: rgba(255, 255, 255, 0.15) !important;
+  background: var(--yt-spec-badge-chip-background, rgba(128, 128, 128, 0.2)) !important;
 }
 
 .yt-dock-comments-btn svg {
@@ -453,8 +452,8 @@ ytd-comments-header-renderer {
   flex-direction: column !important;
   height: 600px !important;
   max-height: calc(100vh - 120px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  background-color: #0f0f0f !important;
+  border: 1px solid var(--yt-spec-10-percent-layer, rgba(128, 128, 128, 0.2)) !important;
+  background-color: var(--yt-spec-base-background, #0f0f0f) !important;
   border-radius: 12px !important;
   padding: 0 !important;
   margin: 0 0 16px 0 !important;
@@ -481,8 +480,8 @@ ytd-comments[style*="display:none"] {
 .yt-comments-docked #secondary-inner #comments ytd-comments-header-renderer {
   flex-shrink: 0 !important;
   padding: 8px 16px !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  background-color: #0f0f0f !important;
+  border-bottom: 1px solid var(--yt-spec-10-percent-layer, rgba(128, 128, 128, 0.2)) !important;
+  background-color: var(--yt-spec-base-background, #0f0f0f) !important;
   margin: 0 !important;
   border-radius: 12px 12px 0 0 !important;
   position: relative !important;
@@ -510,11 +509,22 @@ ytd-comments[style*="display:none"] {
   background: transparent !important;
 }
 .yt-comments-docked #secondary-inner #comments #sections::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15) !important;
+  background: var(--yt-spec-10-percent-layer, rgba(128, 128, 128, 0.3)) !important;
   border-radius: 3px !important;
 }
 .yt-comments-docked #secondary-inner #comments #sections::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3) !important;
+  background: var(--yt-spec-text-secondary, rgba(128, 128, 128, 0.5)) !important;
+}
+
+/* Light theme specific overrides for docked comments container */
+html:not([dark]) .yt-comments-docked #secondary-inner #comments:not([hidden]) {
+  background-color: var(--yt-spec-base-background, #ffffff) !important;
+  border: 1px solid var(--yt-spec-10-percent-layer, rgba(0, 0, 0, 0.1)) !important;
+}
+
+html:not([dark]) .yt-comments-docked #secondary-inner #comments ytd-comments-header-renderer {
+  background-color: var(--yt-spec-base-background, #ffffff) !important;
+  border-bottom: 1px solid var(--yt-spec-10-percent-layer, rgba(0, 0, 0, 0.1)) !important;
 }
 
 /* Clean up input box and contents margins when docked */
