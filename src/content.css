@@ -448,7 +448,7 @@ ytd-comments-header-renderer {
 }
 
 /* Layout modifications when comments are docked to the sidebar (Option B) */
-.yt-comments-docked #secondary-inner #comments {
+.yt-comments-docked #secondary-inner #comments:not([hidden]):not([style*="display: none"]):not([style*="display:none"]) {
   display: flex !important;
   flex-direction: column !important;
   height: 600px !important;
@@ -460,6 +460,21 @@ ytd-comments-header-renderer {
   margin: 0 0 16px 0 !important;
   box-sizing: border-box !important;
   overflow: hidden !important;
+}
+
+#comments[hidden],
+#comments[style*="display: none"],
+#comments[style*="display:none"],
+ytd-comments[hidden],
+ytd-comments[style*="display: none"],
+ytd-comments[style*="display:none"] {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
 }
 
 /* Comments header inside the docked container */
