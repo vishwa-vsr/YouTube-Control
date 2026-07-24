@@ -2,6 +2,13 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.0.4] - 2026-07-24
+
+### Fixed
+- **Universal Light & Dark Theme Adaptation**: Resolved a theme inversion issue where docked comments displayed black boxes in Light Mode or white boxes in Dark Mode. Implemented native page background inheritance (`transparent` background) and neutral 20% grey borders, ensuring 100% theme compatibility across Light, Dark, and System modes.
+
+---
+
 ## [1.0.3] - 2026-07-24
 
 ### Fixed
