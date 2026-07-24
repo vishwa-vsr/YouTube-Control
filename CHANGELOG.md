@@ -2,6 +2,13 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.0.2] - 2026-07-24
+
+### Added
+- **Uninstall Feedback Survey**: Integrated a Google Form uninstall link that automatically opens in the browser when a user uninstalls or removes the extension to collect user feedback.
+
+---
+
 ## [1.0.1] - 2026-07-18
 
 ### Fixed
