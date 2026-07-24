@@ -403,8 +403,8 @@ ytd-comments-header-renderer {
   transform: translateY(-50%) !important;
   background: transparent !important;
   border: none !important;
-  color: var(--yt-spec-text-primary, #0f0f0f) !important;
-  fill: var(--yt-spec-text-primary, #0f0f0f) !important;
+  color: inherit !important;
+  fill: inherit !important;
   cursor: pointer !important;
   align-items: center !important;
   justify-content: center !important;
@@ -425,7 +425,7 @@ ytd-comments-header-renderer {
 }
 
 .yt-dock-comments-btn:hover {
-  background: rgba(0, 0, 0, 0.08) !important;
+  background: rgba(128, 128, 128, 0.15) !important;
 }
 
 .yt-dock-comments-btn.active {
@@ -434,12 +434,12 @@ ytd-comments-header-renderer {
 }
 
 .yt-comments-docked .yt-dock-comments-btn.active {
-  color: var(--yt-spec-text-primary, #0f0f0f) !important;
+  color: inherit !important;
   background: transparent !important;
 }
 
 .yt-comments-docked .yt-dock-comments-btn.active:hover {
-  background: rgba(0, 0, 0, 0.08) !important;
+  background: rgba(128, 128, 128, 0.15) !important;
 }
 
 .yt-dock-comments-btn svg {
@@ -452,8 +452,8 @@ ytd-comments-header-renderer {
   flex-direction: column !important;
   height: 600px !important;
   max-height: calc(100vh - 120px) !important;
-  border: 1px solid #e5e5e5 !important;
-  background-color: #ffffff !important;
+  border: 1px solid rgba(128, 128, 128, 0.2) !important;
+  background-color: var(--yt-spec-raised-background, var(--yt-spec-base-background, transparent)) !important;
   border-radius: 12px !important;
   padding: 0 !important;
   margin: 0 0 16px 0 !important;
@@ -480,8 +480,8 @@ ytd-comments[style*="display:none"] {
 .yt-comments-docked #secondary-inner #comments ytd-comments-header-renderer {
   flex-shrink: 0 !important;
   padding: 8px 16px !important;
-  border-bottom: 1px solid #e5e5e5 !important;
-  background-color: #ffffff !important;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2) !important;
+  background-color: transparent !important;
   margin: 0 !important;
   border-radius: 12px 12px 0 0 !important;
   position: relative !important;
@@ -509,45 +509,11 @@ ytd-comments[style*="display:none"] {
   background: transparent !important;
 }
 .yt-comments-docked #secondary-inner #comments #sections::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2) !important;
+  background: rgba(128, 128, 128, 0.3) !important;
   border-radius: 3px !important;
 }
 .yt-comments-docked #secondary-inner #comments #sections::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.4) !important;
-}
-
-/* Dark theme specific overrides for docked comments container */
-html[dark] .yt-comments-docked #secondary-inner #comments:not([hidden]),
-html[darker-dark-theme][dark] .yt-comments-docked #secondary-inner #comments:not([hidden]) {
-  background-color: #0f0f0f !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-html[dark] .yt-comments-docked #secondary-inner #comments ytd-comments-header-renderer,
-html[darker-dark-theme][dark] .yt-comments-docked #secondary-inner #comments ytd-comments-header-renderer {
-  background-color: #0f0f0f !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-html[dark] .yt-dock-comments-btn,
-html[darker-dark-theme][dark] .yt-dock-comments-btn {
-  color: #ffffff !important;
-  fill: #ffffff !important;
-}
-
-html[dark] .yt-dock-comments-btn:hover,
-html[darker-dark-theme][dark] .yt-dock-comments-btn:hover {
-  background: rgba(255, 255, 255, 0.15) !important;
-}
-
-html[dark] .yt-comments-docked #secondary-inner #comments #sections::-webkit-scrollbar-thumb,
-html[darker-dark-theme][dark] .yt-comments-docked #secondary-inner #comments #sections::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15) !important;
-}
-
-html[dark] .yt-comments-docked #secondary-inner #comments #sections::-webkit-scrollbar-thumb:hover,
-html[darker-dark-theme][dark] .yt-comments-docked #secondary-inner #comments #sections::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3) !important;
+  background: rgba(128, 128, 128, 0.5) !important;
 }
 
 /* Clean up input box and contents margins when docked */
