@@ -2,16 +2,10 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
-## [1.0.4] - 2026-07-24
-
-### Fixed
-- **Light Theme Comments Docking**: Fixed an issue where docking comments to the sidebar on YouTube's Light Theme displayed a dark `#0f0f0f` container with low contrast. Updated container backgrounds, borders, scrollbars, and toggle button colors to dynamically adapt to both Light and Dark YouTube themes.
-
----
-
 ## [1.0.3] - 2026-07-24
 
 ### Fixed
+- **Light Theme Comments Docking**: Fixed an issue where docking comments to the sidebar on YouTube's Light Theme displayed a dark `#0f0f0f` container with low contrast. Updated container backgrounds, borders, scrollbars, and toggle button colors to dynamically adapt to both Light and Dark YouTube themes.
 - **Live Stream Collapsed Chat & Empty Black Box**: Fixed an issue on live streams where closing live chat or viewing a stream left an empty 600px dark box in the right sidebar. Resolved by targeting both the chat frame and its parent container (`#chat-container`), and excluding hidden/disabled comments elements from sidebar docking styles.
 
 ---
