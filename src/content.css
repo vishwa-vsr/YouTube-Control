@@ -102,17 +102,26 @@
   display: none !important;
 }
 
-/* 5b. HIDE COLLAPSED / HIDDEN LIVE CHAT FRAME (REMOVING EMPTY BLACK BOX) */
+/* 5b. HIDE COLLAPSED / HIDDEN LIVE CHAT FRAME AND CONTAINER (REMOVING EMPTY BLACK BOX) */
 #chat[collapsed],
 #chat[hidden],
+#chat.sf-hidden,
 ytd-live-chat-frame[collapsed],
 ytd-live-chat-frame[hidden],
+ytd-live-chat-frame.sf-hidden,
 #chat[style*="display: none"],
 ytd-live-chat-frame[style*="display: none"],
+ytd-watch-flexy[flexy-is-chat-collapsed] #chat-container,
 ytd-watch-flexy[flexy-is-chat-collapsed] #chat,
 ytd-watch-flexy[flexy-is-chat-collapsed] ytd-live-chat-frame,
+ytd-watch-flexy[is-chat-collapsed] #chat-container,
 ytd-watch-flexy[is-chat-collapsed] #chat,
-ytd-watch-flexy[is-chat-collapsed] ytd-live-chat-frame {
+ytd-watch-flexy[is-chat-collapsed] ytd-live-chat-frame,
+#chat-container:has(#chat[collapsed]),
+#chat-container:has(ytd-live-chat-frame[collapsed]),
+#chat-container:has(#chat[hidden]),
+#chat-container:has(ytd-live-chat-frame[hidden]),
+#chat-container:has(.sf-hidden) {
   display: none !important;
   height: 0 !important;
   min-height: 0 !important;
