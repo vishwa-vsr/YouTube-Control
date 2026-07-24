@@ -4,8 +4,8 @@ All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension
 
 ## [1.0.2.5] - 2026-07-24
 
-### Changed
-- **Version Release Update**: Updated extension version to `1.0.2.5` for store submission.
+### Fixed
+- **Live Stream Collapsed Chat Box**: Fixed an issue on active live streams where closing the live chat frame would leave an empty, dark 600px box in the right sidebar. Added pure CSS rules targeting collapsed/hidden chat frames without modifying JavaScript detection or regular video comment docking.
 
 ---
 

@@ -102,6 +102,27 @@
   display: none !important;
 }
 
+/* 5b. HIDE COLLAPSED / HIDDEN LIVE CHAT FRAME (REMOVING EMPTY BLACK BOX) */
+#chat[collapsed],
+#chat[hidden],
+ytd-live-chat-frame[collapsed],
+ytd-live-chat-frame[hidden],
+#chat[style*="display: none"],
+ytd-live-chat-frame[style*="display: none"],
+ytd-watch-flexy[flexy-is-chat-collapsed] #chat,
+ytd-watch-flexy[flexy-is-chat-collapsed] ytd-live-chat-frame,
+ytd-watch-flexy[is-chat-collapsed] #chat,
+ytd-watch-flexy[is-chat-collapsed] ytd-live-chat-frame {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
 /* 6. HIDE BUTTONS & STATS */
 /* Hide subscribe button */
 .yt-hide-buttons-stats #subscribe-button,
