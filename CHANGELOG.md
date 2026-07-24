@@ -2,10 +2,10 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
-## [1.0.2.5] - 2026-07-24
+## [1.0.3] - 2026-07-24
 
 ### Fixed
-- **Live Stream Collapsed Chat Box**: Fixed an issue on active live streams where closing the live chat frame would leave an empty, dark 600px box in the right sidebar. Added pure CSS rules targeting collapsed/hidden chat frames without modifying JavaScript detection or regular video comment docking.
+- **Live Stream Collapsed Chat & Empty Black Box**: Fixed an issue on live streams where closing live chat or viewing a stream left an empty 600px dark box in the right sidebar. Resolved by targeting both the chat frame and its parent container (`#chat-container`), and excluding hidden/disabled comments elements from sidebar docking styles.
 
 ---
 
