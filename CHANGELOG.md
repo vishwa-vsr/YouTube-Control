@@ -5,8 +5,14 @@ All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension
 ## [1.0.5] - 2026-07-25
 
 ### Fixed
-- **Dock Comments Icon Contrast**: Fixed an issue where the comments docking button icon was invisible or low-contrast in Dark Mode or Light Mode. Updated SVG fill colors and background chips so the toggle icon renders as solid bright white (`#ffffff`) in Dark Mode (`html[dark]`) and solid dark black (`#0f0f0f`) in Light Mode (`html:not([dark])`).
-- **Universal Theme Background Adaptation**: Resolved theme inversion glitches where docked comments displayed black boxes in Light Mode or white boxes in Dark Mode. Implemented native background inheritance and neutral 20% grey borders for seamless visual integration across Light, Dark, and System modes.
+- **Dock Button Cross Icon Visibility**: Fixed an issue in Dark Mode where the docked comments close/restore toggle icon (X icon) rendered in dark black on a dark background, making it invisible. Updated icon fill colors and SVG styles to force bright solid white (`#ffffff`) in Dark Mode (`html[dark]`) and dark solid black (`#0f0f0f`) in Light Mode (`html:not([dark])`).
+
+---
+
+## [1.0.4] - 2026-07-25
+
+### Fixed
+- **Universal Light & Dark Theme Adaptation**: Resolved a theme inversion issue where docked comments displayed black boxes in Light Mode or white boxes in Dark Mode. Implemented native page background inheritance (`transparent` background) and neutral 20% grey borders, ensuring 100% theme compatibility across Light, Dark, and System modes.
 
 ---
 
