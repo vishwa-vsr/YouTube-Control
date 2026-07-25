@@ -403,8 +403,8 @@ ytd-comments-header-renderer {
   transform: translateY(-50%) !important;
   background: transparent !important;
   border: none !important;
-  color: inherit !important;
-  fill: inherit !important;
+  color: var(--yt-spec-text-primary, #ffffff) !important;
+  fill: var(--yt-spec-text-primary, #ffffff) !important;
   cursor: pointer !important;
   align-items: center !important;
   justify-content: center !important;
@@ -425,25 +425,56 @@ ytd-comments-header-renderer {
 }
 
 .yt-dock-comments-btn:hover {
-  background: rgba(128, 128, 128, 0.15) !important;
+  background: rgba(128, 128, 128, 0.25) !important;
 }
 
 .yt-dock-comments-btn.active {
-  color: var(--accent-active, #FF1E27) !important;
-  background: rgba(255, 30, 39, 0.15) !important;
+  color: var(--yt-spec-text-primary, #ffffff) !important;
+  fill: var(--yt-spec-text-primary, #ffffff) !important;
+  background: transparent !important;
 }
 
 .yt-comments-docked .yt-dock-comments-btn.active {
-  color: inherit !important;
+  color: var(--yt-spec-text-primary, #ffffff) !important;
+  fill: var(--yt-spec-text-primary, #ffffff) !important;
   background: transparent !important;
 }
 
 .yt-comments-docked .yt-dock-comments-btn.active:hover {
-  background: rgba(128, 128, 128, 0.15) !important;
+  background: rgba(128, 128, 128, 0.25) !important;
 }
 
-.yt-dock-comments-btn svg {
-  display: block;
+.yt-dock-comments-btn svg,
+.yt-dock-comments-btn svg path {
+  display: block !important;
+  fill: currentColor !important;
+  color: currentColor !important;
+}
+
+/* Dark Mode Icon Overrides */
+html[dark] .yt-dock-comments-btn,
+html[darker-dark-theme] .yt-dock-comments-btn,
+[dark] .yt-dock-comments-btn {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+html[dark] .yt-dock-comments-btn:hover,
+html[darker-dark-theme] .yt-dock-comments-btn:hover,
+[dark] .yt-dock-comments-btn:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+}
+
+/* Light Mode Icon Overrides */
+html:not([dark]):not([darker-dark-theme]) .yt-dock-comments-btn {
+  color: #0f0f0f !important;
+  fill: #0f0f0f !important;
+}
+
+html:not([dark]):not([darker-dark-theme]) .yt-dock-comments-btn:hover {
+  background: rgba(0, 0, 0, 0.1) !important;
+  color: #0f0f0f !important;
 }
 
 /* Layout modifications when comments are docked to the sidebar (Option B) */
