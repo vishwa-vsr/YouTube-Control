@@ -403,8 +403,8 @@ ytd-comments-header-renderer {
   transform: translateY(-50%) !important;
   background: rgba(128, 128, 128, 0.15) !important;
   border: 1px solid rgba(128, 128, 128, 0.25) !important;
-  color: var(--yt-spec-text-primary, currentColor) !important;
-  fill: var(--yt-spec-text-primary, currentColor) !important;
+  color: #0f0f0f !important;
+  fill: #0f0f0f !important;
   cursor: pointer !important;
   align-items: center !important;
   justify-content: center !important;
@@ -424,21 +424,41 @@ ytd-comments-header-renderer {
   padding-right: 48px !important;
 }
 
-.yt-dock-comments-btn:hover {
-  background: rgba(128, 128, 128, 0.3) !important;
-  transform: translateY(-50%) scale(1.08) !important;
-}
-
-.yt-dock-comments-btn.active {
-  color: var(--yt-spec-text-primary, currentColor) !important;
-  fill: var(--yt-spec-text-primary, currentColor) !important;
-}
-
 .yt-dock-comments-btn svg,
 .yt-dock-comments-btn svg path {
   display: block !important;
-  fill: var(--yt-spec-text-primary, currentColor) !important;
-  color: var(--yt-spec-text-primary, currentColor) !important;
+  fill: currentColor !important;
+  color: currentColor !important;
+}
+
+/* Light Mode explicit styling (when html does NOT have dark attribute) */
+html:not([dark]) .yt-dock-comments-btn {
+  color: #0f0f0f !important;
+  fill: #0f0f0f !important;
+  background: rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+
+html:not([dark]) .yt-dock-comments-btn:hover {
+  background: rgba(0, 0, 0, 0.15) !important;
+  color: #0f0f0f !important;
+  fill: #0f0f0f !important;
+  transform: translateY(-50%) scale(1.08) !important;
+}
+
+/* Dark Mode explicit styling (when html HAS dark attribute) */
+html[dark] .yt-dock-comments-btn {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+html[dark] .yt-dock-comments-btn:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  color: #ffffff !important;
+  fill: #ffffff !important;
+  transform: translateY(-50%) scale(1.08) !important;
 }
 
 /* Layout modifications when comments are docked to the sidebar (Option B) */
