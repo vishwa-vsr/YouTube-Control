@@ -546,6 +546,14 @@ ytd-comments[style*="display:none"] {
 /* ==========================================================================
    CUSTOM HOME FEED GRID LAYOUT (2, 3, 4, 5, 6 videos per row)
    ========================================================================== */
+html.yt-custom-grid-active ytd-rich-grid-renderer {
+  --ytd-rich-grid-content-max-width: none !important;
+  --ytd-rich-grid-item-min-width: 0px !important;
+  --ytd-rich-grid-item-max-width: none !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+
 html.yt-custom-grid-active[data-yt-grid-cols="2"] ytd-rich-grid-renderer {
   --ytd-rich-grid-items-per-row: 2 !important;
   --ytd-rich-grid-posts-per-row: 2 !important;
@@ -574,6 +582,7 @@ html.yt-custom-grid-active ytd-rich-grid-renderer ytd-rich-item-renderer {
   margin-right: calc(var(--ytd-rich-grid-item-margin, 16px) / 2) !important;
   max-width: none !important;
   min-width: 0 !important;
+  flex: none !important;
   box-sizing: border-box !important;
 }
 
