@@ -4,13 +4,35 @@
 
 <h1 align="center">YouTube Control</h1>
 <p align="center"><b>Shorts Blocker & Detox</b></p>
-<p align="center"><i>A beautiful, premium, and distraction-free browser extension that helps you reclaim your focus on YouTube.</i></p>
+<p align="center"><i>Block Shorts, remove video clutter, and customize YouTube for pure focus.</i></p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Chrome-Supported-success.svg?style=flat-square&logo=googlechrome" alt="Chrome">
-  <img src="https://img.shields.io/badge/Firefox-Supported-orange.svg?style=flat-square&logo=firefox" alt="Firefox">
+  <a href="https://chromewebstore.google.com/detail/youtube-control-shorts-bl/ljinlboeiainceejndpicabkmheecnfj?hl=en-GB&authuser=0">
+    <img src="https://img.shields.io/badge/Chrome_Web_Store-Get_Extension-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Chrome Web Store">
+  </a>
+  <a href="https://addons.mozilla.org/en-US/firefox/addon/youtube-control/">
+    <img src="https://img.shields.io/badge/Firefox_Add--ons-Get_Extension-FF7139?style=for-the-badge&logo=firefox&logoColor=white" alt="Firefox Add-ons">
+  </a>
+  <a href="https://microsoftedge.microsoft.com/addons/detail/youtube-control-shorts-b/fnimgjdbnocikpjnokpoepgajbaagfki">
+    <img src="https://img.shields.io/badge/Edge_Add--ons-Get_Extension-0078D7?style=for-the-badge&logo=microsoftedge&logoColor=white" alt="Edge Add-ons">
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/amo/users/youtube-control?style=flat-square&logo=firefox&label=Firefox%20Users&color=blue" alt="Firefox Users">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License">
 </p>
+
+---
+
+## Official Store Downloads & Community Stats
+
+| Browser | Direct Store Link | Number of Users | User Rating | Rating Count |
+| :--- | :--- | :---: | :---: | :---: |
+| 🦊 **Mozilla Firefox** | [Install from Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/youtube-control/) | 👥 **7 active users** | ⭐ **5.0 / 5.0** | **3 ratings** |
+| 🌐 **Google Chrome** | [Install from Chrome Web Store](https://chromewebstore.google.com/detail/youtube-control-shorts-bl/ljinlboeiainceejndpicabkmheecnfj?hl=en-GB&authuser=0) | 👥 **New Listing** | ⭐ New Listing | 0 ratings *(Be the first!)* |
+| 🌊 **Microsoft Edge** | [Install from Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/youtube-control-shorts-b/fnimgjdbnocikpjnokpoepgajbaagfki) | 👥 **New Listing** | ⭐ New Listing | 0 ratings *(Be the first!)* |
+
 
 ---
 
