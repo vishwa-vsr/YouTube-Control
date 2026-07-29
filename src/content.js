@@ -614,7 +614,8 @@ observer.observe(document.documentElement, { childList: true, subtree: true });
 
 // Load settings into cache once on startup
 try {
-  chrome.storage.local.get(['extensionEnabled', 'unblurOnHover', ...Object.keys(classMap)], (settings) => {
+  chrome.storage.local.get(null, (settings) => {
+    settings = settings || {};
     // Set default for certain keys to true if they are undefined
     const defaultTrueKeys = [
       'unblurOnHover',
