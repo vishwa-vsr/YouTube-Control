@@ -98,7 +98,8 @@
 .yt-hide-comments #comments,
 .yt-hide-comments ytd-comments,
 .yt-hide-comments #chat,
-.yt-hide-comments ytd-live-chat-frame {
+.yt-hide-comments ytd-live-chat-frame,
+html.yt-hide-comments #secondary-inner #comments {
   display: none !important;
 }
 
@@ -462,7 +463,7 @@ html[dark] .yt-dock-comments-btn:hover {
 }
 
 /* Layout modifications when comments are docked to the sidebar (Option B) */
-.yt-comments-docked #secondary-inner #comments:not([hidden]):not([style*="display: none"]):not([style*="display:none"]) {
+html:not(.yt-hide-comments).yt-comments-docked #secondary-inner #comments:not([hidden]):not([style*="display: none"]):not([style*="display:none"]) {
   display: flex !important;
   flex-direction: column !important;
   height: 600px !important;
