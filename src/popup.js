@@ -218,4 +218,31 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Footer Buttons Event Listeners
+  const rateUsBtn = document.getElementById('rateUsBtn');
+  const githubBtn = document.getElementById('githubBtn');
+
+  if (rateUsBtn) {
+    rateUsBtn.addEventListener('click', () => {
+      const isFirefox = navigator.userAgent.includes('Firefox');
+      const isEdge = navigator.userAgent.includes('Edg');
+      
+      let rateUrl = 'https://chromewebstore.google.com/detail/youtube-control-shorts-bl/ljinlboeiainceejndpicabkmheecnfj/reviews';
+      
+      if (isFirefox) {
+        rateUrl = 'https://addons.mozilla.org/en-US/firefox/addon/youtube-control/reviews/';
+      } else if (isEdge) {
+        rateUrl = 'https://microsoftedge.microsoft.com/addons/detail/youtube-control-shorts-b/fnimgjdbnocikpjnokpoepgajbaagfki';
+      }
+      
+      chrome.tabs.create({ url: rateUrl });
+    });
+  }
+
+  if (githubBtn) {
+    githubBtn.addEventListener('click', () => {
+      chrome.tabs.create({ url: 'https://github.com/vishwa-vsr/YouTube-Control' });
+    });
+  }
 });
