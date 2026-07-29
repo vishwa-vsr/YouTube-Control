@@ -42,14 +42,22 @@
 
 | Category | Feature | Description |
 | :--- | :--- | :--- |
-| 👁️ **Visual Detox** | **Blur Thumbnails** | Blurs thumbnail images until hovered to prevent clickbait trap. |
-| 🎨 **Styling** | **Black & White Mode** | Makes the entire YouTube interface grayscale to reduce visual stimulation. |
-| ⚙️ **Custom Hiding** | **Clutter Control** | Hide comments, recommended sidebar, home feed, search, and more. |
-| 📐 **Layouts** | **Custom Grid Layout** | Customize videos per row on Home Feed (2, 3, 4, 5, or 6 columns). |
-| 📐 **Layouts** | **Sticky Player** | Locked scrolling with independent panels for comments and player. |
-| 💬 **Comments** | **Dock Comments** | Moves comments to a clean sidebar layout next to the video for distraction-free reading. |
-| 📺 **Modes** | **Mini Fullscreen** | Fills the viewport while keeping search, tabs, and bookmarks active. |
-| 📸 **Utilities** | **Video Screenshot** | Capture clean video frames instantly as high-quality PNGs with one click. |
+| 📐 **Layouts** | **Custom Grid Layout** | Customize Home Feed to display **2, 3, 4, 5, or 6 videos per row** for optimal layout. |
+| 📐 **Layouts** | **Sticky Video Player** | Lock video player scrolling while keeping comments independently scrollable. |
+| 💬 **Comments** | **Dock Comments to Sidebar** | Moves video comments directly into the right sidebar next to the video for distraction-free reading. |
+| 💬 **Comments** | **Hide Comments & Chat** | Completely removes the video comments section and live chat frame. |
+| 👁️ **Visual Detox** | **Blur Thumbnails** | Blurs thumbnail images until hovered to prevent clickbait distraction traps. |
+| 👁️ **Visual Detox** | **Reveal on Hover** | Temporarily unblurs thumbnail images when mouse hovers over them. |
+| 🎨 **Styling** | **Black & White Mode** | Converts the entire YouTube interface to clean grayscale to reduce visual stimulation. |
+| 🎨 **Styling** | **Block Ambient Mode** | Disables the glowing video player background light (reduces distractions & saves battery). |
+| ⚙️ **Clutter Control** | **Hide Home Feed** | Removes the main video recommendation feed from the YouTube home page. |
+| ⚙️ **Clutter Control** | **Hide Shorts** | Removes Shorts sections, navigation tabs, reels, and sidebar links. |
+| ⚙️ **Clutter Control** | **Hide Recommended Videos** | Removes sidebar video suggestions on the watch page. |
+| ⚙️ **Clutter Control** | **Hide Endscreen Cards** | Removes pop-up video cards, channel overlays, and annotations at video end. |
+| ⚙️ **Clutter Control** | **Sidebar Detox** | Custom hide options for Subscriptions list, 'You' section, Explore, and 'More from YouTube'. |
+| 📸 **Utilities** | **Video Screenshot** | Capture clean, high-resolution PNG video frames instantly with one click on player controls. |
+| 📺 **Utilities** | **Mini Fullscreen** | Expand video to fill the browser viewport while keeping tabs, search, and bookmarks visible. |
+| ⭐ **Community** | **Store Rating & GitHub** | Direct 1-click browser store rating (Chrome, Firefox, Edge) and open source repository access. |
 
 ---
 
