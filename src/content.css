@@ -568,16 +568,19 @@ html.yt-custom-grid-active[data-yt-grid-cols="6"] ytd-rich-grid-renderer {
 
 /* Ensure flex wrapping and item width sizing on ytd-rich-item-renderer */
 html.yt-custom-grid-active ytd-rich-grid-renderer ytd-rich-item-renderer {
-  width: calc(100% / var(--ytd-rich-grid-items-per-row, 4) - var(--ytd-rich-grid-item-margin, 16px)) !important;
+  width: calc((100% - (var(--ytd-rich-grid-items-per-row, 4) - 1) * var(--ytd-rich-grid-item-margin, 16px)) / var(--ytd-rich-grid-items-per-row, 4) - 0.1px) !important;
   max-width: none !important;
-  margin-right: var(--ytd-rich-grid-item-margin, 16px) !important;
+  min-width: 0 !important;
   box-sizing: border-box !important;
 }
 
 /* Fix flex layout for contents container inside rich grid */
-html.yt-custom-grid-active ytd-rich-grid-renderer #contents.ytd-rich-grid-renderer {
+html.yt-custom-grid-active ytd-rich-grid-renderer #contents.ytd-rich-grid-renderer,
+html.yt-custom-grid-active ytd-rich-grid-renderer ytd-rich-grid-row #contents {
   display: flex !important;
   flex-wrap: wrap !important;
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 
