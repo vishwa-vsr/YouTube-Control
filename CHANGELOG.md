@@ -6,6 +6,11 @@ All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension
 
 ### Added
 - **Custom Home Feed Grid Layout**: Added a user setting in the **Feeds** tab to customize videos per row on the YouTube home feed (select 2, 3, 4, 5, or 6 videos per row).
+- **Popup Footer Action Capsule**: Added a fixed glassmorphism footer in the popup with **Rate Us 5★** (auto-detecting Chrome, Firefox, and Edge review store URLs) and **GitHub** project link.
+
+### Fixed
+- **Live Stream False Positive & Comment Docking**: Resolved an issue where hidden player template badges caused regular videos to be falsely detected as live streams, restoring auto-docking of comments to the sidebar.
+- **Custom Grid Layout Alignment**: Refined card width calculations and grid flex wrapping to eliminate blank right-side gaps across 2, 3, 4, 5, and 6 column layouts.
 
 ### Updated
 - **Documentation & Community Badges**: Updated project `README.md` with official browser store links (Firefox, Chrome, Edge), live dynamic active user badges, rating counts, and refreshed tagline.
