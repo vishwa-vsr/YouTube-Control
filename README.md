@@ -19,6 +19,7 @@
 </p>
 
 <p align="center">
+  <img src="https://img.shields.io/badge/Chrome_Users-200%2B-blue?style=flat-square&logo=googlechrome" alt="Chrome Users">
   <img src="https://img.shields.io/amo/users/youtube-control?style=flat-square&logo=firefox&label=Firefox%20Users&color=blue" alt="Firefox Users">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License">
 </p>
@@ -29,8 +30,8 @@
 
 | Browser | Direct Store Link | Number of Users | User Rating | Rating Count |
 | :--- | :--- | :---: | :---: | :---: |
+| 🌐 **Google Chrome** | [Install from Chrome Web Store](https://chromewebstore.google.com/detail/youtube-control-shorts-bl/ljinlboeiainceejndpicabkmheecnfj?hl=en-GB&authuser=0) | 👥 **200+ users** | ⭐ New Listing | 0 ratings *(Be the first!)* |
 | 🦊 **Mozilla Firefox** | [Install from Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/youtube-control/) | 👥 **7 active users** | ⭐ **5.0 / 5.0** | **3 ratings** |
-| 🌐 **Google Chrome** | [Install from Chrome Web Store](https://chromewebstore.google.com/detail/youtube-control-shorts-bl/ljinlboeiainceejndpicabkmheecnfj?hl=en-GB&authuser=0) | 👥 **New Listing** | ⭐ New Listing | 0 ratings *(Be the first!)* |
 | 🌊 **Microsoft Edge** | [Install from Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/youtube-control-shorts-b/fnimgjdbnocikpjnokpoepgajbaagfki) | 👥 **New Listing** | ⭐ New Listing | 0 ratings *(Be the first!)* |
 
 
