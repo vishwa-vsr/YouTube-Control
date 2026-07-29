@@ -57,7 +57,6 @@
 | ⚙️ **Clutter Control** | **Sidebar Detox** | Custom hide options for Subscriptions list, 'You' section, Explore, and 'More from YouTube'. |
 | 📸 **Utilities** | **Video Screenshot** | Capture clean, high-resolution PNG video frames instantly with one click on player controls. |
 | 📺 **Utilities** | **Mini Fullscreen** | Expand video to fill the browser viewport while keeping tabs, search, and bookmarks visible. |
-| ⭐ **Community** | **Store Rating & GitHub** | Direct 1-click browser store rating (Chrome, Firefox, Edge) and open source repository access. |
 
 ---
 
