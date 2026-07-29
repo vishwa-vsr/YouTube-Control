@@ -45,6 +45,7 @@
 | 👁️ **Visual Detox** | **Blur Thumbnails** | Blurs thumbnail images until hovered to prevent clickbait trap. |
 | 🎨 **Styling** | **Black & White Mode** | Makes the entire YouTube interface grayscale to reduce visual stimulation. |
 | ⚙️ **Custom Hiding** | **Clutter Control** | Hide comments, recommended sidebar, home feed, search, and more. |
+| 📐 **Layouts** | **Custom Grid Layout** | Customize videos per row on Home Feed (2, 3, 4, 5, or 6 columns). |
 | 📐 **Layouts** | **Sticky Player** | Locked scrolling with independent panels for comments and player. |
 | 💬 **Comments** | **Dock Comments** | Moves comments to a clean sidebar layout next to the video for distraction-free reading. |
 | 📺 **Modes** | **Mini Fullscreen** | Fills the viewport while keeping search, tabs, and bookmarks active. |

@@ -123,6 +123,28 @@ function applySettings(settings) {
     root.classList.remove('yt-no-hover-unblur');
   }
 
+  // Handle Custom Home Feed Grid
+  if (settings.customGridEnabled === true) {
+    const cols = settings.videosPerRow || 4;
+    root.classList.add('yt-custom-grid-active');
+    root.setAttribute('data-yt-grid-cols', cols.toString());
+    
+    document.querySelectorAll('ytd-rich-grid-renderer').forEach(grid => {
+      grid.style.setProperty('--ytd-rich-grid-items-per-row', cols.toString(), 'important');
+      grid.style.setProperty('--ytd-rich-grid-posts-per-row', cols.toString(), 'important');
+      if ('elementsPerRow' in grid) {
+        try { grid.elementsPerRow = cols; } catch(e) {}
+      }
+    });
+  } else {
+    root.classList.remove('yt-custom-grid-active');
+    root.removeAttribute('data-yt-grid-cols');
+    document.querySelectorAll('ytd-rich-grid-renderer').forEach(grid => {
+      grid.style.removeProperty('--ytd-rich-grid-items-per-row');
+      grid.style.removeProperty('--ytd-rich-grid-posts-per-row');
+    });
+  }
+
   checkShortsTab();
   updateSidebarState();
 

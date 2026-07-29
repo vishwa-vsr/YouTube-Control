@@ -256,6 +256,58 @@ body {
   border-bottom: none;
 }
 
+.sub-switch-row {
+  padding-left: 12px;
+  border-left: 2px solid rgba(255, 30, 39, 0.4);
+  margin-top: -2px;
+  margin-bottom: 4px;
+}
+
+.sub-switch-row.disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.sub-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Grid Pill Selector Styling */
+.grid-pill-selector {
+  display: flex;
+  gap: 3px;
+  background: rgba(18, 20, 26, 0.8);
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.grid-pill-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.grid-pill-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.grid-pill-btn.active {
+  background-color: var(--accent-active);
+  color: var(--text-primary);
+  box-shadow: 0 2px 8px rgba(255, 30, 39, 0.3);
+}
+
 .switch-info {
   display: flex;
   flex-direction: column;

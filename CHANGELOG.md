@@ -4,6 +4,9 @@ All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension
 
 ## [1.0.6] - 2026-07-29
 
+### Added
+- **Custom Home Feed Grid Layout**: Added a user setting in the **Feeds** tab to customize videos per row on the YouTube home feed (select 2, 3, 4, 5, or 6 videos per row).
+
 ### Updated
 - **Documentation & Community Badges**: Updated project `README.md` with official browser store links (Firefox, Chrome, Edge), live dynamic active user badges, rating counts, and refreshed tagline.
 
