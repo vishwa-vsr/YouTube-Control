@@ -554,25 +554,35 @@ html.yt-custom-grid-active ytd-rich-grid-renderer {
   max-width: none !important;
 }
 
-html.yt-custom-grid-active[data-yt-grid-cols="2"] ytd-rich-grid-renderer {
+html.yt-custom-grid-active[data-yt-grid-cols="2"] ytd-rich-grid-renderer,
+html.yt-custom-grid-active[data-yt-grid-cols="2"] ytd-rich-grid-renderer * {
   --ytd-rich-grid-items-per-row: 2 !important;
   --ytd-rich-grid-posts-per-row: 2 !important;
+  --ytd-rich-grid-item-min-width: 0px !important;
 }
-html.yt-custom-grid-active[data-yt-grid-cols="3"] ytd-rich-grid-renderer {
+html.yt-custom-grid-active[data-yt-grid-cols="3"] ytd-rich-grid-renderer,
+html.yt-custom-grid-active[data-yt-grid-cols="3"] ytd-rich-grid-renderer * {
   --ytd-rich-grid-items-per-row: 3 !important;
   --ytd-rich-grid-posts-per-row: 3 !important;
+  --ytd-rich-grid-item-min-width: 0px !important;
 }
-html.yt-custom-grid-active[data-yt-grid-cols="4"] ytd-rich-grid-renderer {
+html.yt-custom-grid-active[data-yt-grid-cols="4"] ytd-rich-grid-renderer,
+html.yt-custom-grid-active[data-yt-grid-cols="4"] ytd-rich-grid-renderer * {
   --ytd-rich-grid-items-per-row: 4 !important;
   --ytd-rich-grid-posts-per-row: 4 !important;
+  --ytd-rich-grid-item-min-width: 0px !important;
 }
-html.yt-custom-grid-active[data-yt-grid-cols="5"] ytd-rich-grid-renderer {
+html.yt-custom-grid-active[data-yt-grid-cols="5"] ytd-rich-grid-renderer,
+html.yt-custom-grid-active[data-yt-grid-cols="5"] ytd-rich-grid-renderer * {
   --ytd-rich-grid-items-per-row: 5 !important;
   --ytd-rich-grid-posts-per-row: 5 !important;
+  --ytd-rich-grid-item-min-width: 0px !important;
 }
-html.yt-custom-grid-active[data-yt-grid-cols="6"] ytd-rich-grid-renderer {
+html.yt-custom-grid-active[data-yt-grid-cols="6"] ytd-rich-grid-renderer,
+html.yt-custom-grid-active[data-yt-grid-cols="6"] ytd-rich-grid-renderer * {
   --ytd-rich-grid-items-per-row: 6 !important;
   --ytd-rich-grid-posts-per-row: 6 !important;
+  --ytd-rich-grid-item-min-width: 0px !important;
 }
 
 /* Match YouTube's exact native grid sizing formula so N items fill 100% width with no blank spaces */
