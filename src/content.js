@@ -27,14 +27,27 @@ let _pendingInject = null;
 let userManuallyUndocked = false;
 
 function isLiveStreamOrChatActive() {
-  const isLive = !!(
-    document.querySelector('ytd-watch-flexy[is-live]') || 
-    document.querySelector('.html5-video-player.ytp-live') ||
-    document.querySelector('.ytp-live-badge[aria-disabled="false"]') ||
-    document.querySelector('ytd-playability-executor-renderer[key="live-message"]')
+  const watchFlexy = document.querySelector('ytd-watch-flexy');
+  const isLiveFlexy = watchFlexy && watchFlexy.hasAttribute('is-live');
+  
+  const player = document.querySelector('.html5-video-player');
+  const isLivePlayer = player && player.classList.contains('ytp-live');
+  
+  const liveBadge = document.querySelector('.ytp-live-badge');
+  const isLiveBadgeVisible = liveBadge && !liveBadge.hasAttribute('hidden') && liveBadge.style.display !== 'none' && !liveBadge.classList.contains('sf-hidden') && (liveBadge.offsetWidth > 0 || liveBadge.offsetHeight > 0);
+  
+  const isLive = !!(isLiveFlexy || isLivePlayer || isLiveBadgeVisible);
+
+  const chatPanel = document.getElementById('chat') || document.querySelector('ytd-live-chat-frame') || document.querySelector('ytd-engagement-panel-section-list-renderer[target-id="ytd-engagement-panel-live-chat"]');
+  const hasActiveChat = !!(
+    chatPanel && 
+    !chatPanel.hasAttribute('hidden') && 
+    !chatPanel.hasAttribute('collapsed') && 
+    chatPanel.style.display !== 'none' &&
+    (chatPanel.offsetWidth > 0 || chatPanel.offsetHeight > 0) &&
+    chatPanel.querySelector('iframe[src*="live_chat"]')
   );
-  const chatPanel = document.getElementById('chat') || document.querySelector('ytd-live-chat-frame');
-  const hasActiveChat = chatPanel && !chatPanel.hasAttribute('hidden') && !chatPanel.hasAttribute('collapsed') && chatPanel.style.display !== 'none';
+  
   return isLive || hasActiveChat;
 }
 
@@ -240,6 +253,9 @@ function toggleSidebarComments(isAuto = false) {
   if (!comments || !primaryInner || !secondaryInner) return;
   
   if (!root.classList.contains('yt-comments-docked')) {
+    comments.removeAttribute('hidden');
+    comments.classList.remove('sf-hidden');
+    comments.style.removeProperty('display');
     secondaryInner.insertBefore(comments, secondaryInner.firstChild);
     root.classList.add('yt-comments-docked');
     document.querySelectorAll('.yt-dock-comments-btn').forEach(b => {
