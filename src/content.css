@@ -544,9 +544,12 @@ ytd-comments[style*="display:none"] {
 }
 
 /* ==========================================================================
-   CUSTOM HOME FEED GRID LAYOUT (2, 3, 4, 5, 6 videos per row)
+   CUSTOM HOME FEED GRID LAYOUT (Dynamic CSS Variable Architecture)
    ========================================================================== */
-html.yt-custom-grid-active ytd-rich-grid-renderer {
+html.yt-custom-grid-active ytd-browse[page-subtype="home"] ytd-rich-grid-renderer,
+html.yt-custom-grid-active ytd-rich-grid-renderer:not([is-channel-renderer]) {
+  --ytd-rich-grid-items-per-row: var(--yt-custom-videos-per-row) !important;
+  --ytd-rich-grid-posts-per-row: var(--yt-custom-videos-per-row) !important;
   --ytd-rich-grid-content-max-width: none !important;
   --ytd-rich-grid-item-min-width: 0px !important;
   --ytd-rich-grid-item-max-width: none !important;
@@ -554,40 +557,10 @@ html.yt-custom-grid-active ytd-rich-grid-renderer {
   max-width: none !important;
 }
 
-html.yt-custom-grid-active[data-yt-grid-cols="2"] ytd-rich-grid-renderer,
-html.yt-custom-grid-active[data-yt-grid-cols="2"] ytd-rich-grid-renderer * {
-  --ytd-rich-grid-items-per-row: 2 !important;
-  --ytd-rich-grid-posts-per-row: 2 !important;
-  --ytd-rich-grid-item-min-width: 0px !important;
-}
-html.yt-custom-grid-active[data-yt-grid-cols="3"] ytd-rich-grid-renderer,
-html.yt-custom-grid-active[data-yt-grid-cols="3"] ytd-rich-grid-renderer * {
-  --ytd-rich-grid-items-per-row: 3 !important;
-  --ytd-rich-grid-posts-per-row: 3 !important;
-  --ytd-rich-grid-item-min-width: 0px !important;
-}
-html.yt-custom-grid-active[data-yt-grid-cols="4"] ytd-rich-grid-renderer,
-html.yt-custom-grid-active[data-yt-grid-cols="4"] ytd-rich-grid-renderer * {
-  --ytd-rich-grid-items-per-row: 4 !important;
-  --ytd-rich-grid-posts-per-row: 4 !important;
-  --ytd-rich-grid-item-min-width: 0px !important;
-}
-html.yt-custom-grid-active[data-yt-grid-cols="5"] ytd-rich-grid-renderer,
-html.yt-custom-grid-active[data-yt-grid-cols="5"] ytd-rich-grid-renderer * {
-  --ytd-rich-grid-items-per-row: 5 !important;
-  --ytd-rich-grid-posts-per-row: 5 !important;
-  --ytd-rich-grid-item-min-width: 0px !important;
-}
-html.yt-custom-grid-active[data-yt-grid-cols="6"] ytd-rich-grid-renderer,
-html.yt-custom-grid-active[data-yt-grid-cols="6"] ytd-rich-grid-renderer * {
-  --ytd-rich-grid-items-per-row: 6 !important;
-  --ytd-rich-grid-posts-per-row: 6 !important;
-  --ytd-rich-grid-item-min-width: 0px !important;
-}
-
 /* Match YouTube's exact native grid sizing formula so N items fill 100% width with no blank spaces */
-html.yt-custom-grid-active ytd-rich-grid-renderer ytd-rich-item-renderer {
-  width: calc(100% / var(--ytd-rich-grid-items-per-row, 4) - var(--ytd-rich-grid-item-margin, 16px)) !important;
+html.yt-custom-grid-active ytd-browse[page-subtype="home"] ytd-rich-grid-renderer > #contents > ytd-rich-item-renderer,
+html.yt-custom-grid-active ytd-browse[page-subtype="home"] ytd-rich-grid-row > #contents > ytd-rich-item-renderer {
+  width: calc(100% / var(--yt-custom-videos-per-row, 4) - var(--ytd-rich-grid-item-margin, 16px)) !important;
   margin-left: calc(var(--ytd-rich-grid-item-margin, 16px) / 2) !important;
   margin-right: calc(var(--ytd-rich-grid-item-margin, 16px) / 2) !important;
   max-width: none !important;
@@ -596,13 +569,45 @@ html.yt-custom-grid-active ytd-rich-grid-renderer ytd-rich-item-renderer {
   box-sizing: border-box !important;
 }
 
-/* Allow flex wrapping across row elements */
-html.yt-custom-grid-active ytd-rich-grid-renderer #contents.ytd-rich-grid-renderer,
-html.yt-custom-grid-active ytd-rich-grid-renderer ytd-rich-grid-row #contents {
+/* Explicitly force Shorts shelves, section renderers, and items holding them to span 100% full row width */
+html.yt-custom-grid-active ytd-rich-section-renderer,
+html.yt-custom-grid-active ytd-rich-shelf-renderer,
+html.yt-custom-grid-active grid-shelf-view-model,
+html.yt-custom-grid-active ytd-reel-shelf-renderer,
+html.yt-custom-grid-active ytd-rich-item-renderer:has(ytd-rich-section-renderer),
+html.yt-custom-grid-active ytd-rich-item-renderer:has(ytd-rich-shelf-renderer),
+html.yt-custom-grid-active ytd-rich-item-renderer:has(grid-shelf-view-model),
+html.yt-custom-grid-active ytd-rich-item-renderer:has(ytd-reel-shelf-renderer),
+html.yt-custom-grid-active ytd-rich-item-renderer:has(ytd-post-renderer) {
+  --ytd-rich-grid-items-per-row: initial !important;
+  --ytd-rich-grid-posts-per-row: initial !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 0 0 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Individual Shorts items INSIDE a Shorts shelf maintain uniform slim vertical sizing */
+html.yt-custom-grid-active ytd-rich-section-renderer ytd-rich-item-renderer,
+html.yt-custom-grid-active ytd-rich-shelf-renderer ytd-rich-item-renderer,
+html.yt-custom-grid-active grid-shelf-view-model ytd-rich-item-renderer,
+html.yt-custom-grid-active ytd-reel-shelf-renderer ytd-rich-item-renderer,
+html.yt-custom-grid-active ytd-rich-shelf-renderer[is-shorts] ytd-rich-item-renderer {
+  width: calc(100% / var(--ytd-rich-grid-items-per-row, 5) - var(--ytd-rich-grid-item-margin, 16px)) !important;
+  max-width: 210px !important;
+  min-width: 140px !important;
+  flex: 1 1 0px !important;
+  box-sizing: border-box !important;
+}
+
+/* Allow flex wrapping across row elements when custom grid is active */
+html.yt-custom-grid-active ytd-browse[page-subtype="home"] ytd-rich-grid-renderer #contents.ytd-rich-grid-renderer,
+html.yt-custom-grid-active ytd-browse[page-subtype="home"] ytd-rich-grid-renderer ytd-rich-grid-row #contents {
   display: flex !important;
   flex-wrap: wrap !important;
   width: 100% !important;
   max-width: 100% !important;
 }
+
 
 

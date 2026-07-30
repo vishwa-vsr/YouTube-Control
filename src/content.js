@@ -91,6 +91,9 @@ function applySettings(settings) {
     root.classList.remove('yt-comments-docked');
     root.classList.remove('yt-sidebar-active');
     
+    // Clean up custom grid
+    cleanupCustomGrid();
+    
     // Remove injected elements
     const screenshotBtn = document.querySelector('.ytp-screenshot-button');
     if (screenshotBtn) screenshotBtn.remove();
@@ -138,19 +141,9 @@ function applySettings(settings) {
 
   // Handle Custom Home Feed Grid
   if (settings.customGridEnabled === true) {
-    const cols = settings.videosPerRow || 4;
-    root.classList.add('yt-custom-grid-active');
-    root.setAttribute('data-yt-grid-cols', cols.toString());
     enforceCustomGrid();
   } else {
-    root.classList.remove('yt-custom-grid-active');
-    root.removeAttribute('data-yt-grid-cols');
-    document.querySelectorAll('ytd-rich-grid-renderer').forEach(grid => {
-      grid.style.removeProperty('--ytd-rich-grid-items-per-row');
-      grid.style.removeProperty('--ytd-rich-grid-posts-per-row');
-      grid.removeAttribute('elements-per-row');
-      grid.removeAttribute('items-per-row');
-    });
+    cleanupCustomGrid();
   }
 
   checkShortsTab();
@@ -535,40 +528,58 @@ function hideSidebarElements() {
   });
 }
 
-function enforceCustomGrid() {
-  if (!cachedSettings.customGridEnabled || cachedSettings.extensionEnabled === false) return;
+function updateCustomGridDynamicStyle() {
+  const root = document.documentElement;
+  const isEnabled = cachedSettings.customGridEnabled === true && cachedSettings.extensionEnabled !== false;
+  const isHome = location.pathname === '/' || location.pathname === '/index' || !!document.querySelector('ytd-browse[page-subtype="home"]');
   
+  let styleEl = document.getElementById('yt-custom-grid-dynamic-style');
+
+  if (!isEnabled || !isHome) {
+    if (styleEl) styleEl.remove();
+    if (root.classList.contains('yt-custom-grid-active')) {
+      root.classList.remove('yt-custom-grid-active');
+      root.removeAttribute('data-yt-grid-cols');
+      dispatchResize();
+    }
+    return;
+  }
+
   const cols = cachedSettings.videosPerRow || 4;
   const colsStr = cols.toString();
-  
-  document.querySelectorAll('ytd-rich-grid-renderer').forEach(grid => {
-    if (grid.getAttribute('elements-per-row') !== colsStr) {
-      grid.setAttribute('elements-per-row', colsStr);
-    }
-    if (grid.getAttribute('items-per-row') !== colsStr) {
-      grid.setAttribute('items-per-row', colsStr);
-    }
-    grid.style.setProperty('--ytd-rich-grid-items-per-row', colsStr, 'important');
-    grid.style.setProperty('--ytd-rich-grid-posts-per-row', colsStr, 'important');
-    grid.style.setProperty('--ytd-rich-grid-item-min-width', '0px', 'important');
-    
-    if ('elementsPerRow' in grid && grid.__customGridColsLocked !== cols) {
-      try {
-        grid.__customGridColsLocked = cols;
-        Object.defineProperty(grid, 'elementsPerRow', {
-          get: () => cols,
-          set: () => {},
-          configurable: true
-        });
-      } catch(e) {}
-    }
-  });
 
-  document.querySelectorAll('ytd-rich-item-renderer').forEach(item => {
-    if (item.getAttribute('items-per-row') !== colsStr) {
-      item.setAttribute('items-per-row', colsStr);
+  if (!root.classList.contains('yt-custom-grid-active')) {
+    root.classList.add('yt-custom-grid-active');
+  }
+  if (root.getAttribute('data-yt-grid-cols') !== colsStr) {
+    root.setAttribute('data-yt-grid-cols', colsStr);
+  }
+
+  const cssText = `
+    html {
+      --yt-custom-videos-per-row: ${colsStr};
     }
-  });
+    html.yt-custom-grid-active ytd-rich-shelf-renderer:not([is-shorts]):not(:has(ytd-rich-item-renderer[is-post])) ytd-rich-item-renderer[is-shelf-item]:nth-child(-n + ${colsStr}) {
+      display: block !important;
+    }
+  `;
+
+  if (!styleEl) {
+    styleEl = document.createElement('style');
+    styleEl.id = 'yt-custom-grid-dynamic-style';
+    styleEl.textContent = cssText;
+    (document.head || root).appendChild(styleEl);
+  } else if (styleEl.textContent !== cssText) {
+    styleEl.textContent = cssText;
+  }
+}
+
+function cleanupCustomGrid() {
+  updateCustomGridDynamicStyle();
+}
+
+function enforceCustomGrid() {
+  updateCustomGridDynamicStyle();
 }
 
 // Debounced observer to inject buttons - runs at most once every 500ms
@@ -580,6 +591,7 @@ function scheduleButtonInjection() {
     const isEnabled = cachedSettings.extensionEnabled !== false;
     if (isEnabled) {
       if (cachedSettings.customGridEnabled === true) enforceCustomGrid();
+      else cleanupCustomGrid();
       if (cachedSettings.showScreenshotBtn === true) injectScreenshotButton();
       if (cachedSettings.showMiniFullscreenBtn === true) injectMiniFullscreenButton();
       
@@ -604,6 +616,8 @@ function scheduleButtonInjection() {
       
       updateSidebarState();
       hideSidebarElements();
+    } else {
+      cleanupCustomGrid();
     }
   }, 500);
 }
