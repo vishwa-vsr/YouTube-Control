@@ -1,6 +1,7 @@
 // List of all configuration keys (excluding the master Clean Mode)
 const configKeys = [
   'hideHomeFeed',
+  'hideCategoryBar',
   'customGridEnabled',
   'hideSubscriptions',
   'hideYou',
@@ -177,6 +178,20 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // Auto-enable extension if user clicks anywhere in popup options or tabs while disabled
+  const autoWakeHandler = () => {
+    if (masterToggle && !masterToggle.checked) {
+      masterToggle.checked = true;
+      chrome.storage.local.set({ extensionEnabled: true }, () => {
+        updateMasterToggleUI(true);
+        sendCurrentSettingsToActiveTab();
+      });
+    }
+  };
+
+  if (tabsNav) tabsNav.addEventListener('click', autoWakeHandler);
+  if (optionsScroll) optionsScroll.addEventListener('click', autoWakeHandler);
 
   // Add event listeners to all checkboxes
   Object.keys(checkboxes).forEach(key => {

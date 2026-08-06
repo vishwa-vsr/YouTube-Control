@@ -128,7 +128,7 @@ body {
 .tabs-navigation.disabled-mode,
 #options-scroll-area.disabled-mode {
   opacity: 0.35 !important;
-  pointer-events: none !important;
+  cursor: pointer;
 }
 
 

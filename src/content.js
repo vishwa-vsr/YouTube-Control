@@ -1,6 +1,7 @@
 // Map settings keys to HTML class names
 const classMap = {
   hideHomeFeed: 'yt-hide-home-feed',
+  hideCategoryBar: 'yt-hide-category-bar',
   hideSubscriptions: 'yt-hide-subscriptions',
   hideYou: 'yt-hide-you',
   hideExplore: 'yt-hide-explore',
@@ -528,6 +529,59 @@ function hideSidebarElements() {
   });
 }
 
+function updateCategoryBarDynamicStyle() {
+  const root = document.documentElement;
+  const isEnabled = cachedSettings.hideCategoryBar === true && cachedSettings.extensionEnabled !== false;
+  let styleEl = document.getElementById('yt-hide-category-bar-dynamic-style');
+
+  if (!isEnabled) {
+    if (styleEl) styleEl.remove();
+    return;
+  }
+
+  const cssText = `
+    .yt-hide-category-bar ytd-feed-filter-chip-bar-renderer,
+    .yt-hide-category-bar yt-chip-cloud-renderer,
+    .yt-hide-category-bar ytd-rich-grid-renderer #header,
+    .yt-hide-category-bar ytd-rich-grid-renderer #header-container,
+    .yt-hide-category-bar #chips-wrapper,
+    .yt-hide-category-bar #chips-content,
+    .yt-hide-category-bar ytd-sticky-header-renderer {
+      display: none !important;
+      visibility: hidden !important;
+      height: 0 !important;
+      min-height: 0 !important;
+      max-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      pointer-events: none !important;
+    }
+    .yt-hide-category-bar ytd-rich-grid-renderer {
+      --ytd-rich-grid-content-offset-top: 0px !important;
+      --ytd-rich-grid-chips-bar-top: 0px !important;
+      padding-top: var(--ytd-masthead-height, 56px) !important;
+      margin-top: 0 !important;
+    }
+    .yt-hide-category-bar ytd-rich-grid-renderer > #contents {
+      padding-top: 0 !important;
+      margin-top: 0 !important;
+    }
+    .yt-hide-category-bar ytd-rich-grid-renderer yt-touch-feedback-shape {
+      margin: 0 !important;
+    }
+  `;
+
+  if (!styleEl) {
+    styleEl = document.createElement('style');
+    styleEl.id = 'yt-hide-category-bar-dynamic-style';
+    styleEl.textContent = cssText;
+    (document.head || root).appendChild(styleEl);
+  } else if (styleEl.textContent !== cssText) {
+    styleEl.textContent = cssText;
+  }
+}
+
 function updateCustomGridDynamicStyle() {
   const root = document.documentElement;
   const isEnabled = cachedSettings.customGridEnabled === true && cachedSettings.extensionEnabled !== false;
@@ -575,10 +629,12 @@ function updateCustomGridDynamicStyle() {
 }
 
 function cleanupCustomGrid() {
+  updateCategoryBarDynamicStyle();
   updateCustomGridDynamicStyle();
 }
 
 function enforceCustomGrid() {
+  updateCategoryBarDynamicStyle();
   updateCustomGridDynamicStyle();
 }
 

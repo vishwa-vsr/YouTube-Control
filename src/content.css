@@ -7,6 +7,41 @@
   display: none !important;
 }
 
+/* 1b. HIDE CATEGORY FILTER BAR */
+.yt-hide-category-bar ytd-feed-filter-chip-bar-renderer,
+.yt-hide-category-bar yt-chip-cloud-renderer,
+.yt-hide-category-bar ytd-rich-grid-renderer #header,
+.yt-hide-category-bar ytd-rich-grid-renderer #header-container,
+.yt-hide-category-bar #chips-wrapper,
+.yt-hide-category-bar #chips-content,
+.yt-hide-category-bar ytd-sticky-header-renderer {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  pointer-events: none !important;
+}
+
+.yt-hide-category-bar ytd-rich-grid-renderer {
+  --ytd-rich-grid-content-offset-top: 0px !important;
+  --ytd-rich-grid-chips-bar-top: 0px !important;
+  padding-top: var(--ytd-masthead-height, 56px) !important;
+  margin-top: 0 !important;
+}
+
+.yt-hide-category-bar ytd-rich-grid-renderer > #contents {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+.yt-hide-category-bar ytd-rich-grid-renderer yt-touch-feedback-shape {
+  margin: 0 !important;
+}
+
 
 
 /* 2b. HIDE SUBSCRIPTIONS SECTION */
@@ -276,40 +311,40 @@ html:not(.yt-no-hover-unblur).yt-blur-thumbnails ytd-thumbnail:hover img[src*="i
   display: none !important;
 }
 
-/* 13. TWO SCROLL WHEEL SPLIT PANE LAYOUT */
-/* Lock the main browser scroll and fit container manager to viewport height (only when actively viewing a video, and NOT in native fullscreen) */
-.yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen])),
-.yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen])) body {
+/* 13. TWO SCROLL WHEEL SPLIT PANE LAYOUT (disabled in Cinema Mode and native Fullscreen) */
+/* Lock the main browser scroll and fit container manager to viewport height (only when actively viewing a video in default mode) */
+.yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater])),
+.yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater])) body {
   overflow: hidden !important;
   height: 100vh !important;
 }
 
-.yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen])) #page-manager {
+.yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater])) #page-manager {
   height: calc(100vh - 56px) !important;
   max-height: calc(100vh - 56px) !important;
   overflow: hidden !important;
 }
 
-.yt-hide-header.yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen])) #page-manager {
+.yt-hide-header.yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater])) #page-manager {
   height: 100vh !important;
   max-height: 100vh !important;
 }
 
 /* Lock columns container to viewport height and disable columns-level scroll */
-.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]) #columns {
+.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater]) #columns {
   height: calc(100vh - 56px) !important;
   max-height: calc(100vh - 56px) !important;
   overflow: hidden !important;
   box-sizing: border-box !important;
 }
 
-.yt-hide-header.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]) #columns {
+.yt-hide-header.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater]) #columns {
   height: 100vh !important;
   max-height: 100vh !important;
 }
 
 /* Lock left column and make it scrollable as a single unit (video player + comments scroll together) */
-.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]) #columns #primary {
+.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater]) #columns #primary {
   height: 100% !important;
   max-height: 100% !important;
   overflow-x: hidden !important;
@@ -319,7 +354,7 @@ html:not(.yt-no-hover-unblur).yt-blur-thumbnails ytd-thumbnail:hover img[src*="i
 }
 
 /* Make the recommended videos sidebar scroll independently */
-.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]) #columns #secondary {
+.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater]) #columns #secondary {
   height: 100% !important;
   max-height: 100% !important;
   overflow-x: hidden !important;

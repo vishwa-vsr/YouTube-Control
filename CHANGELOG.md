@@ -2,6 +2,17 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.0.7] - 2026-08-06
+
+### Added
+- **Hide Category Bar Toggle**: Added a user setting in the **Feeds** tab (`Hide Category Bar`) to remove topic filter pills ("All", "Music", "Mixes", "AI", etc.) across YouTube feed pages with zero empty gaps and 100% full thumbnail visibility.
+- **Popup Auto-Wake**: Added an interactive click handler to automatically flip the Master Extension switch back ON if options or tabs are clicked while the extension is disabled.
+
+### Fixed
+- **Cinema Mode Scroll Unlock**: Fixed an issue where enabling Sticky Video Player locked page scrolling in Cinema (Theater) Mode (`ytd-watch-flexy[theater]`), allowing users to scroll down past the theater player to view comments and related videos seamlessly.
+
+---
+
 ## [1.0.6] - 2026-07-29
 
 ### Added
