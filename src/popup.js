@@ -234,9 +234,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Footer Buttons Event Listeners
+  // Header & Footer Buttons Event Listeners
   const rateUsBtn = document.getElementById('rateUsBtn');
-  const githubBtn = document.getElementById('githubBtn');
+  const feedbackBtn = document.getElementById('feedbackBtn');
+  const githubHeaderBtn = document.getElementById('githubHeaderBtn');
 
   if (rateUsBtn) {
     rateUsBtn.addEventListener('click', () => {
@@ -255,8 +256,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (githubBtn) {
-    githubBtn.addEventListener('click', () => {
+  if (feedbackBtn) {
+    feedbackBtn.addEventListener('click', () => {
+      chrome.tabs.create({ url: 'https://docs.google.com/forms/d/e/1FAIpQLSdhjOJ_0-0izySTgrnNMdv2HTQxSVweHSp58ylSIRF_4KHiSw/viewform?usp=dialog' });
+    });
+  }
+
+  if (githubHeaderBtn) {
+    githubHeaderBtn.addEventListener('click', () => {
       chrome.tabs.create({ url: 'https://github.com/vishwa-vsr/YouTube-Control' });
     });
   }

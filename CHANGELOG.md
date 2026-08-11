@@ -2,6 +2,15 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.0.8] - 2026-08-11
+
+### Added
+- **Uninstall Feedback Survey Integration**: Configured `chrome.runtime.setUninstallURL` in background service worker to open the official uninstall survey form when users remove the extension.
+- **Top Header GitHub Link**: Relocated GitHub repository link to a clean, minimalist icon button in the top header next to the master toggle.
+- **Popup Footer Feedback Button**: Replaced bottom GitHub link with a **Feedback 💬** button linking directly to the user feedback Google Form.
+
+---
+
 ## [1.0.7] - 2026-08-06
 
 ### Added

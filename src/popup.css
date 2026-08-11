@@ -51,6 +51,37 @@ body {
   z-index: 10;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.github-header-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.github-header-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.header-github-icon {
+  width: 16px;
+  height: 16px;
+  fill: #F3F4F6;
+}
+
 .logo-area {
   display: flex;
   align-items: center;
@@ -456,7 +487,7 @@ body {
   box-shadow: 0 4px 12px rgba(255, 204, 0, 0.15);
 }
 
-.github-btn:hover {
+.feedback-btn:hover {
   border-color: rgba(255, 255, 255, 0.3);
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
@@ -471,7 +502,12 @@ body {
   fill: #FFCC00;
 }
 
-.github-icon {
-  fill: #ffffff;
+.feedback-icon {
+  fill: #8E939E;
+  transition: fill 0.2s ease;
+}
+
+.feedback-btn:hover .feedback-icon {
+  fill: var(--text-primary);
 }
 
