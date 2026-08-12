@@ -613,13 +613,18 @@ function updateCategoryBarDynamicStyle() {
     cssText += `
       .yt-hide-category-bar-feeds ytd-browse[page-subtype="home"] ytd-feed-filter-chip-bar-renderer,
       .yt-hide-category-bar-feeds ytd-browse[page-subtype="home"] yt-chip-cloud-renderer,
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="home"] #chips-wrapper,
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="home"] #chips-content,
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="home"] ytd-sticky-header-renderer,
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="home"] ytd-rich-grid-renderer #header,
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="home"] ytd-rich-grid-renderer #header-container,
       .yt-hide-category-bar-feeds ytd-browse[page-subtype="subscriptions"] ytd-feed-filter-chip-bar-renderer,
       .yt-hide-category-bar-feeds ytd-browse[page-subtype="subscriptions"] yt-chip-cloud-renderer,
-      .yt-hide-category-bar-feeds ytd-rich-grid-renderer #header,
-      .yt-hide-category-bar-feeds ytd-rich-grid-renderer #header-container,
-      .yt-hide-category-bar-feeds #chips-wrapper,
-      .yt-hide-category-bar-feeds #chips-content,
-      .yt-hide-category-bar-feeds ytd-sticky-header-renderer {
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="subscriptions"] #chips-wrapper,
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="subscriptions"] #chips-content,
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="subscriptions"] ytd-sticky-header-renderer,
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="subscriptions"] ytd-rich-grid-renderer #header,
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="subscriptions"] ytd-rich-grid-renderer #header-container {
         display: none !important;
         visibility: hidden !important;
         height: 0 !important;
@@ -630,17 +635,20 @@ function updateCategoryBarDynamicStyle() {
         border: none !important;
         pointer-events: none !important;
       }
-      .yt-hide-category-bar-feeds ytd-rich-grid-renderer {
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="home"] ytd-rich-grid-renderer,
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="subscriptions"] ytd-rich-grid-renderer {
         --ytd-rich-grid-content-offset-top: 0px !important;
         --ytd-rich-grid-chips-bar-top: 0px !important;
         padding-top: var(--ytd-masthead-height, 56px) !important;
         margin-top: 0 !important;
       }
-      .yt-hide-category-bar-feeds ytd-rich-grid-renderer > #contents {
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="home"] ytd-rich-grid-renderer > #contents,
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="subscriptions"] ytd-rich-grid-renderer > #contents {
         padding-top: 0 !important;
         margin-top: 0 !important;
       }
-      .yt-hide-category-bar-feeds ytd-rich-grid-renderer yt-touch-feedback-shape {
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="home"] ytd-rich-grid-renderer yt-touch-feedback-shape,
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="subscriptions"] ytd-rich-grid-renderer yt-touch-feedback-shape {
         margin: 0 !important;
       }
     `;
@@ -650,11 +658,14 @@ function updateCategoryBarDynamicStyle() {
     cssText += `
       .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] ytd-feed-filter-chip-bar-renderer,
       .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] yt-chip-cloud-renderer,
+      .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] chip-bar-view-model,
+      .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] chip-view-model,
       .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] #chips-wrapper,
       .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] #chips-content,
       .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] [chip-shape-type="CHIP_TYPE_SORT"],
       .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] ytd-sub-feed-selector-renderer,
-      .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] yt-sort-filter-sub-menu-renderer {
+      .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] yt-sort-filter-sub-menu-renderer,
+      .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] ytd-rich-grid-renderer #header {
         display: none !important;
         visibility: hidden !important;
         height: 0 !important;
