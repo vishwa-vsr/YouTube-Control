@@ -39,7 +39,9 @@
       <!-- Tab Pane: Feeds -->
       <div class="tab-pane active" id="tab-feeds">
         <h4 class="section-title">Navigation & Feeds</h4>
-        <section class="options-section">
+        
+        <!-- Card 1: Hide Home Feed -->
+        <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
               <span class="switch-label">Hide Home Feed</span>
@@ -50,11 +52,14 @@
               <span class="control-slider"></span>
             </label>
           </div>
+        </div>
 
+        <!-- Card 2: Hide Category Bar -->
+        <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
               <span class="switch-label">Hide Category Bar</span>
-              <span class="switch-description">Remove topic filter pills (All, Music, AI, etc.) on feeds</span>
+              <span class="switch-description">Master control for topic and filter pills</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="hideCategoryBar">
@@ -62,6 +67,42 @@
             </label>
           </div>
 
+          <div class="switch-row sub-switch-row" id="sub-row-category-feeds">
+            <div class="switch-info">
+              <span class="switch-label sub-label">Hide Category Bar on Home & Feeds</span>
+              <span class="switch-description">Remove topic filter pills on Home and Subscriptions</span>
+            </div>
+            <label class="toggle-control toggle-sub">
+              <input type="checkbox" id="hideCategoryBarFeeds">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row sub-switch-row" id="sub-row-category-channels">
+            <div class="switch-info">
+              <span class="switch-label sub-label">Hide Sorting Pills on Channel Pages</span>
+              <span class="switch-description">Remove Latest, Popular, Oldest sorting pills on channel videos</span>
+            </div>
+            <label class="toggle-control toggle-sub">
+              <input type="checkbox" id="hideCategoryBarChannels">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row sub-switch-row" id="sub-row-category-watch">
+            <div class="switch-info">
+              <span class="switch-label sub-label">Hide Filter Pills on Watch Page</span>
+              <span class="switch-description">Remove recommendation topic pills in video sidebar</span>
+            </div>
+            <label class="toggle-control toggle-sub">
+              <input type="checkbox" id="hideCategoryBarWatch">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Card 3: Custom Grid Layout -->
+        <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
               <span class="switch-label">Custom Grid Layout</span>
@@ -86,7 +127,69 @@
               <button type="button" class="grid-pill-btn" data-cols="6">6</button>
             </div>
           </div>
+        </div>
 
+        <!-- Card 4: Hide Shorts & Playables -->
+        <div class="option-card">
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label">Hide Shorts & Playables</span>
+              <span class="switch-description">Master control for hiding Shorts and Playables</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="hideShorts">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row sub-switch-row" id="sub-row-shorts-sidebar">
+            <div class="switch-info">
+              <span class="switch-label sub-label">Hide Shorts in Sidebar</span>
+              <span class="switch-description">Remove Shorts button from left navigation menu</span>
+            </div>
+            <label class="toggle-control toggle-sub">
+              <input type="checkbox" id="hideShortsSidebar">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row sub-switch-row" id="sub-row-shorts-feeds">
+            <div class="switch-info">
+              <span class="switch-label sub-label">Hide Shorts in Home & Feeds</span>
+              <span class="switch-description">Remove Shorts shelves on Home and Subscriptions</span>
+            </div>
+            <label class="toggle-control toggle-sub">
+              <input type="checkbox" id="hideShortsFeeds">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row sub-switch-row" id="sub-row-shorts-channel">
+            <div class="switch-info">
+              <span class="switch-label sub-label">Hide Shorts on Channel Pages</span>
+              <span class="switch-description">Remove Shorts tab and Shorts reels on YouTuber channels</span>
+            </div>
+            <label class="toggle-control toggle-sub">
+              <input type="checkbox" id="hideShortsChannel">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row sub-switch-row" id="sub-row-shorts-watch">
+            <div class="switch-info">
+              <span class="switch-label sub-label">Hide Shorts on Watch Page</span>
+              <span class="switch-description">Remove Shorts recommendations on video pages</span>
+            </div>
+            <label class="toggle-control toggle-sub">
+              <input type="checkbox" id="hideShortsWatch">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Card 5: Sidebar Navigation Sections -->
+        <div class="option-card">
+          <div class="option-card-title">Sidebar Sections</div>
           <div class="switch-row">
             <div class="switch-info">
               <span class="switch-label">Hide Subscriptions Section</span>
@@ -97,6 +200,7 @@
               <span class="control-slider"></span>
             </label>
           </div>
+
           <div class="switch-row">
             <div class="switch-info">
               <span class="switch-label">Hide 'You' Section</span>
@@ -107,7 +211,6 @@
               <span class="control-slider"></span>
             </label>
           </div>
-
 
           <div class="switch-row">
             <div class="switch-info">
@@ -133,17 +236,6 @@
 
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Hide Shorts & Playables</span>
-              <span class="switch-description">Remove Shorts tab, feed, and games</span>
-            </div>
-            <label class="toggle-control">
-              <input type="checkbox" id="hideShorts">
-              <span class="control-slider"></span>
-            </label>
-          </div>
-
-          <div class="switch-row">
-            <div class="switch-info">
               <span class="switch-label">Hide Sidebar Footer</span>
               <span class="switch-description">Remove footer links and copyright text</span>
             </div>
@@ -152,13 +244,15 @@
               <span class="control-slider"></span>
             </label>
           </div>
-        </section>
+        </div>
       </div>
 
       <!-- Tab Pane: Watch Experience -->
       <div class="tab-pane" id="tab-watch">
         <h4 class="section-title">Watch Experience</h4>
-        <section class="options-section">
+        
+        <!-- Card 1: Hide Recommended Videos -->
+        <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
               <span class="switch-label">Hide Recommended Videos</span>
@@ -169,7 +263,10 @@
               <span class="control-slider"></span>
             </label>
           </div>
+        </div>
 
+        <!-- Card 2: Hide Comments & Chat -->
+        <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
               <span class="switch-label">Hide Comments & Chat</span>
@@ -180,29 +277,39 @@
               <span class="control-slider"></span>
             </label>
           </div>
+        </div>
 
+        <!-- Card 3: Dock Comments to Sidebar -->
+        <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Hide Buttons & Stats</span>
-              <span class="switch-description">Hide Subscribe button, Likes, and Views</span>
+              <span class="switch-label">Dock Comments to Sidebar</span>
+              <span class="switch-description">Move comments to the sidebar next to the video</span>
             </div>
             <label class="toggle-control">
-              <input type="checkbox" id="hideButtonsStats">
+              <input type="checkbox" id="dockCommentsSidebar">
               <span class="control-slider"></span>
             </label>
           </div>
+        </div>
 
+        <!-- Card 4: Sticky Video Player -->
+        <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Hide Top Header Bar</span>
-              <span class="switch-description">Hide search bar and header navigation</span>
+              <span class="switch-label">Sticky Video Player</span>
+              <span class="switch-description">Keep video player fixed at top of page while scrolling</span>
             </div>
             <label class="toggle-control">
-              <input type="checkbox" id="hideHeader">
+              <input type="checkbox" id="stickyPlayer">
               <span class="control-slider"></span>
             </label>
           </div>
+        </div>
 
+        <!-- Card 5: Player Buttons -->
+        <div class="option-card">
+          <div class="option-card-title">Player Buttons</div>
           <div class="switch-row">
             <div class="switch-info">
               <span class="switch-label">Video Screenshot Button</span>
@@ -224,35 +331,41 @@
               <span class="control-slider"></span>
             </label>
           </div>
+        </div>
 
+        <!-- Card 6: Header & Stats -->
+        <div class="option-card">
+          <div class="option-card-title">Header & Stats</div>
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Sticky Video Player</span>
-              <span class="switch-description">Keep video player fixed at the top of the page while scrolling</span>
+              <span class="switch-label">Hide Buttons & Stats</span>
+              <span class="switch-description">Hide Subscribe button, Likes, and Views</span>
             </div>
             <label class="toggle-control">
-              <input type="checkbox" id="stickyPlayer">
+              <input type="checkbox" id="hideButtonsStats">
               <span class="control-slider"></span>
             </label>
           </div>
 
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Dock Comments to Sidebar</span>
-              <span class="switch-description">Move comments to the sidebar next to the video</span>
+              <span class="switch-label">Hide Top Header Bar</span>
+              <span class="switch-description">Hide search bar and header navigation</span>
             </div>
             <label class="toggle-control">
-              <input type="checkbox" id="dockCommentsSidebar">
+              <input type="checkbox" id="hideHeader">
               <span class="control-slider"></span>
             </label>
           </div>
-        </section>
+        </div>
       </div>
 
       <!-- Tab Pane: Visual Styling -->
       <div class="tab-pane" id="tab-style">
         <h4 class="section-title">Visual Styling</h4>
-        <section class="options-section">
+        
+        <!-- Card 1: Black & White Mode -->
+        <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
               <span class="switch-label">Black & White Mode</span>
@@ -263,18 +376,24 @@
               <span class="control-slider"></span>
             </label>
           </div>
+        </div>
 
+        <!-- Card 2: Block Ambient Mode -->
+        <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
               <span class="switch-label">Block Ambient Mode</span>
-              <span class="switch-description">Disable the player's glowing background (saves battery)</span>
+              <span class="switch-description">Disable player glowing background (saves battery)</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="hideAmbientMode">
               <span class="control-slider"></span>
             </label>
           </div>
+        </div>
 
+        <!-- Card 3: Blur Thumbnails -->
+        <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
               <span class="switch-label">Blur Thumbnails</span>
@@ -296,7 +415,7 @@
               <span class="control-slider"></span>
             </label>
           </div>
-        </section>
+        </div>
       </div>
     </div>
 

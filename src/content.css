@@ -7,14 +7,18 @@
   display: none !important;
 }
 
-/* 1b. HIDE CATEGORY FILTER BAR */
-.yt-hide-category-bar ytd-feed-filter-chip-bar-renderer,
-.yt-hide-category-bar yt-chip-cloud-renderer,
-.yt-hide-category-bar ytd-rich-grid-renderer #header,
-.yt-hide-category-bar ytd-rich-grid-renderer #header-container,
-.yt-hide-category-bar #chips-wrapper,
-.yt-hide-category-bar #chips-content,
-.yt-hide-category-bar ytd-sticky-header-renderer {
+/* 1b. HIDE CATEGORY & FILTER BARS (Granular Controls) */
+
+/* 1b-1. Home & Subscriptions Feeds */
+.yt-hide-category-bar-feeds ytd-browse[page-subtype="home"] ytd-feed-filter-chip-bar-renderer,
+.yt-hide-category-bar-feeds ytd-browse[page-subtype="home"] yt-chip-cloud-renderer,
+.yt-hide-category-bar-feeds ytd-browse[page-subtype="subscriptions"] ytd-feed-filter-chip-bar-renderer,
+.yt-hide-category-bar-feeds ytd-browse[page-subtype="subscriptions"] yt-chip-cloud-renderer,
+.yt-hide-category-bar-feeds ytd-rich-grid-renderer #header,
+.yt-hide-category-bar-feeds ytd-rich-grid-renderer #header-container,
+.yt-hide-category-bar-feeds #chips-wrapper,
+.yt-hide-category-bar-feeds #chips-content,
+.yt-hide-category-bar-feeds ytd-sticky-header-renderer {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -26,20 +30,63 @@
   pointer-events: none !important;
 }
 
-.yt-hide-category-bar ytd-rich-grid-renderer {
+.yt-hide-category-bar-feeds ytd-rich-grid-renderer {
   --ytd-rich-grid-content-offset-top: 0px !important;
   --ytd-rich-grid-chips-bar-top: 0px !important;
   padding-top: var(--ytd-masthead-height, 56px) !important;
   margin-top: 0 !important;
 }
 
-.yt-hide-category-bar ytd-rich-grid-renderer > #contents {
+.yt-hide-category-bar-feeds ytd-rich-grid-renderer > #contents {
   padding-top: 0 !important;
   margin-top: 0 !important;
 }
 
-.yt-hide-category-bar ytd-rich-grid-renderer yt-touch-feedback-shape {
+.yt-hide-category-bar-feeds ytd-rich-grid-renderer yt-touch-feedback-shape {
   margin: 0 !important;
+}
+
+/* 1b-2. Channel Pages Sorting Pills (Latest, Popular, Oldest) */
+.yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] ytd-feed-filter-chip-bar-renderer,
+.yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] yt-chip-cloud-renderer,
+.yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] #chips-wrapper,
+.yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] #chips-content,
+.yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] [chip-shape-type="CHIP_TYPE_SORT"],
+.yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] ytd-sub-feed-selector-renderer,
+.yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] yt-sort-filter-sub-menu-renderer {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  pointer-events: none !important;
+}
+
+/* 1b-3. Watch Page Sidebar Recommendation Filter Pills */
+.yt-hide-category-bar-watch ytd-watch-flexy #secondary #chips,
+.yt-hide-category-bar-watch ytd-watch-flexy #secondary yt-chip-cloud-renderer,
+.yt-hide-category-bar-watch ytd-watch-flexy #secondary ytd-feed-filter-chip-bar-renderer,
+.yt-hide-category-bar-watch ytd-watch-flexy #secondary-inner #chips,
+.yt-hide-category-bar-watch ytd-watch-flexy #secondary-inner yt-chip-cloud-renderer,
+.yt-hide-category-bar-watch ytd-watch-flexy #secondary-inner ytd-feed-filter-chip-bar-renderer {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  pointer-events: none !important;
+}
+
+.yt-hide-category-bar-watch ytd-watch-flexy #secondary #items,
+.yt-hide-category-bar-watch ytd-watch-flexy #secondary-inner #items {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
 }
 
 
@@ -80,18 +127,41 @@
   display: none !important;
 }
 
-/* 3. HIDE SHORTS & PLAYABLES */
-.yt-hide-shorts :is(ytd-guide-entry-renderer, yt-guide-entry-view-model, ytd-mini-guide-entry-renderer, yt-mini-guide-entry-view-model):has([href*="shorts"]),
-.yt-hide-shorts :is(ytd-guide-entry-renderer, yt-guide-entry-view-model, ytd-mini-guide-entry-renderer, yt-mini-guide-entry-view-model):has([href*="playables"]),
-.yt-hide-shorts ytd-reel-shelf-renderer,
-.yt-hide-shorts grid-shelf-view-model,
-.yt-hide-shorts ytd-rich-shelf-renderer[is-shorts],
-.yt-hide-shorts ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
-.yt-hide-shorts ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-playables]),
-.yt-hide-shorts #shorts-container,
-.yt-hide-shorts :is(ytd-shelf-renderer, yt-tab-shape, tp-yt-paper-tab):has([href*="shorts"]),
-.yt-hide-shorts[yt-on-shorts-tab] #primary,
-.yt-hide-shorts[yt-on-shorts-tab] ytd-browse #primary {
+/* 3. HIDE SHORTS & PLAYABLES (Granular Controls) */
+
+/* 3a. Sidebar Shorts & Playables */
+.yt-hide-shorts-sidebar :is(ytd-guide-entry-renderer, yt-guide-entry-view-model, ytd-mini-guide-entry-renderer, yt-mini-guide-entry-view-model):has([href*="shorts"]),
+.yt-hide-shorts-sidebar :is(ytd-guide-entry-renderer, yt-guide-entry-view-model, ytd-mini-guide-entry-renderer, yt-mini-guide-entry-view-model):has([href*="playables"]) {
+  display: none !important;
+}
+
+/* 3b. Feeds Shorts Shelves (Home & Subscriptions) */
+.yt-hide-shorts-feeds ytd-browse[page-subtype="home"] ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+.yt-hide-shorts-feeds ytd-browse[page-subtype="subscriptions"] ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+.yt-hide-shorts-feeds ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+.yt-hide-shorts-feeds ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-playables]) {
+  display: none !important;
+}
+
+/* 3c. Channel Pages Shorts (Tab & Reels) */
+.yt-hide-shorts-channel :is(yt-tab-shape, tp-yt-paper-tab, ytd-tabbed-header-renderer [role="tab"]):has([href*="shorts"]),
+.yt-hide-shorts-channel yt-tab-shape[tab-title="Shorts"],
+.yt-hide-shorts-channel ytd-browse[page-subtype="channels"] ytd-reel-shelf-renderer,
+.yt-hide-shorts-channel ytd-browse[page-subtype="channels"] ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+.yt-hide-shorts-channel ytd-browse[page-subtype="channels"] ytd-item-section-renderer:has(ytd-reel-shelf-renderer),
+.yt-hide-shorts-channel[yt-on-shorts-tab] #primary,
+.yt-hide-shorts-channel[yt-on-shorts-tab] ytd-browse #primary {
+  display: none !important;
+}
+
+/* 3d. Watch Page & Recommendation Shorts */
+.yt-hide-shorts-watch ytd-watch-flexy ytd-reel-shelf-renderer,
+.yt-hide-shorts-watch ytd-watch-flexy grid-shelf-view-model,
+.yt-hide-shorts-watch ytd-watch-next-secondary-results-renderer :is(ytd-compact-video-renderer, ytd-item-section-renderer):has([href*="/shorts/"]),
+.yt-hide-shorts-watch ytd-reel-shelf-renderer,
+.yt-hide-shorts-watch grid-shelf-view-model,
+.yt-hide-shorts-watch ytd-rich-shelf-renderer[is-shorts],
+.yt-hide-shorts-watch #shorts-container {
   display: none !important;
 }
 

@@ -2,12 +2,19 @@
 const configKeys = [
   'hideHomeFeed',
   'hideCategoryBar',
+  'hideCategoryBarFeeds',
+  'hideCategoryBarChannels',
+  'hideCategoryBarWatch',
   'customGridEnabled',
   'hideSubscriptions',
   'hideYou',
   'hideExplore',
   'hideMoreFromYoutube',
   'hideShorts',
+  'hideShortsSidebar',
+  'hideShortsFeeds',
+  'hideShortsChannel',
+  'hideShortsWatch',
   'hideRecommended',
   'hideComments',
   'hideButtonsStats',
@@ -39,6 +46,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const gridPillBtns = document.querySelectorAll('.grid-pill-btn');
   let currentVideosPerRow = 4;
 
+  const hideShortsCheckbox = document.getElementById('hideShorts');
+  const subShortsRows = [
+    { row: document.getElementById('sub-row-shorts-sidebar'), input: document.getElementById('hideShortsSidebar') },
+    { row: document.getElementById('sub-row-shorts-feeds'), input: document.getElementById('hideShortsFeeds') },
+    { row: document.getElementById('sub-row-shorts-channel'), input: document.getElementById('hideShortsChannel') },
+    { row: document.getElementById('sub-row-shorts-watch'), input: document.getElementById('hideShortsWatch') }
+  ];
+
+  const hideCategoryBarCheckbox = document.getElementById('hideCategoryBar');
+  const subCategoryRows = [
+    { row: document.getElementById('sub-row-category-feeds'), input: document.getElementById('hideCategoryBarFeeds') },
+    { row: document.getElementById('sub-row-category-channels'), input: document.getElementById('hideCategoryBarChannels') },
+    { row: document.getElementById('sub-row-category-watch'), input: document.getElementById('hideCategoryBarWatch') }
+  ];
+
   const masterToggle = document.getElementById('masterToggle');
   const tabsNav = document.querySelector('.tabs-navigation');
   const optionsScroll = document.getElementById('options-scroll-area');
@@ -61,6 +83,34 @@ document.addEventListener('DOMContentLoaded', () => {
         subRowGridCols.classList.add('disabled');
       }
     }
+
+    if (hideShortsCheckbox) {
+      subShortsRows.forEach(item => {
+        if (item.row) {
+          if (hideShortsCheckbox.checked) {
+            item.row.classList.remove('disabled');
+            if (item.input) item.input.disabled = false;
+          } else {
+            item.row.classList.add('disabled');
+            if (item.input) item.input.disabled = true;
+          }
+        }
+      });
+    }
+
+    if (hideCategoryBarCheckbox) {
+      subCategoryRows.forEach(item => {
+        if (item.row) {
+          if (hideCategoryBarCheckbox.checked) {
+            item.row.classList.remove('disabled');
+            if (item.input) item.input.disabled = false;
+          } else {
+            item.row.classList.add('disabled');
+            if (item.input) item.input.disabled = true;
+          }
+        }
+      });
+    }
   }
 
   if (blurThumbnailsCheckbox) {
@@ -69,6 +119,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (customGridCheckbox) {
     customGridCheckbox.addEventListener('change', updateSubOptionState);
+  }
+
+  if (hideShortsCheckbox) {
+    hideShortsCheckbox.addEventListener('change', updateSubOptionState);
+  }
+
+  if (hideCategoryBarCheckbox) {
+    hideCategoryBarCheckbox.addEventListener('change', updateSubOptionState);
   }
 
   function updateMasterToggleUI(enabled) {
@@ -138,6 +196,14 @@ document.addEventListener('DOMContentLoaded', () => {
       'stickyPlayer',
       'showMiniFullscreenBtn',
       'hideShorts',
+      'hideShortsSidebar',
+      'hideShortsFeeds',
+      'hideShortsChannel',
+      'hideShortsWatch',
+      'hideCategoryBar',
+      'hideCategoryBarFeeds',
+      'hideCategoryBarChannels',
+      'hideCategoryBarWatch',
       'hideAmbientMode'
     ];
     defaultTrueKeys.forEach(key => {

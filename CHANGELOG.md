@@ -2,6 +2,21 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.0.9] - 2026-08-12
+
+### Added
+- **Granular Shorts Hiding Controls**: Introduced 4 sub-options under **Hide Shorts & Playables** allowing users to selectively hide Shorts in the **Sidebar Menu**, **Home & Subscriptions Feeds**, **YouTuber Channel Pages**, and **Watch Page Recommendations**.
+- **Granular Category Bar Controls**: Introduced 3 sub-options under **Hide Category Bar** allowing users to selectively hide topic/filter pills on **Home & Feeds**, **Channel Video Sorting Pills** (`Latest`, `Popular`, `Oldest`), and **Watch Page Sidebar Filters**.
+- **Modern Option B Card Layout**: Restructured the extension popup into clean, translucent dark glassmorphism cards with rounded corners (`12px`), elegant divider lines, and subtle hover glow effects.
+- **Enhanced Popup Dimensions & Readability**: Expanded popup height to `560px` for reduced scrolling, widened cards (`12px` side margins), and boosted disabled text contrast (`0.65` opacity, `11px` description font) for crystal-clear readability.
+
+### Fixed
+- **Channel Page Shorts Tab Removal**: Fixed an issue where YouTuber channel Shorts tabs and channel Shorts grids (`youtube.com/@username/shorts`) were not hidden when Shorts blocking was enabled.
+- **Independent Sub-Toggle Uncoupling**: Fixed a CSS selector collision where master classes prevented individual sub-toggles (like **Hide Shorts on Channel Pages**) from turning OFF independently.
+- **Watch Page Recommended Videos Gap Collapse**: Fixed empty vertical height gaps when recommendation filter pills are hidden on video watch pages by collapsing container margins and shifting recommended video cards flush to the top.
+
+---
+
 ## [1.0.8] - 2026-08-11
 
 ### Added

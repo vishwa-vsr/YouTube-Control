@@ -2,11 +2,18 @@
 const classMap = {
   hideHomeFeed: 'yt-hide-home-feed',
   hideCategoryBar: 'yt-hide-category-bar',
+  hideCategoryBarFeeds: 'yt-hide-category-bar-feeds',
+  hideCategoryBarChannels: 'yt-hide-category-bar-channels',
+  hideCategoryBarWatch: 'yt-hide-category-bar-watch',
   hideSubscriptions: 'yt-hide-subscriptions',
   hideYou: 'yt-hide-you',
   hideExplore: 'yt-hide-explore',
   hideMoreFromYoutube: 'yt-hide-more-from-youtube',
   hideShorts: 'yt-hide-shorts',
+  hideShortsSidebar: 'yt-hide-shorts-sidebar',
+  hideShortsFeeds: 'yt-hide-shorts-feeds',
+  hideShortsChannel: 'yt-hide-shorts-channel',
+  hideShortsWatch: 'yt-hide-shorts-watch',
   hideRecommended: 'yt-hide-recommended',
   hideComments: 'yt-hide-comments',
   hideButtonsStats: 'yt-hide-buttons-stats',
@@ -134,6 +141,46 @@ function applySettings(settings) {
     }
   });
 
+  // Handle Shorts master & sub-classes cleanly
+  const hideShortsMaster = settings.hideShorts === true && isEnabled;
+  if (hideShortsMaster) {
+    if (settings.hideShortsSidebar !== false) root.classList.add('yt-hide-shorts-sidebar');
+    else root.classList.remove('yt-hide-shorts-sidebar');
+
+    if (settings.hideShortsFeeds !== false) root.classList.add('yt-hide-shorts-feeds');
+    else root.classList.remove('yt-hide-shorts-feeds');
+
+    if (settings.hideShortsChannel !== false) root.classList.add('yt-hide-shorts-channel');
+    else root.classList.remove('yt-hide-shorts-channel');
+
+    if (settings.hideShortsWatch !== false) root.classList.add('yt-hide-shorts-watch');
+    else root.classList.remove('yt-hide-shorts-watch');
+  } else {
+    root.classList.remove('yt-hide-shorts');
+    root.classList.remove('yt-hide-shorts-sidebar');
+    root.classList.remove('yt-hide-shorts-feeds');
+    root.classList.remove('yt-hide-shorts-channel');
+    root.classList.remove('yt-hide-shorts-watch');
+  }
+
+  // Handle Category Bar master & sub-classes cleanly
+  const hideCatMaster = settings.hideCategoryBar === true && isEnabled;
+  if (hideCatMaster) {
+    if (settings.hideCategoryBarFeeds !== false) root.classList.add('yt-hide-category-bar-feeds');
+    else root.classList.remove('yt-hide-category-bar-feeds');
+
+    if (settings.hideCategoryBarChannels !== false) root.classList.add('yt-hide-category-bar-channels');
+    else root.classList.remove('yt-hide-category-bar-channels');
+
+    if (settings.hideCategoryBarWatch !== false) root.classList.add('yt-hide-category-bar-watch');
+    else root.classList.remove('yt-hide-category-bar-watch');
+  } else {
+    root.classList.remove('yt-hide-category-bar');
+    root.classList.remove('yt-hide-category-bar-feeds');
+    root.classList.remove('yt-hide-category-bar-channels');
+    root.classList.remove('yt-hide-category-bar-watch');
+  }
+
   if (settings.unblurOnHover === false) {
     root.classList.add('yt-no-hover-unblur');
   } else {
@@ -181,7 +228,7 @@ function applySettings(settings) {
 
 function checkShortsTab() {
   const path = window.location.pathname;
-  if (/^\/shorts(\/|$)/.test(path)) {
+  if (/\/shorts(\/|$)/.test(path)) {
     document.documentElement.setAttribute('yt-on-shorts-tab', 'true');
   } else {
     document.documentElement.removeAttribute('yt-on-shorts-tab');
@@ -400,17 +447,34 @@ function hideSidebarElements() {
   const isEnabled = cachedSettings.extensionEnabled !== false;
   
   // 1. Hide Shorts Sidebar Elements
-  const hideShorts = cachedSettings.hideShorts === true;
+  const hideShortsMaster = cachedSettings.hideShorts === true;
+  const hideShortsSidebar = hideShortsMaster && (cachedSettings.hideShortsSidebar !== false);
   const shortsEntries = document.querySelectorAll('ytd-guide-entry-renderer, yt-guide-entry-view-model, ytd-mini-guide-entry-renderer, yt-mini-guide-entry-view-model, tp-yt-paper-item');
   shortsEntries.forEach(entry => {
     const text = entry.textContent || '';
     const href = entry.querySelector('a')?.getAttribute('href') || entry.getAttribute('href') || '';
     const isShorts = text.toLowerCase().includes('shorts') || href.toLowerCase().includes('shorts') || text.toLowerCase().includes('playables') || href.toLowerCase().includes('playables');
     if (isShorts) {
-      if (isEnabled && hideShorts) {
+      if (isEnabled && hideShortsSidebar) {
         entry.style.setProperty('display', 'none', 'important');
       } else {
         entry.style.removeProperty('display');
+      }
+    }
+  });
+
+  // 1b. Hide Channel Header Shorts Tabs
+  const hideShortsChannel = hideShortsMaster && (cachedSettings.hideShortsChannel !== false);
+  const channelTabs = document.querySelectorAll('yt-tab-shape, tp-yt-paper-tab, yt-tab-group-shape *, ytd-tabbed-header-renderer [role="tab"]');
+  channelTabs.forEach(tab => {
+    const text = (tab.textContent || '').trim().toLowerCase();
+    const href = tab.querySelector('a')?.getAttribute('href') || tab.getAttribute('href') || tab.getAttribute('tab-title') || '';
+    const isShortsTab = text === 'shorts' || href.toLowerCase().includes('/shorts');
+    if (isShortsTab) {
+      if (isEnabled && hideShortsChannel) {
+        tab.style.setProperty('display', 'none', 'important');
+      } else {
+        tab.style.removeProperty('display');
       }
     }
   });
@@ -539,38 +603,96 @@ function updateCategoryBarDynamicStyle() {
     return;
   }
 
-  const cssText = `
-    .yt-hide-category-bar ytd-feed-filter-chip-bar-renderer,
-    .yt-hide-category-bar yt-chip-cloud-renderer,
-    .yt-hide-category-bar ytd-rich-grid-renderer #header,
-    .yt-hide-category-bar ytd-rich-grid-renderer #header-container,
-    .yt-hide-category-bar #chips-wrapper,
-    .yt-hide-category-bar #chips-content,
-    .yt-hide-category-bar ytd-sticky-header-renderer {
-      display: none !important;
-      visibility: hidden !important;
-      height: 0 !important;
-      min-height: 0 !important;
-      max-height: 0 !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border: none !important;
-      pointer-events: none !important;
-    }
-    .yt-hide-category-bar ytd-rich-grid-renderer {
-      --ytd-rich-grid-content-offset-top: 0px !important;
-      --ytd-rich-grid-chips-bar-top: 0px !important;
-      padding-top: var(--ytd-masthead-height, 56px) !important;
-      margin-top: 0 !important;
-    }
-    .yt-hide-category-bar ytd-rich-grid-renderer > #contents {
-      padding-top: 0 !important;
-      margin-top: 0 !important;
-    }
-    .yt-hide-category-bar ytd-rich-grid-renderer yt-touch-feedback-shape {
-      margin: 0 !important;
-    }
-  `;
+  const hideFeeds = cachedSettings.hideCategoryBarFeeds !== false;
+  const hideChannels = cachedSettings.hideCategoryBarChannels !== false;
+  const hideWatch = cachedSettings.hideCategoryBarWatch !== false;
+
+  let cssText = '';
+
+  if (hideFeeds) {
+    cssText += `
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="home"] ytd-feed-filter-chip-bar-renderer,
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="home"] yt-chip-cloud-renderer,
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="subscriptions"] ytd-feed-filter-chip-bar-renderer,
+      .yt-hide-category-bar-feeds ytd-browse[page-subtype="subscriptions"] yt-chip-cloud-renderer,
+      .yt-hide-category-bar-feeds ytd-rich-grid-renderer #header,
+      .yt-hide-category-bar-feeds ytd-rich-grid-renderer #header-container,
+      .yt-hide-category-bar-feeds #chips-wrapper,
+      .yt-hide-category-bar-feeds #chips-content,
+      .yt-hide-category-bar-feeds ytd-sticky-header-renderer {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        pointer-events: none !important;
+      }
+      .yt-hide-category-bar-feeds ytd-rich-grid-renderer {
+        --ytd-rich-grid-content-offset-top: 0px !important;
+        --ytd-rich-grid-chips-bar-top: 0px !important;
+        padding-top: var(--ytd-masthead-height, 56px) !important;
+        margin-top: 0 !important;
+      }
+      .yt-hide-category-bar-feeds ytd-rich-grid-renderer > #contents {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+      }
+      .yt-hide-category-bar-feeds ytd-rich-grid-renderer yt-touch-feedback-shape {
+        margin: 0 !important;
+      }
+    `;
+  }
+
+  if (hideChannels) {
+    cssText += `
+      .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] ytd-feed-filter-chip-bar-renderer,
+      .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] yt-chip-cloud-renderer,
+      .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] #chips-wrapper,
+      .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] #chips-content,
+      .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] [chip-shape-type="CHIP_TYPE_SORT"],
+      .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] ytd-sub-feed-selector-renderer,
+      .yt-hide-category-bar-channels ytd-browse[page-subtype="channels"] yt-sort-filter-sub-menu-renderer {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        pointer-events: none !important;
+      }
+    `;
+  }
+
+  if (hideWatch) {
+    cssText += `
+      .yt-hide-category-bar-watch ytd-watch-flexy #secondary #chips,
+      .yt-hide-category-bar-watch ytd-watch-flexy #secondary yt-chip-cloud-renderer,
+      .yt-hide-category-bar-watch ytd-watch-flexy #secondary ytd-feed-filter-chip-bar-renderer,
+      .yt-hide-category-bar-watch ytd-watch-flexy #secondary-inner #chips,
+      .yt-hide-category-bar-watch ytd-watch-flexy #secondary-inner yt-chip-cloud-renderer,
+      .yt-hide-category-bar-watch ytd-watch-flexy #secondary-inner ytd-feed-filter-chip-bar-renderer {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        pointer-events: none !important;
+      }
+      .yt-hide-category-bar-watch ytd-watch-flexy #secondary #items,
+      .yt-hide-category-bar-watch ytd-watch-flexy #secondary-inner #items {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+      }
+    `;
+  }
 
   if (!styleEl) {
     styleEl = document.createElement('style');
@@ -693,6 +815,10 @@ try {
       'stickyPlayer',
       'showMiniFullscreenBtn',
       'hideShorts',
+      'hideShortsSidebar',
+      'hideShortsFeeds',
+      'hideShortsChannel',
+      'hideShortsWatch',
       'hideAmbientMode'
     ];
     defaultTrueKeys.forEach(key => {
