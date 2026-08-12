@@ -81,7 +81,7 @@ youtube control/
 
 ---
 
-## Getting Started
+## 🛠️ Local Installation & Development
 
 ### 1. Build the Extension
 
