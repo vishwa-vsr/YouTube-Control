@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Control: Shorts Blocker & Detox",
-  "version": "1.0.9",
-  "description": "Block YouTube Shorts, hide home feed recommendations, dock comments to sidebar, and create a distraction-free watch environment.",
+  "name": "YouTube Control — Block Shorts, Hide Feed & Recommendations",
+  "version": "1.1.0",
+  "description": "Block YouTube Shorts, hide recommendations, blur thumbnails, dock comments to sidebar — 15+ tools to customize your YouTube experience.",
   "permissions": [
     "storage"
   ],
