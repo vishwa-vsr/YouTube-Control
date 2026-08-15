@@ -2,7 +2,7 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
-## [1.1.1] - 2026-08-15
+## [10.1.0] - 2026-08-15
 
 ### Added
 - **Mini Fullscreen Video Scaling Sub-Option**: Added a **Fill Screen (Cover Window)** sub-toggle under **Mini Fullscreen Button** allowing users to switch between standard aspect-ratio fitting and full-window zoom without black bars.
