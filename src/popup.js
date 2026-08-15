@@ -219,10 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
       'hideShortsFeeds',
       'hideShortsChannel',
       'hideShortsWatch',
-      'hideCategoryBar',
-      'hideCategoryBarFeeds',
-      'hideCategoryBarChannels',
-      'hideCategoryBarWatch',
       'hideAmbientMode'
     ];
     defaultTrueKeys.forEach(key => {

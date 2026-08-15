@@ -11,6 +11,9 @@ All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension
 - **Cinema Mode Mini Fullscreen Letterboxing (Issue #10)**: Fixed a bug where activating Mini Fullscreen while YouTube is in Cinema (Theater) Mode caused the player to remain constrained in the theater container with black side pillars. The player now smoothly expands to 100% viewport width and height across all viewing modes.
 - **Cinema Mode Shortcut & Toggle Sync**: Added seamless exit handling when toggling Cinema Mode ('T' shortcut or player button) or entering native full screen while Mini Fullscreen is active.
 
+### Changed
+- **Default Category Bar Setting**: Configured **Hide Category Bar** to be OFF by default for new installs.
+
 ---
 
 ## [1.1.0] - 2026-08-14
