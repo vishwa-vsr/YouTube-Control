@@ -2,7 +2,7 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
-## [10.1.0] - 2026-08-15
+## [1.1.0] - 2026-08-15
 
 ### Added
 - **Mini Fullscreen Video Scaling Sub-Option**: Added a **Fill Screen (Cover Window)** sub-toggle under **Mini Fullscreen Button** allowing users to switch between standard aspect-ratio fitting and full-window zoom without black bars.
@@ -12,13 +12,8 @@ All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension
 - **Cinema Mode Shortcut & Toggle Sync**: Added seamless exit handling when toggling Cinema Mode ('T' shortcut or player button) or entering native full screen while Mini Fullscreen is active.
 
 ### Changed
+- **Sticky Player & Dual Scrolling Clarification**: Renamed **Sticky Video Player** to **Sticky Player & Dual Scrolling** with description *"Pin video at the top and scroll comments & sidebar independently"* to highlight split-pane independent scrolling.
 - **Default Category Bar Setting**: Configured **Hide Category Bar** to be OFF by default for new installs.
-
----
-
-## [1.1.0] - 2026-08-14
-
-### Changed
 - **Optimized Extension Title**: Updated name to `YouTube Control — Block Shorts, Hide Feed & Recommendations` for improved Chrome Web Store discovery and SEO.
 - **Optimized Short Description**: Refined store description to highlight core feature offerings (`Block YouTube Shorts, hide recommendations, blur thumbnails, dock comments to sidebar — 15+ tools to customize your YouTube experience.`).
 
