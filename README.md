@@ -6,6 +6,20 @@
 <p align="center"><b>Shorts Blocker & Detox</b></p>
 <p align="center"><i>Block Shorts, remove video clutter, and customize YouTube for pure focus.</i></p>
 
+<p align="center">
+  <a href="https://github.com/vishwa-vsr/YouTube-Control/blob/master/LICENSE"><img src="https://img.shields.io/github/license/vishwa-vsr/YouTube-Control?color=blue" alt="MIT License"></a>
+  <a href="https://github.com/vishwa-vsr/YouTube-Control/issues"><img src="https://img.shields.io/github/issues/vishwa-vsr/YouTube-Control" alt="Open Issues"></a>
+  <a href="https://github.com/vishwa-vsr/YouTube-Control/pulls"><img src="https://img.shields.io/github/issues-pr/vishwa-vsr/YouTube-Control" alt="Pull Requests"></a>
+</p>
+
+---
+
+## Why YouTube Control?
+
+YouTube is designed to keep you watching. Autoplay, Shorts, recommendations, flashy thumbnails — every pixel is engineered to steal your attention. **YouTube Control puts you back in charge.** Strip away the noise, block distractions, and turn YouTube into a clean, focused video player that respects your time.
+
+No data collection. No accounts. No subscriptions. Just a lightweight browser extension that works instantly.
+
 ---
 
 ## 📥 Store Details & Downloads
@@ -16,6 +30,28 @@
 | [Firefox Add-ons Store](https://addons.mozilla.org/en-US/firefox/addon/youtube-control/) | [![](https://img.shields.io/amo/v/youtube-control?color=orange&label=latest)](https://addons.mozilla.org/en-US/firefox/addon/youtube-control/) | [![](https://img.shields.io/amo/rating/youtube-control?color=orange)](https://addons.mozilla.org/en-US/firefox/addon/youtube-control/) | [![](https://img.shields.io/amo/users/youtube-control?color=orange)](https://addons.mozilla.org/en-US/firefox/addon/youtube-control/) |
 | [Microsoft Edge Add-ons Store](https://microsoftedge.microsoft.com/addons/detail/youtube-control-shorts-b/fnimgjdbnocikpjnokpoepgajbaagfki) | [![](https://img.shields.io/badge/dynamic/json?label=latest&prefix=v&query=%24.version&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Ffnimgjdbnocikpjnokpoepgajbaagfki)](https://microsoftedge.microsoft.com/addons/detail/youtube-control-shorts-b/fnimgjdbnocikpjnokpoepgajbaagfki) | [![](https://img.shields.io/badge/dynamic/json?label=rating&suffix=/5&query=%24.averageRating&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Ffnimgjdbnocikpjnokpoepgajbaagfki)](https://microsoftedge.microsoft.com/addons/detail/youtube-control-shorts-b/fnimgjdbnocikpjnokpoepgajbaagfki) | [![](https://img.shields.io/badge/dynamic/json?label=users&query=%24.activeInstallCount&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Ffnimgjdbnocikpjnokpoepgajbaagfki)](https://microsoftedge.microsoft.com/addons/detail/youtube-control-shorts-b/fnimgjdbnocikpjnokpoepgajbaagfki) |
 
+---
+
+## Previews & Screenshots
+
+<p align="center">
+  <b>Settings Menu (Popup Interface)</b><br>
+  <img src="assets/Comp%201%20.jpg" width="80%" alt="Settings Menu Popup">
+</p>
+
+<br>
+
+<p align="center">
+  <b>Split Scroll Pane Layout</b><br>
+  <img src="assets/Comp%203%20.jpg" width="80%" alt="Split Scroll Pane Layout">
+</p>
+
+<br>
+
+<p align="center">
+  <b>Mini Fullscreen Layout</b><br>
+  <img src="assets/Comp%202%20.jpg" width="80%" alt="Mini Fullscreen Layout">
+</p>
 
 ---
 
@@ -41,11 +77,36 @@
 
 ---
 
+## ⌨️ Keyboard Shortcuts
+
+| Shortcut | Action |
+| :--- | :--- |
+| `Esc` | Exit Mini Fullscreen mode |
+| `T` | Exit Mini Fullscreen when toggling Cinema/Theater mode |
+
+> [!NOTE]
+> Keyboard shortcuts only activate when Mini Fullscreen is active. They do not interfere with YouTube's native shortcuts during normal playback.
+
+---
+
+## 🔒 Privacy
+
+YouTube Control respects your privacy completely:
+
+- **Zero data collection** — no analytics, no tracking, no telemetry.
+- **No network requests** — the extension never phones home or contacts external servers.
+- **No account required** — works immediately after installation.
+- **All settings stored locally** — your preferences live in your browser's local storage and never leave your device.
+
+---
+
 ## Folder Structure
 
 ```text
 youtube control/
 ├── CHANGELOG.md      # History of version updates
+├── CONTRIBUTING.md   # Guide for contributors
+├── LICENSE           # MIT License
 ├── build.py          # Script to package extensions for all browsers
 ├── src/              # Source code directory (where you make edits)
 │   ├── manifest.json # Extension configuration blueprint
@@ -96,23 +157,17 @@ python build.py -y
 
 ---
 
-## Previews & Screenshots
+## 🤝 Contributing
 
-<p align="center">
-  <b>Settings Menu (Popup Interface)</b><br>
-  <img src="assets/Comp%201%20.jpg" width="80%" alt="Settings Menu Popup">
-</p>
+Contributions are welcome! Please read the [Contributing Guide](CONTRIBUTING.md) before submitting a pull request.
 
-<br>
+**Quick links:**
+- 🐛 [Report a Bug](https://github.com/vishwa-vsr/YouTube-Control/issues/new?labels=bug)
+- 💡 [Request a Feature](https://github.com/vishwa-vsr/YouTube-Control/issues/new?labels=enhancement)
+- 📋 [View Open Issues](https://github.com/vishwa-vsr/YouTube-Control/issues)
 
-<p align="center">
-  <b>Split Scroll Pane Layout</b><br>
-  <img src="assets/Comp%203%20.jpg" width="80%" alt="Split Scroll Pane Layout">
-</p>
+---
 
-<br>
+## 📄 License
 
-<p align="center">
-  <b>Mini Fullscreen Layout</b><br>
-  <img src="assets/Comp%202%20.jpg" width="80%" alt="Mini Fullscreen Layout">
-</p>
+This project is licensed under the [MIT License](LICENSE).
