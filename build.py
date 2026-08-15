@@ -305,6 +305,9 @@ def build_target(target_name, is_firefox=False):
                 with open(dst_path, 'r', encoding='utf-8') as f:
                     manifest = json.load(f)
                 
+                # Set Firefox-compliant extension name (max 45 chars for AMO validation)
+                manifest["name"] = "YouTube Control — Block Shorts & Feeds"
+
                 # Convert service_worker to scripts array and include its dependencies if present
                 if "background" in manifest and "service_worker" in manifest["background"]:
                     manifest["background"]["scripts"] = [
