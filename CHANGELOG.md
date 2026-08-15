@@ -14,8 +14,6 @@ All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension
 ### Changed
 - **Sticky Player & Dual Scrolling Clarification**: Renamed **Sticky Video Player** to **Sticky Player & Dual Scrolling** with description *"Pin video at the top and scroll comments & sidebar independently"* to highlight split-pane independent scrolling.
 - **Default Category Bar Setting**: Configured **Hide Category Bar** to be OFF by default for new installs.
-- **Optimized Extension Title**: Updated name to `YouTube Control — Block Shorts, Hide Feed & Recommendations` for improved Chrome Web Store discovery and SEO.
-- **Optimized Short Description**: Refined store description to highlight core feature offerings (`Block YouTube Shorts, hide recommendations, blur thumbnails, dock comments to sidebar — 15+ tools to customize your YouTube experience.`).
 
 ---
 
