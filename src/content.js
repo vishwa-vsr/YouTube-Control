@@ -22,6 +22,7 @@ const classMap = {
   blurThumbnails: 'yt-blur-thumbnails',
   showScreenshotBtn: 'yt-show-screenshot-btn',
   showMiniFullscreenBtn: 'yt-show-mini-fullscreen-btn',
+  miniFullscreenFill: 'yt-web-fullscreen-fill',
   stickyPlayer: 'yt-sticky-player',
   dockCommentsSidebar: 'yt-enable-comments-dock',
   hideAmbientMode: 'yt-hide-ambient-mode',
@@ -86,6 +87,8 @@ function updateSidebarState() {
 // Single debounced resize dispatcher to prevent screen flickering
 function dispatchResize() {
   setTimeout(() => window.dispatchEvent(new Event('resize')), 50);
+  setTimeout(() => window.dispatchEvent(new Event('resize')), 150);
+  setTimeout(() => window.dispatchEvent(new Event('resize')), 300);
 }
 
 function applySettings(settings) {
@@ -206,6 +209,7 @@ function applySettings(settings) {
   
   if (settings.showMiniFullscreenBtn === true) injectMiniFullscreenButton();
   else {
+    root.classList.remove('yt-web-fullscreen-fill');
     const btn = document.querySelector('.ytp-mini-fullscreen-button');
     if (btn) {
       if (root.classList.contains('yt-web-fullscreen-active')) toggleMiniFullscreen();
@@ -426,10 +430,25 @@ function injectMiniFullscreenButton() {
   }
 }
 
-// Escape key listener to exit Mini Fullscreen
+// Keyboard listeners for Mini Fullscreen (Escape to exit, 'T' to exit on theater toggle)
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    if (document.documentElement.classList.contains('yt-web-fullscreen-active')) {
+  if (document.documentElement.classList.contains('yt-web-fullscreen-active')) {
+    if (e.key === 'Escape') {
+      toggleMiniFullscreen();
+    } else if (e.key === 't' || e.key === 'T') {
+      const target = e.target;
+      const isInput = target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable);
+      if (!isInput) {
+        toggleMiniFullscreen();
+      }
+    }
+  }
+}, true);
+
+// Listen for clicks on the Cinema / Theater mode button to exit Mini Fullscreen gracefully
+document.addEventListener('click', (e) => {
+  if (document.documentElement.classList.contains('yt-web-fullscreen-active')) {
+    if (e.target && e.target.closest('.ytp-size-button')) {
       toggleMiniFullscreen();
     }
   }

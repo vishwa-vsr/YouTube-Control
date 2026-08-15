@@ -353,23 +353,51 @@ html:not(.yt-no-hover-unblur).yt-blur-thumbnails ytd-thumbnail:hover img[src*="i
   display: inline-flex !important;
 }
 
-/* Fixed Web Fullscreen layout rules */
+/* Fixed Web Fullscreen layout rules - works in both Default and Cinema/Theater Mode */
+.yt-web-fullscreen-active #player-theater-container,
+.yt-web-fullscreen-active #full-bleed-container,
 .yt-web-fullscreen-active #player {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
+  min-width: 100vw !important;
+  min-height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
   z-index: 999999 !important;
   background-color: #000000 !important;
+  contain: none !important;
+  transform: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* Stretch all nested player elements to fill the fixed #player container */
+/* Stretch all nested player elements to fill the fixed container */
+.yt-web-fullscreen-active #player-wrap,
 .yt-web-fullscreen-active #player-container-outer,
 .yt-web-fullscreen-active #player-container-inner,
 .yt-web-fullscreen-active #player-container,
 .yt-web-fullscreen-active #movie_player,
-.yt-web-fullscreen-active .html5-video-container,
+.yt-web-fullscreen-active .html5-video-container {
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Fit the video element seamlessly maintaining aspect ratio without letterboxing or black side pillars */
 .yt-web-fullscreen-active .html5-main-video {
   width: 100% !important;
   height: 100% !important;
@@ -380,15 +408,23 @@ html:not(.yt-no-hover-unblur).yt-blur-thumbnails ytd-thumbnail:hover img[src*="i
   margin: 0 !important;
   padding: 0 !important;
   border-radius: 0 !important;
+  object-fit: contain !important;
+}
+
+/* When Fill Screen sub-option is enabled, zoom video to cover the entire window */
+.yt-web-fullscreen-active.yt-web-fullscreen-fill .html5-main-video {
+  object-fit: cover !important;
 }
 
 /* Hide document scrollbars and masthead header to prevent overflow issues */
-.yt-web-fullscreen-active {
+.yt-web-fullscreen-active,
+.yt-web-fullscreen-active body {
   overflow: hidden !important;
 }
 
 .yt-web-fullscreen-active #masthead-container,
-.yt-web-fullscreen-active ytd-masthead {
+.yt-web-fullscreen-active ytd-masthead,
+.yt-web-fullscreen-active #masthead {
   display: none !important;
 }
 

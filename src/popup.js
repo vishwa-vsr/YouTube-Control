@@ -24,6 +24,7 @@ const configKeys = [
   'unblurOnHover',
   'showScreenshotBtn',
   'showMiniFullscreenBtn',
+  'miniFullscreenFill',
   'stickyPlayer',
   'dockCommentsSidebar',
   'hideAmbientMode',
@@ -60,6 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
     { row: document.getElementById('sub-row-category-channels'), input: document.getElementById('hideCategoryBarChannels') },
     { row: document.getElementById('sub-row-category-watch'), input: document.getElementById('hideCategoryBarWatch') }
   ];
+
+  const miniFullscreenCheckbox = document.getElementById('showMiniFullscreenBtn');
+  const miniFullscreenFillCheckbox = document.getElementById('miniFullscreenFill');
+  const subRowMiniFullscreenFill = document.getElementById('sub-row-mini-fullscreen-fill');
 
   const masterToggle = document.getElementById('masterToggle');
   const tabsNav = document.querySelector('.tabs-navigation');
@@ -111,6 +116,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
+
+    if (miniFullscreenCheckbox && subRowMiniFullscreenFill) {
+      if (miniFullscreenCheckbox.checked) {
+        subRowMiniFullscreenFill.classList.remove('disabled');
+        if (miniFullscreenFillCheckbox) miniFullscreenFillCheckbox.disabled = false;
+      } else {
+        subRowMiniFullscreenFill.classList.add('disabled');
+        if (miniFullscreenFillCheckbox) miniFullscreenFillCheckbox.disabled = true;
+      }
+    }
   }
 
   if (blurThumbnailsCheckbox) {
@@ -127,6 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (hideCategoryBarCheckbox) {
     hideCategoryBarCheckbox.addEventListener('change', updateSubOptionState);
+  }
+
+  if (miniFullscreenCheckbox) {
+    miniFullscreenCheckbox.addEventListener('change', updateSubOptionState);
   }
 
   function updateMasterToggleUI(enabled) {
