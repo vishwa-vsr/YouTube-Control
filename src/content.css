@@ -138,6 +138,60 @@
   display: none !important;
 }
 
+/* 2.5 HIDE MIX PLAYLISTS (Granular Controls) */
+
+/* 2.5a. Feeds Mix Playlists (Home & Subscriptions) */
+.yt-hide-mix-playlists-feeds ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(a[href*="list=RD"]),
+.yt-hide-mix-playlists-feeds ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(a[href*="start_radio=1"]),
+.yt-hide-mix-playlists-feeds ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has([class*="content-id-RD"]),
+.yt-hide-mix-playlists-feeds ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(ytd-radio-renderer),
+.yt-hide-mix-playlists-feeds ytd-browse[page-subtype="home"] ytd-rich-section-renderer:has(a[href*="list=RD"]),
+.yt-hide-mix-playlists-feeds ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has(a[href*="list=RD"]),
+.yt-hide-mix-playlists-feeds ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has(a[href*="start_radio=1"]),
+.yt-hide-mix-playlists-feeds ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has([class*="content-id-RD"]),
+.yt-hide-mix-playlists-feeds ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has(ytd-radio-renderer),
+.yt-hide-mix-playlists-feeds ytd-rich-item-renderer:has(a[href*="list=RD"]),
+.yt-hide-mix-playlists-feeds ytd-rich-item-renderer:has(a[href*="start_radio=1"]),
+.yt-hide-mix-playlists-feeds ytd-rich-item-renderer:has([class*="content-id-RD"]),
+.yt-hide-mix-playlists-feeds ytd-rich-item-renderer:has(ytd-radio-renderer),
+.yt-hide-mix-playlists-feeds ytd-radio-renderer {
+  display: none !important;
+}
+
+/* 2.5b. Watch Page & Recommendation Mix Playlists */
+.yt-hide-mix-playlists-watch ytd-watch-flexy yt-lockup-view-model:has(a[href*="list=RD"]),
+.yt-hide-mix-playlists-watch ytd-watch-flexy yt-lockup-view-model:has(a[href*="start_radio=1"]),
+.yt-hide-mix-playlists-watch ytd-watch-flexy yt-lockup-view-model:has([class*="content-id-RD"]),
+.yt-hide-mix-playlists-watch ytd-watch-flexy ytd-compact-video-renderer:has(a[href*="list=RD"]),
+.yt-hide-mix-playlists-watch ytd-watch-flexy ytd-compact-video-renderer:has(a[href*="start_radio=1"]),
+.yt-hide-mix-playlists-watch ytd-watch-flexy ytd-compact-video-renderer:has([class*="content-id-RD"]),
+.yt-hide-mix-playlists-watch ytd-watch-flexy ytd-compact-radio-renderer,
+.yt-hide-mix-playlists-watch ytd-watch-flexy ytd-radio-renderer,
+.yt-hide-mix-playlists-watch ytd-watch-grid yt-lockup-view-model:has(a[href*="list=RD"]),
+.yt-hide-mix-playlists-watch ytd-watch-grid yt-lockup-view-model:has(a[href*="start_radio=1"]),
+.yt-hide-mix-playlists-watch ytd-watch-grid yt-lockup-view-model:has([class*="content-id-RD"]),
+.yt-hide-mix-playlists-watch ytd-watch-grid ytd-compact-video-renderer:has(a[href*="list=RD"]),
+.yt-hide-mix-playlists-watch ytd-watch-grid ytd-compact-video-renderer:has(a[href*="start_radio=1"]),
+.yt-hide-mix-playlists-watch ytd-watch-grid ytd-compact-video-renderer:has([class*="content-id-RD"]),
+.yt-hide-mix-playlists-watch ytd-watch-grid ytd-compact-radio-renderer,
+.yt-hide-mix-playlists-watch ytd-watch-next-secondary-results-renderer yt-lockup-view-model:has(a[href*="list=RD"]),
+.yt-hide-mix-playlists-watch ytd-watch-next-secondary-results-renderer yt-lockup-view-model:has(a[href*="start_radio=1"]),
+.yt-hide-mix-playlists-watch ytd-watch-next-secondary-results-renderer yt-lockup-view-model:has([class*="content-id-RD"]),
+.yt-hide-mix-playlists-watch ytd-watch-next-secondary-results-renderer ytd-compact-video-renderer:has(a[href*="list=RD"]),
+.yt-hide-mix-playlists-watch ytd-watch-next-secondary-results-renderer ytd-compact-video-renderer:has(a[href*="start_radio=1"]),
+.yt-hide-mix-playlists-watch ytd-watch-next-secondary-results-renderer ytd-compact-video-renderer:has([class*="content-id-RD"]),
+.yt-hide-mix-playlists-watch ytd-watch-next-secondary-results-renderer ytd-compact-radio-renderer,
+.yt-hide-mix-playlists-watch #related yt-lockup-view-model:has(a[href*="list=RD"]),
+.yt-hide-mix-playlists-watch #related yt-lockup-view-model:has(a[href*="start_radio=1"]),
+.yt-hide-mix-playlists-watch #related yt-lockup-view-model:has([class*="content-id-RD"]),
+.yt-hide-mix-playlists-watch #related ytd-compact-video-renderer:has(a[href*="list=RD"]),
+.yt-hide-mix-playlists-watch #related ytd-compact-video-renderer:has(a[href*="start_radio=1"]),
+.yt-hide-mix-playlists-watch #related ytd-compact-video-renderer:has([class*="content-id-RD"]),
+.yt-hide-mix-playlists-watch #related ytd-compact-radio-renderer,
+.yt-hide-mix-playlists-watch ytd-compact-radio-renderer {
+  display: none !important;
+}
+
 /* 3. HIDE SHORTS & PLAYABLES (Granular Controls) */
 
 /* 3a. Sidebar Shorts & Playables */

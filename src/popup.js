@@ -6,6 +6,9 @@ const configKeys = [
   'hideCategoryBarChannels',
   'hideCategoryBarWatch',
   'customGridEnabled',
+  'hideMixPlaylists',
+  'hideMixPlaylistsFeeds',
+  'hideMixPlaylistsWatch',
   'hideSubscriptions',
   'hideYou',
   'hideExplore',
@@ -47,6 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const gridPillBtns = document.querySelectorAll('.grid-pill-btn');
   let currentVideosPerRow = 4;
 
+  const hideMixCheckbox = document.getElementById('hideMixPlaylists');
+  const subMixRows = [
+    { row: document.getElementById('sub-row-mix-feeds'), input: document.getElementById('hideMixPlaylistsFeeds') },
+    { row: document.getElementById('sub-row-mix-watch'), input: document.getElementById('hideMixPlaylistsWatch') }
+  ];
+
   const hideShortsCheckbox = document.getElementById('hideShorts');
   const subShortsRows = [
     { row: document.getElementById('sub-row-shorts-sidebar'), input: document.getElementById('hideShortsSidebar') },
@@ -87,6 +96,20 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         subRowGridCols.classList.add('disabled');
       }
+    }
+
+    if (hideMixCheckbox) {
+      subMixRows.forEach(item => {
+        if (item.row) {
+          if (hideMixCheckbox.checked) {
+            item.row.classList.remove('disabled');
+            if (item.input) item.input.disabled = false;
+          } else {
+            item.row.classList.add('disabled');
+            if (item.input) item.input.disabled = true;
+          }
+        }
+      });
     }
 
     if (hideShortsCheckbox) {
@@ -134,6 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (customGridCheckbox) {
     customGridCheckbox.addEventListener('change', updateSubOptionState);
+  }
+
+  if (hideMixCheckbox) {
+    hideMixCheckbox.addEventListener('change', updateSubOptionState);
   }
 
   if (hideShortsCheckbox) {
@@ -214,6 +241,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'dockCommentsSidebar',
       'stickyPlayer',
       'showMiniFullscreenBtn',
+      'hideMixPlaylistsFeeds',
+      'hideMixPlaylistsWatch',
       'hideShorts',
       'hideShortsSidebar',
       'hideShortsFeeds',

@@ -5,6 +5,9 @@ const classMap = {
   hideCategoryBarFeeds: 'yt-hide-category-bar-feeds',
   hideCategoryBarChannels: 'yt-hide-category-bar-channels',
   hideCategoryBarWatch: 'yt-hide-category-bar-watch',
+  hideMixPlaylists: 'yt-hide-mix-playlists',
+  hideMixPlaylistsFeeds: 'yt-hide-mix-playlists-feeds',
+  hideMixPlaylistsWatch: 'yt-hide-mix-playlists-watch',
   hideSubscriptions: 'yt-hide-subscriptions',
   hideYou: 'yt-hide-you',
   hideExplore: 'yt-hide-explore',
@@ -182,6 +185,20 @@ function applySettings(settings) {
     root.classList.remove('yt-hide-category-bar-feeds');
     root.classList.remove('yt-hide-category-bar-channels');
     root.classList.remove('yt-hide-category-bar-watch');
+  }
+
+  // Handle Mix Playlists master & sub-classes cleanly
+  const hideMixMaster = settings.hideMixPlaylists === true && isEnabled;
+  if (hideMixMaster) {
+    if (settings.hideMixPlaylistsFeeds !== false) root.classList.add('yt-hide-mix-playlists-feeds');
+    else root.classList.remove('yt-hide-mix-playlists-feeds');
+
+    if (settings.hideMixPlaylistsWatch !== false) root.classList.add('yt-hide-mix-playlists-watch');
+    else root.classList.remove('yt-hide-mix-playlists-watch');
+  } else {
+    root.classList.remove('yt-hide-mix-playlists');
+    root.classList.remove('yt-hide-mix-playlists-feeds');
+    root.classList.remove('yt-hide-mix-playlists-watch');
   }
 
   if (settings.unblurOnHover === false) {
@@ -844,6 +861,8 @@ try {
       'dockCommentsSidebar',
       'stickyPlayer',
       'showMiniFullscreenBtn',
+      'hideMixPlaylistsFeeds',
+      'hideMixPlaylistsWatch',
       'hideShorts',
       'hideShortsSidebar',
       'hideShortsFeeds',

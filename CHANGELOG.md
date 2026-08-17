@@ -2,6 +2,18 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.1.1] - 2026-08-17
+
+### Added
+- **Hide Mix Playlists Controls (Issue #8)**: Added a new settings card under the **Feeds** tab with master and sub-toggles to hide YouTube's auto-generated Mix playlists (`list=RD...` / `start_radio=1`).
+  - **Hide Mixes in Home & Feeds**: Removes Mix playlists from Home and Subscription feeds.
+  - **Hide Mixes on Watch Page**: Removes Mix playlist recommendations from the video sidebar and related recommendations.
+
+### Fixed
+- **Watch Page Mix Recommendation Targetting**: Ensured individual Mix cards (`<yt-lockup-view-model>`) are selectively hidden across all watch page layouts (`ytd-watch-flexy`, `ytd-watch-grid`, `#related`) without conflicting with surrounding normal video recommendations.
+
+---
+
 ## [1.1.0] - 2026-08-15
 
 ### Added
