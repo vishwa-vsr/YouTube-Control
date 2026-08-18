@@ -892,28 +892,131 @@ if (chrome.runtime && chrome.runtime.id) {
   } catch (err) {}
 }
 
-function resetPaneScrolls() {
-  const primary = document.querySelector('#primary');
-  const secondary = document.querySelector('#secondary');
-  if (primary) primary.scrollTop = 0;
-  if (secondary) secondary.scrollTop = 0;
+let scrollResetTimers = [];
+
+function cancelScrollResetTimers() {
+  while (scrollResetTimers.length > 0) {
+    clearTimeout(scrollResetTimers.pop());
+  }
 }
 
-// Re-apply settings on YouTube single-page navigation transitions
-window.addEventListener('yt-navigate-finish', () => {
+function resetPaneScrolls() {
+  const elements = [
+    document.querySelector('#primary'),
+    document.querySelector('#secondary'),
+    document.querySelector('#secondary-inner'),
+    document.querySelector('#primary-inner'),
+    document.querySelector('ytd-watch-flexy'),
+    document.querySelector('#columns'),
+    document.querySelector('ytd-watch-next-secondary-results-renderer'),
+    document.documentElement,
+    document.body
+  ];
+  for (let i = 0; i < elements.length; i++) {
+    const el = elements[i];
+    if (el && el.scrollTop !== 0) {
+      el.scrollTop = 0;
+    }
+  }
+  if (window.scrollY !== 0 || window.scrollX !== 0) {
+    window.scrollTo(0, 0);
+  }
+}
+
+function robustResetPaneScrolls() {
+  cancelScrollResetTimers();
   resetPaneScrolls();
+  if (window.requestAnimationFrame) {
+    requestAnimationFrame(resetPaneScrolls);
+  }
+
+  // Multi-pass staggered reset ensures asynchronous YouTube recommendation rendering stays at the top
+  const delays = [30, 80, 150, 300, 500, 800, 1200];
+  delays.forEach(delay => {
+    const timer = setTimeout(() => {
+      resetPaneScrolls();
+    }, delay);
+    scrollResetTimers.push(timer);
+  });
+}
+
+// Cancel delayed resets if the user starts scrolling manually with mouse wheel or touch
+window.addEventListener('wheel', cancelScrollResetTimers, { passive: true });
+window.addEventListener('touchmove', cancelScrollResetTimers, { passive: true });
+
+// Helper to extract video ID from URL or string
+function getVideoId(urlOrStr) {
+  if (!urlOrStr) return null;
+  try {
+    const url = new URL(urlOrStr, window.location.origin);
+    const v = url.searchParams.get('v');
+    if (v) return v;
+    if (url.pathname.startsWith('/shorts/')) {
+      return url.pathname.split('/')[2] || null;
+    }
+    if (url.pathname.startsWith('/live/')) {
+      return url.pathname.split('/')[2] || null;
+    }
+  } catch (e) {
+    const match = String(urlOrStr).match(/[?&]v=([^&#]+)/);
+    if (match) return match[1];
+  }
+  return null;
+}
+
+let currentActiveVideoId = getVideoId(window.location.href);
+
+function handleVideoChange(destinationUrlOrId) {
+  const targetId = destinationUrlOrId ? (getVideoId(destinationUrlOrId) || destinationUrlOrId) : getVideoId(window.location.href);
+  if (targetId && targetId !== currentActiveVideoId) {
+    currentActiveVideoId = targetId;
+    robustResetPaneScrolls();
+    return true;
+  } else if (!targetId && currentActiveVideoId) {
+    currentActiveVideoId = null;
+    robustResetPaneScrolls();
+    return true;
+  }
+  return false;
+}
+
+// Immediately trigger reset when clicking a DIFFERENT video link (ignoring chapters, transcripts, timestamps)
+document.addEventListener('click', (e) => {
+  // If clicking inside chapter list, transcript, or timestamp components, ignore
+  if (e.target.closest('ytd-chapter-renderer, ytd-macro-markers-list-item-renderer, ytd-transcript-segment-renderer, [target-id*="chapter"], [target-id*="transcript"]')) {
+    return;
+  }
+
+  const link = e.target.closest('a[href*="watch?v="], a[href*="/shorts/"], ytd-compact-video-renderer a, ytd-thumbnail a, a#video-title-link, a#thumbnail');
+  if (link && link.href) {
+    handleVideoChange(link.href);
+  }
+}, true);
+
+// Re-apply settings and reset scroll positions ONLY when navigating to a different video
+window.addEventListener('yt-navigate-finish', (e) => {
+  const nextUrl = (e && e.detail && e.detail.response && e.detail.response.endpoint && e.detail.response.endpoint.commandMetadata && e.detail.response.endpoint.commandMetadata.webCommandMetadata && e.detail.response.endpoint.commandMetadata.webCommandMetadata.url) || window.location.href;
+  handleVideoChange(nextUrl);
   applySettings(cachedSettings);
 });
 
-window.addEventListener('yt-navigate-start', () => {
-  resetPaneScrolls();
-  userManuallyUndocked = false;
-  if (document.documentElement.classList.contains('yt-comments-docked')) {
-    toggleSidebarComments(true); // pass true so we don't treat navigation-based reset as a manual user undock
+window.addEventListener('yt-navigate-start', (e) => {
+  const nextUrl = (e && e.detail && e.detail.url) ? e.detail.url : window.location.href;
+  const isDifferentVideo = handleVideoChange(nextUrl);
+  
+  if (isDifferentVideo) {
+    userManuallyUndocked = false;
+    if (document.documentElement.classList.contains('yt-comments-docked')) {
+      toggleSidebarComments(true); // pass true so we don't treat navigation-based reset as a manual user undock
+    }
   }
 });
 
 window.addEventListener('yt-page-data-updated', () => {
-  resetPaneScrolls();
+  handleVideoChange(window.location.href);
   applySettings(cachedSettings);
+});
+
+window.addEventListener('popstate', () => {
+  handleVideoChange(window.location.href);
 });

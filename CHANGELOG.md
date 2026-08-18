@@ -9,6 +9,9 @@ All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension
   - **Hide Mixes in Home & Feeds**: Removes Mix playlists from Home and Subscription feeds.
   - **Hide Mixes on Watch Page**: Removes Mix playlist recommendations from the video sidebar and related recommendations.
 
+### Fixed
+- **Sticky Player & Dual Scrolling Navigation Reset**: Fixed an issue where clicking a recommended video in the sidebar kept the sidebar scrolled down on the new page instead of resetting cleanly to the top.
+
 ---
 
 ## [1.1.0] - 2026-08-15
