@@ -9,6 +9,9 @@ All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension
 - **Customizable Speed Inputs**: Added custom speed settings under the **Watch Experience** tab, supporting custom decimal speed presets (default: `1.0x` and `2.0x`).
 - **Live Playback Rate Synchronization**: The speed button automatically reflects speed changes made via YouTube's native menu or keyboard shortcuts (`Shift + >` / `Shift + <`).
 
+### Fixed
+- **Home Feed & Shorts Scroll Preservation**: Fixed an issue where clicking video thumbnails or Shorts from the Home Feed, Subscriptions, or Search caused the feed to jump to the top. Dual scrolling reset is now strictly confined to video watch pages, preserving your exact feed scroll position.
+
 ---
 
 ## [1.1.1] - 2026-08-17

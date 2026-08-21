@@ -1011,25 +1011,21 @@ function cancelScrollResetTimers() {
 }
 
 function resetPaneScrolls() {
+  // Dual scrolling is strictly for the watch page; never touch home/feed/search scrolling
+  const watchFlexy = document.querySelector('ytd-watch-flexy:not([hidden])');
+  if (!watchFlexy) return;
+
   const elements = [
-    document.querySelector('#primary'),
-    document.querySelector('#secondary'),
-    document.querySelector('#secondary-inner'),
-    document.querySelector('#primary-inner'),
-    document.querySelector('ytd-watch-flexy'),
-    document.querySelector('#columns'),
-    document.querySelector('ytd-watch-next-secondary-results-renderer'),
-    document.documentElement,
-    document.body
+    watchFlexy.querySelector('#primary'),
+    watchFlexy.querySelector('#secondary'),
+    watchFlexy.querySelector('#secondary-inner'),
+    watchFlexy.querySelector('#primary-inner')
   ];
   for (let i = 0; i < elements.length; i++) {
     const el = elements[i];
     if (el && el.scrollTop !== 0) {
       el.scrollTop = 0;
     }
-  }
-  if (window.scrollY !== 0 || window.scrollX !== 0) {
-    window.scrollTo(0, 0);
   }
 }
 
@@ -1084,14 +1080,24 @@ function handleVideoChange(destinationUrlOrId) {
     return true;
   } else if (!targetId && currentActiveVideoId) {
     currentActiveVideoId = null;
-    robustResetPaneScrolls();
     return true;
   }
   return false;
 }
 
-// Immediately trigger reset when clicking a DIFFERENT video link (ignoring chapters, transcripts, timestamps)
+// Immediately trigger reset when clicking a DIFFERENT video link in the watch page sidebar
 document.addEventListener('click', (e) => {
+  // Ignore non-left clicks or modifier keys (opening in new tab)
+  if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) {
+    return;
+  }
+
+  // Only intercept clicks from the watch page sidebar (recommended videos)
+  const secondary = document.querySelector('ytd-watch-flexy:not([hidden]) #secondary');
+  if (!secondary || !secondary.contains(e.target)) {
+    return;
+  }
+
   // If clicking inside chapter list, transcript, or timestamp components, ignore
   if (e.target.closest('ytd-chapter-renderer, ytd-macro-markers-list-item-renderer, ytd-transcript-segment-renderer, [target-id*="chapter"], [target-id*="transcript"]')) {
     return;
