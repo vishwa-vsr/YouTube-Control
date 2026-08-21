@@ -393,6 +393,34 @@ html:not(.yt-no-hover-unblur).yt-blur-thumbnails ytd-thumbnail:hover img[src*="i
   transition: opacity 0.15s ease-out;
 }
 
+/* 11b. PLAYBACK SPEED BUTTON STYLES */
+.ytp-speed-button {
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: middle !important;
+  text-align: center !important;
+}
+
+/* Show it only when the setting is enabled */
+.yt-show-speed-btn .ytp-speed-button {
+  display: inline-flex !important;
+}
+
+.ytp-speed-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "YouTube Noto", Roboto, "Arial", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  color: #FFFFFF;
+  text-align: center;
+  letter-spacing: 0.2px;
+  pointer-events: none;
+}
+
 /* 12. MINI FULLSCREEN STYLES */
 /* Hide mini fullscreen button by default */
 .ytp-mini-fullscreen-button {

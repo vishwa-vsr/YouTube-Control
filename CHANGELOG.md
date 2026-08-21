@@ -2,6 +2,15 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.1.2] - 2026-08-21
+
+### Added
+- **Playback Speed Toggle Button (Issue #9)**: Added a quick-toggle playback speed button directly in the YouTube video player control bar to switch between two user-configured speeds with a single click.
+- **Customizable Speed Inputs**: Added custom speed settings under the **Watch Experience** tab, supporting custom decimal speed presets (default: `1.0x` and `2.0x`).
+- **Live Playback Rate Synchronization**: The speed button automatically reflects speed changes made via YouTube's native menu or keyboard shortcuts (`Shift + >` / `Shift + <`).
+
+---
+
 ## [1.1.1] - 2026-08-17
 
 ### Added

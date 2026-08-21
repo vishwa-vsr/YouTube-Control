@@ -23,6 +23,7 @@ const classMap = {
   hideHeader: 'yt-hide-header',
   grayscaleMode: 'yt-grayscale-mode',
   blurThumbnails: 'yt-blur-thumbnails',
+  showSpeedBtn: 'yt-show-speed-btn',
   showScreenshotBtn: 'yt-show-screenshot-btn',
   showMiniFullscreenBtn: 'yt-show-mini-fullscreen-btn',
   miniFullscreenFill: 'yt-web-fullscreen-fill',
@@ -109,6 +110,9 @@ function applySettings(settings) {
     cleanupCustomGrid();
     
     // Remove injected elements
+    const speedBtn = document.querySelector('.ytp-speed-button');
+    if (speedBtn) speedBtn.remove();
+
     const screenshotBtn = document.querySelector('.ytp-screenshot-button');
     if (screenshotBtn) screenshotBtn.remove();
     
@@ -218,6 +222,12 @@ function applySettings(settings) {
   updateSidebarState();
 
   // Injections based on active settings
+  if (settings.showSpeedBtn === true) injectSpeedButton();
+  else {
+    const btn = document.querySelector('.ytp-speed-button');
+    if (btn) btn.remove();
+  }
+
   if (settings.showScreenshotBtn === true) injectScreenshotButton();
   else {
     const btn = document.querySelector('.ytp-screenshot-button');
@@ -267,7 +277,7 @@ function injectSidebarCommentsButton() {
   
   const btn = document.createElement('button');
   btn.className = 'yt-dock-comments-btn';
-  btn.title = 'Move comments to sidebar';
+  btn.setAttribute('aria-label', 'Move comments to sidebar');
   setCommentsBtnIcon(btn, false);
   
   btn.addEventListener('click', (e) => {
@@ -311,7 +321,8 @@ function toggleSidebarComments(isAuto = false) {
     secondaryInner.insertBefore(comments, secondaryInner.firstChild);
     root.classList.add('yt-comments-docked');
     document.querySelectorAll('.yt-dock-comments-btn').forEach(b => {
-      b.title = 'Restore comments below player';
+      b.removeAttribute('title');
+      b.setAttribute('aria-label', 'Restore comments below player');
       b.classList.add('active');
       setCommentsBtnIcon(b, true);
     });
@@ -327,7 +338,8 @@ function toggleSidebarComments(isAuto = false) {
       userManuallyUndocked = true;
     }
     document.querySelectorAll('.yt-dock-comments-btn').forEach(b => {
-      b.title = 'Move comments to sidebar';
+      b.removeAttribute('title');
+      b.setAttribute('aria-label', 'Move comments to sidebar');
       b.classList.remove('active');
       setCommentsBtnIcon(b, false);
     });
@@ -379,7 +391,7 @@ function injectScreenshotButton() {
   
   const btn = document.createElement('button');
   btn.className = 'ytp-button ytp-screenshot-button';
-  btn.title = 'Take Screenshot';
+  btn.setAttribute('aria-label', 'Screenshot');
   btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; display: block;"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>`;
   
   btn.addEventListener('click', (e) => {
@@ -387,15 +399,112 @@ function injectScreenshotButton() {
     captureScreenshot();
   });
   
+  const speedBtn = rightControls.querySelector('.ytp-speed-button');
   const settingsBtn = rightControls.querySelector('.ytp-settings-button') || 
                       rightControls.querySelector('.ytp-subtitles-button') ||
                       rightControls.firstChild;
                       
-  if (settingsBtn && settingsBtn.parentNode) {
+  if (speedBtn && speedBtn.parentNode === rightControls) {
+    speedBtn.parentNode.insertBefore(btn, speedBtn);
+  } else if (settingsBtn && settingsBtn.parentNode) {
     settingsBtn.parentNode.insertBefore(btn, settingsBtn);
   } else {
     rightControls.appendChild(btn);
   }
+}
+
+function formatSpeedText(rate) {
+  if (typeof rate !== 'number' || isNaN(rate)) rate = 1.0;
+  const rounded = parseFloat(rate.toFixed(2));
+  return `${rounded}x`;
+}
+
+function updateSpeedButtonText(rate) {
+  const btn = document.querySelector('.ytp-speed-button');
+  if (!btn) return;
+  
+  const badge = btn.querySelector('.ytp-speed-badge');
+  if (!badge) return;
+  
+  const video = document.querySelector('#movie_player video.html5-main-video') || document.querySelector('.html5-main-video');
+  if (rate === undefined || rate === null) {
+    rate = video ? video.playbackRate : (parseFloat(cachedSettings.speedValueA) || 1.0);
+  }
+  
+  if (video) {
+    attachVideoRateListener(video);
+  }
+  
+  const formatted = formatSpeedText(rate);
+  badge.textContent = formatted;
+  btn.removeAttribute('title');
+}
+
+function attachVideoRateListener(video) {
+  if (!video || video._hasSpeedRateListener) return;
+  video._hasSpeedRateListener = true;
+  video.addEventListener('ratechange', () => {
+    updateSpeedButtonText(video.playbackRate);
+  });
+}
+
+function togglePlaybackSpeed() {
+  const video = document.querySelector('#movie_player video.html5-main-video') || document.querySelector('.html5-main-video');
+  if (!video) return;
+
+  const speedA = parseFloat(cachedSettings.speedValueA) || 1.0;
+  const speedB = parseFloat(cachedSettings.speedValueB) || 2.0;
+  const currentRate = video.playbackRate;
+
+  let targetSpeed;
+  if (Math.abs(currentRate - speedA) < 0.01) {
+    targetSpeed = speedB;
+  } else {
+    targetSpeed = speedA;
+  }
+
+  video.playbackRate = targetSpeed;
+  updateSpeedButtonText(targetSpeed);
+}
+
+function injectSpeedButton() {
+  const rightControls = document.querySelector('.ytp-right-controls');
+  if (!rightControls) return;
+  
+  let btn = rightControls.querySelector('.ytp-speed-button');
+  if (btn) {
+    updateSpeedButtonText();
+    return;
+  }
+
+  btn = document.createElement('button');
+  btn.className = 'ytp-button ytp-speed-button';
+  btn.setAttribute('aria-label', 'Playback speed');
+  btn.innerHTML = `<span class="ytp-speed-badge">1x</span>`;
+
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    togglePlaybackSpeed();
+  });
+
+  const screenshotBtn = rightControls.querySelector('.ytp-screenshot-button');
+  const settingsBtn = rightControls.querySelector('.ytp-settings-button') || 
+                      rightControls.querySelector('.ytp-subtitles-button') ||
+                      rightControls.firstChild;
+                      
+  if (screenshotBtn && screenshotBtn.parentNode === rightControls) {
+    screenshotBtn.after(btn);
+  } else if (settingsBtn && settingsBtn.parentNode) {
+    settingsBtn.parentNode.insertBefore(btn, settingsBtn);
+  } else {
+    rightControls.appendChild(btn);
+  }
+
+  const video = document.querySelector('#movie_player video.html5-main-video') || document.querySelector('.html5-main-video');
+  if (video) {
+    attachVideoRateListener(video);
+  }
+  updateSpeedButtonText();
 }
 
 function toggleMiniFullscreen() {
@@ -404,11 +513,12 @@ function toggleMiniFullscreen() {
   const btn = document.querySelector('.ytp-mini-fullscreen-button');
   
   if (btn) {
+    btn.removeAttribute('title');
     if (isWebFullscreen) {
-      btn.title = 'Exit Mini Fullscreen';
+      btn.setAttribute('aria-label', 'Exit Mini Fullscreen');
       btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; display: block;"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M10 14l-7 7"></path></svg>`;
     } else {
-      btn.title = 'Mini Fullscreen';
+      btn.setAttribute('aria-label', 'Mini Fullscreen');
       btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; display: block;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><rect x="9" y="9" width="12" height="12" rx="2" ry="2" fill="#FFFFFF" fill-opacity="0.3"></rect></svg>`;
     }
   }
@@ -421,11 +531,10 @@ function injectMiniFullscreenButton() {
   
   const btn = document.createElement('button');
   btn.className = 'ytp-button ytp-mini-fullscreen-button';
-  btn.title = 'Mini Fullscreen';
   
   const isCurrentlyActive = document.documentElement.classList.contains('yt-web-fullscreen-active');
+  btn.setAttribute('aria-label', isCurrentlyActive ? 'Exit Mini Fullscreen' : 'Mini Fullscreen');
   if (isCurrentlyActive) {
-    btn.title = 'Exit Mini Fullscreen';
     btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; display: block;"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M10 14l-7 7"></path></svg>`;
   } else {
     btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; display: block;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><rect x="9" y="9" width="12" height="12" rx="2" ry="2" fill="#FFFFFF" fill-opacity="0.3"></rect></svg>`;
@@ -817,6 +926,7 @@ function scheduleButtonInjection() {
     if (isEnabled) {
       if (cachedSettings.customGridEnabled === true) enforceCustomGrid();
       else cleanupCustomGrid();
+      if (cachedSettings.showSpeedBtn === true) injectSpeedButton();
       if (cachedSettings.showScreenshotBtn === true) injectScreenshotButton();
       if (cachedSettings.showMiniFullscreenBtn === true) injectMiniFullscreenButton();
       

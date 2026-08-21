@@ -25,6 +25,7 @@ const configKeys = [
   'grayscaleMode',
   'blurThumbnails',
   'unblurOnHover',
+  'showSpeedBtn',
   'showScreenshotBtn',
   'showMiniFullscreenBtn',
   'miniFullscreenFill',
@@ -74,6 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const miniFullscreenCheckbox = document.getElementById('showMiniFullscreenBtn');
   const miniFullscreenFillCheckbox = document.getElementById('miniFullscreenFill');
   const subRowMiniFullscreenFill = document.getElementById('sub-row-mini-fullscreen-fill');
+
+  const speedBtnCheckbox = document.getElementById('showSpeedBtn');
+  const subRowSpeedInputs = document.getElementById('sub-row-speed-inputs');
+  const speedInputA = document.getElementById('speedValueA');
+  const speedInputB = document.getElementById('speedValueB');
 
   const masterToggle = document.getElementById('masterToggle');
   const tabsNav = document.querySelector('.tabs-navigation');
@@ -149,6 +155,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (miniFullscreenFillCheckbox) miniFullscreenFillCheckbox.disabled = true;
       }
     }
+
+    if (speedBtnCheckbox && subRowSpeedInputs) {
+      if (speedBtnCheckbox.checked) {
+        subRowSpeedInputs.classList.remove('disabled');
+        if (speedInputA) speedInputA.disabled = false;
+        if (speedInputB) speedInputB.disabled = false;
+      } else {
+        subRowSpeedInputs.classList.add('disabled');
+        if (speedInputA) speedInputA.disabled = true;
+        if (speedInputB) speedInputB.disabled = true;
+      }
+    }
   }
 
   if (blurThumbnailsCheckbox) {
@@ -175,6 +193,34 @@ document.addEventListener('DOMContentLoaded', () => {
     miniFullscreenCheckbox.addEventListener('change', updateSubOptionState);
   }
 
+  if (speedBtnCheckbox) {
+    speedBtnCheckbox.addEventListener('change', updateSubOptionState);
+  }
+
+  function handleSpeedInputChange(input, key, fallback) {
+    if (!input) return;
+    let val = parseFloat(input.value);
+    if (isNaN(val) || val <= 0) {
+      val = fallback;
+    } else if (val > 16) {
+      val = 16;
+    }
+    val = Math.round(val * 100) / 100;
+    input.value = val;
+    chrome.storage.local.set({ [key]: val }, () => {
+      sendCurrentSettingsToActiveTab();
+    });
+  }
+
+  if (speedInputA) {
+    speedInputA.addEventListener('change', () => handleSpeedInputChange(speedInputA, 'speedValueA', 1.0));
+    speedInputA.addEventListener('blur', () => handleSpeedInputChange(speedInputA, 'speedValueA', 1.0));
+  }
+  if (speedInputB) {
+    speedInputB.addEventListener('change', () => handleSpeedInputChange(speedInputB, 'speedValueB', 2.0));
+    speedInputB.addEventListener('blur', () => handleSpeedInputChange(speedInputB, 'speedValueB', 2.0));
+  }
+
   function updateMasterToggleUI(enabled) {
     if (!masterToggle) return;
     masterToggle.checked = enabled;
@@ -188,11 +234,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function sendCurrentSettingsToActiveTab() {
-    chrome.storage.local.get(['extensionEnabled', 'videosPerRow', ...configKeys], (res) => {
+    chrome.storage.local.get(['extensionEnabled', 'videosPerRow', 'speedValueA', 'speedValueB', ...configKeys], (res) => {
       const extensionEnabled = res.extensionEnabled !== false;
       const updatedSettings = { 
         extensionEnabled, 
-        videosPerRow: res.videosPerRow || currentVideosPerRow 
+        videosPerRow: res.videosPerRow || currentVideosPerRow,
+        speedValueA: res.speedValueA !== undefined ? res.speedValueA : 1.0,
+        speedValueB: res.speedValueB !== undefined ? res.speedValueB : 2.0
       };
       Object.keys(checkboxes).forEach(k => {
         if (checkboxes[k]) {
@@ -219,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Load initial settings
-  chrome.storage.local.get(['extensionEnabled', 'videosPerRow', ...configKeys], (settings) => {
+  chrome.storage.local.get(['extensionEnabled', 'videosPerRow', 'speedValueA', 'speedValueB', ...configKeys], (settings) => {
     const currentSettings = {};
     const extensionEnabled = settings.extensionEnabled !== false;
     
@@ -234,6 +282,9 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.classList.remove('active');
       }
     });
+
+    if (speedInputA) speedInputA.value = settings.speedValueA !== undefined ? settings.speedValueA : 1.0;
+    if (speedInputB) speedInputB.value = settings.speedValueB !== undefined ? settings.speedValueB : 2.0;
 
     // Set default for certain keys to true if they are undefined
     const defaultTrueKeys = [
