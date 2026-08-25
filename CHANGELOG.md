@@ -2,6 +2,17 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.1.3] - 2026-08-22
+
+### Added
+- **Review Prompt Popup**: Added a non-intrusive review prompt modal that appears inside the extension popup after 7 days of use, politely asking users to leave a review on the Chrome Web Store (or Firefox Add-ons / Edge Add-ons). Includes three response options:
+  - **Leave a Review**: Opens the correct store review page based on the user's browser and permanently stops asking.
+  - **Maybe Later**: Dismisses the prompt for 7 days before showing again.
+  - **Don't Ask Again**: Permanently dismisses the review prompt.
+- **Install Date Tracking**: The extension now records the install date via the `onInstalled` event to power time-based review prompt logic. Existing users are gracefully handled by treating their first popup open after the update as Day 1.
+
+---
+
 ## [1.1.2] - 2026-08-21
 
 ### Added

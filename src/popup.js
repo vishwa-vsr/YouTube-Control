@@ -428,4 +428,79 @@ document.addEventListener('DOMContentLoaded', () => {
       chrome.tabs.create({ url: 'https://github.com/vishwa-vsr/YouTube-Control' });
     });
   }
+
+  // ── Review Prompt Logic ──
+  const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
+  const reviewOverlay = document.getElementById('reviewOverlay');
+  const reviewLeaveBtn = document.getElementById('reviewLeaveBtn');
+  const reviewLaterBtn = document.getElementById('reviewLaterBtn');
+  const reviewDismissBtn = document.getElementById('reviewDismissBtn');
+
+  function hideReviewModal() {
+    if (reviewOverlay) reviewOverlay.style.display = 'none';
+  }
+
+  function showReviewModal() {
+    if (reviewOverlay) reviewOverlay.style.display = 'flex';
+  }
+
+  function getReviewUrl() {
+    const isFirefox = navigator.userAgent.includes('Firefox');
+    const isEdge = navigator.userAgent.includes('Edg');
+
+    if (isFirefox) {
+      return 'https://addons.mozilla.org/en-US/firefox/addon/youtube-control/reviews/';
+    } else if (isEdge) {
+      return 'https://microsoftedge.microsoft.com/addons/detail/youtube-control-shorts-b/fnimgjdbnocikpjnokpoepgajbaagfki';
+    }
+    return 'https://chromewebstore.google.com/detail/youtube-control-shorts-bl/ljinlboeiainceejndpicabkmheecnfj/reviews';
+  }
+
+  // Check if we should show the review prompt
+  chrome.storage.local.get(['installDate', 'reviewDismissed', 'reviewCompleted', 'reviewLaterUntil'], (data) => {
+    // If user already reviewed or permanently dismissed, don't show
+    if (data.reviewCompleted || data.reviewDismissed) return;
+
+    const now = Date.now();
+
+    // If no install date exists (existing user before this update), set one now
+    if (!data.installDate) {
+      chrome.storage.local.set({ installDate: now });
+      return; // Treat today as Day 1, don't show yet
+    }
+
+    // Check if 7 days have passed since install
+    if (now - data.installDate < SEVEN_DAYS) return;
+
+    // Check if "Maybe Later" cooldown is still active
+    if (data.reviewLaterUntil && now < data.reviewLaterUntil) return;
+
+    // All conditions met — show the review prompt
+    showReviewModal();
+  });
+
+  // "Leave a Review" — open store page, mark as completed forever
+  if (reviewLeaveBtn) {
+    reviewLeaveBtn.addEventListener('click', () => {
+      chrome.tabs.create({ url: getReviewUrl() });
+      chrome.storage.local.set({ reviewCompleted: true });
+      hideReviewModal();
+    });
+  }
+
+  // "Maybe Later" — snooze for 7 days
+  if (reviewLaterBtn) {
+    reviewLaterBtn.addEventListener('click', () => {
+      chrome.storage.local.set({ reviewLaterUntil: Date.now() + SEVEN_DAYS });
+      hideReviewModal();
+    });
+  }
+
+  // "Don't Ask Again" — permanently dismiss
+  if (reviewDismissBtn) {
+    reviewDismissBtn.addEventListener('click', () => {
+      chrome.storage.local.set({ reviewDismissed: true });
+      hideReviewModal();
+    });
+  }
 });

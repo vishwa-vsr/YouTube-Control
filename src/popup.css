@@ -598,3 +598,107 @@ body {
   fill: var(--text-primary);
 }
 
+/* Review Prompt Modal Overlay */
+.review-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: reviewFadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes reviewFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.review-modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 24px 20px 20px 20px;
+  margin: 0 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  animation: reviewSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes reviewSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.review-message {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.review-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.review-btn {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.review-btn-primary {
+  background: var(--accent-active);
+  color: var(--text-primary);
+  box-shadow: 0 4px 12px rgba(255, 30, 39, 0.3);
+}
+
+.review-btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(255, 30, 39, 0.4);
+}
+
+.review-btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.review-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.review-btn-dismiss {
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 8px 16px;
+}
+
+.review-btn-dismiss:hover {
+  color: var(--text-primary);
+}
+
