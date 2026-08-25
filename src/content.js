@@ -863,11 +863,11 @@ function updateCategoryBarDynamicStyle() {
 function updateCustomGridDynamicStyle() {
   const root = document.documentElement;
   const isEnabled = cachedSettings.customGridEnabled === true && cachedSettings.extensionEnabled !== false;
-  const isHome = location.pathname === '/' || location.pathname === '/index' || !!document.querySelector('ytd-browse[page-subtype="home"]');
+  const isHomeOrSubs = location.pathname === '/' || location.pathname === '/index' || location.pathname.startsWith('/feed/subscriptions') || !!document.querySelector('ytd-browse[page-subtype="home"], ytd-browse[page-subtype="subscriptions"]');
   
   let styleEl = document.getElementById('yt-custom-grid-dynamic-style');
 
-  if (!isEnabled || !isHome) {
+  if (!isEnabled || !isHomeOrSubs) {
     if (styleEl) styleEl.remove();
     if (root.classList.contains('yt-custom-grid-active')) {
       root.classList.remove('yt-custom-grid-active');

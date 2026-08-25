@@ -2,6 +2,16 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.1.4] - 2026-08-25
+
+### Fixed
+- **Custom Grid Shelf Layout Protection (Issue #14)**: Fixed a bug where enabling the Custom Grid Layout (setting 2, 3, 5, or 6 videos per row) distorted non-video shelves. Shorts shelves, Community Posts shelves, and Channel Membership panels now span the full row width cleanly with zero empty gaps or squished items.
+
+### Added
+- **Subscriptions Feed Custom Grid**: Extended the Custom Grid Layout feature to the Subscriptions feed (`/feed/subscriptions`) so your chosen video row count applies seamlessly across both Home and Subscriptions feeds.
+
+---
+
 ## [1.1.3] - 2026-08-22
 
 ### Added

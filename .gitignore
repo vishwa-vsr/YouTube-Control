@@ -1,6 +1,5 @@
 # Ignore generated builds
 /dist/
-/firefox/
 /backup/
 
 # Ignore zip releases
@@ -15,25 +14,15 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Ignore assets and AI settings but keep README assets
+# Ignore test page dumps & reference materials
+/pages/
+*.html
+
+# Ignore large assets, idea files, and AI settings
 /assets/webstore/
 /assets/promotional-posters/
+/assets/idea.md
 /skills/
-yt live.html
-yt-darkmode issue.html
-lightmode.html
-darkmode.html
-page01.html
-page02.html
-page03.html
-page04.html
-page05.html
-normalpage.html
-minifullscreenpage.html
-mix homepage.html
-Hide Mixes on Watch Page.html
-assets/idea.md
 /.agents/
-Dual Scrolling issue.html
 PROJECT_SETTINGS.md
 skills-lock.json
