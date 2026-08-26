@@ -624,20 +624,27 @@ html:not(.yt-no-hover-unblur).yt-blur-thumbnails ytd-thumbnail:hover img[src*="i
    15. SIDEBAR COMMENTS DOCKING FEATURE
    ========================================================================== */
 
-/* Toggle Docking Button Style */
-/* Toggle Docking Button Style */
+/* Comments Header Action Buttons (Dock & Refresh) */
 ytd-comments-header-renderer {
   position: relative !important;
 }
 
-.yt-dock-comments-btn {
-  display: none !important; /* Hidden by default */
+.yt-comments-header-actions {
   position: absolute !important;
   right: 12px !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
-  background: rgba(128, 128, 128, 0.15) !important;
-  border: 1px solid rgba(128, 128, 128, 0.25) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  z-index: 10 !important;
+}
+
+.yt-dock-comments-btn,
+.yt-refresh-comments-btn {
+  display: none !important; /* Hidden by default */
+  background: transparent !important;
+  border: none !important;
   color: #0f0f0f !important;
   fill: #0f0f0f !important;
   cursor: pointer !important;
@@ -645,55 +652,94 @@ ytd-comments-header-renderer {
   justify-content: center !important;
   padding: 6px !important;
   border-radius: 50% !important;
-  transition: background 0.2s, transform 0.1s !important;
-  z-index: 10 !important;
+  transition: none !important;
+  outline: none !important;
 }
 
-/* Only display button when feature is enabled in popup */
+/* Fallback if attached directly without actions container */
+ytd-comments-header-renderer > .yt-dock-comments-btn {
+  position: absolute !important;
+  right: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+ytd-comments-header-renderer > .yt-refresh-comments-btn {
+  position: absolute !important;
+  right: 44px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+/* Only display buttons when feature is enabled in popup */
 .yt-enable-comments-dock .yt-dock-comments-btn {
   display: inline-flex !important;
 }
 
-/* Add padding to comments header to prevent overlap with native elements (like Sort By) only when button is active */
-.yt-enable-comments-dock ytd-comments-header-renderer {
-  padding-right: 48px !important;
+.yt-enable-comments-refresh .yt-refresh-comments-btn {
+  display: inline-flex !important;
+}
+
+/* Add padding to comments header to prevent overlap with native elements (like Sort By) */
+.yt-enable-comments-dock ytd-comments-header-renderer,
+.yt-enable-comments-refresh ytd-comments-header-renderer {
+  padding-right: 80px !important;
 }
 
 .yt-dock-comments-btn svg,
-.yt-dock-comments-btn svg path {
+.yt-dock-comments-btn svg path,
+.yt-refresh-comments-btn svg,
+.yt-refresh-comments-btn svg path {
   display: block !important;
   fill: currentColor !important;
   color: currentColor !important;
 }
 
-/* Light Mode explicit styling (when html does NOT have dark attribute) */
-html:not([dark]) .yt-dock-comments-btn {
+/* Light Mode explicit styling */
+html:not([dark]) .yt-dock-comments-btn,
+html:not([dark]) .yt-refresh-comments-btn {
   color: #0f0f0f !important;
   fill: #0f0f0f !important;
-  background: rgba(0, 0, 0, 0.08) !important;
-  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  background: transparent !important;
+  border: none !important;
 }
 
-html:not([dark]) .yt-dock-comments-btn:hover {
-  background: rgba(0, 0, 0, 0.15) !important;
+html:not([dark]) .yt-dock-comments-btn:hover,
+html:not([dark]) .yt-refresh-comments-btn:hover {
+  background: transparent !important;
   color: #0f0f0f !important;
   fill: #0f0f0f !important;
-  transform: translateY(-50%) scale(1.08) !important;
+  transform: none !important;
 }
 
-/* Dark Mode explicit styling (when html HAS dark attribute) */
-html[dark] .yt-dock-comments-btn {
+/* Dark Mode explicit styling */
+html[dark] .yt-dock-comments-btn,
+html[dark] .yt-refresh-comments-btn {
   color: #ffffff !important;
   fill: #ffffff !important;
-  background: rgba(255, 255, 255, 0.12) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: transparent !important;
+  border: none !important;
 }
 
-html[dark] .yt-dock-comments-btn:hover {
-  background: rgba(255, 255, 255, 0.25) !important;
+html[dark] .yt-dock-comments-btn:hover,
+html[dark] .yt-refresh-comments-btn:hover {
+  background: transparent !important;
   color: #ffffff !important;
   fill: #ffffff !important;
-  transform: translateY(-50%) scale(1.08) !important;
+  transform: none !important;
+}
+
+/* Spinning animation for refresh comments button */
+@keyframes yt-refresh-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.yt-refresh-comments-btn.spinning svg {
+  animation: yt-refresh-spin 0.75s linear infinite !important;
 }
 
 /* Layout modifications when comments are docked to the sidebar (Option B) */

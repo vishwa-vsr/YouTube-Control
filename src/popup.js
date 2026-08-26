@@ -31,6 +31,7 @@ const configKeys = [
   'miniFullscreenFill',
   'stickyPlayer',
   'dockCommentsSidebar',
+  'showRefreshCommentsBtn',
   'hideAmbientMode',
   'hideSidebarFooter'
 ];
@@ -290,6 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const defaultTrueKeys = [
       'unblurOnHover',
       'dockCommentsSidebar',
+      'showRefreshCommentsBtn',
       'stickyPlayer',
       'showMiniFullscreenBtn',
       'hideMixPlaylistsFeeds',
@@ -430,7 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ── Review Prompt Logic ──
-  const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
+  const ONE_DAY = 24 * 60 * 60 * 1000;
   const reviewOverlay = document.getElementById('reviewOverlay');
   const reviewLeaveBtn = document.getElementById('reviewLeaveBtn');
   const reviewLaterBtn = document.getElementById('reviewLaterBtn');
@@ -469,8 +471,8 @@ document.addEventListener('DOMContentLoaded', () => {
       return; // Treat today as Day 1, don't show yet
     }
 
-    // Check if 7 days have passed since install
-    if (now - data.installDate < SEVEN_DAYS) return;
+    // Check if 1 day (24 hours) has passed since install
+    if (now - data.installDate < ONE_DAY) return;
 
     // Check if "Maybe Later" cooldown is still active
     if (data.reviewLaterUntil && now < data.reviewLaterUntil) return;
@@ -488,10 +490,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // "Maybe Later" — snooze for 7 days
+  // "Maybe Later" — snooze for 1 day
   if (reviewLaterBtn) {
     reviewLaterBtn.addEventListener('click', () => {
-      chrome.storage.local.set({ reviewLaterUntil: Date.now() + SEVEN_DAYS });
+      chrome.storage.local.set({ reviewLaterUntil: Date.now() + ONE_DAY });
       hideReviewModal();
     });
   }

@@ -29,6 +29,7 @@ const classMap = {
   miniFullscreenFill: 'yt-web-fullscreen-fill',
   stickyPlayer: 'yt-sticky-player',
   dockCommentsSidebar: 'yt-enable-comments-dock',
+  showRefreshCommentsBtn: 'yt-enable-comments-refresh',
   hideAmbientMode: 'yt-hide-ambient-mode',
   hideSidebarFooter: 'yt-hide-sidebar-footer'
 };
@@ -124,6 +125,12 @@ function applySettings(settings) {
     
     const commentsBtn = document.querySelector('.yt-dock-comments-btn');
     if (commentsBtn) commentsBtn.remove();
+    
+    const refreshBtn = document.querySelector('.yt-refresh-comments-btn');
+    if (refreshBtn) refreshBtn.remove();
+    
+    const headerActions = document.querySelector('.yt-comments-header-actions');
+    if (headerActions && !headerActions.hasChildNodes()) headerActions.remove();
     
     // Restore comments
     const comments = document.getElementById('comments');
@@ -253,6 +260,13 @@ function applySettings(settings) {
     if (root.classList.contains('yt-comments-docked')) toggleSidebarComments(true);
   }
 
+  if (settings.showRefreshCommentsBtn === true && !isLiveOrChat) {
+    injectRefreshCommentsButton();
+  } else {
+    const btn = document.querySelector('.yt-refresh-comments-btn');
+    if (btn) btn.remove();
+  }
+
   hideSidebarElements();
   dispatchResize();
 }
@@ -266,6 +280,16 @@ function checkShortsTab() {
   }
 }
 
+function getOrCreateCommentsHeaderActions(header) {
+  let container = header.querySelector('.yt-comments-header-actions');
+  if (!container) {
+    container = document.createElement('div');
+    container.className = 'yt-comments-header-actions';
+    header.appendChild(container);
+  }
+  return container;
+}
+
 function injectSidebarCommentsButton() {
   if (isLiveStreamOrChatActive()) {
     const btn = document.querySelector('.yt-dock-comments-btn');
@@ -275,17 +299,121 @@ function injectSidebarCommentsButton() {
   const header = document.querySelector('ytd-comments-header-renderer');
   if (!header || header.querySelector('.yt-dock-comments-btn')) return;
   
+  const container = getOrCreateCommentsHeaderActions(header);
   const btn = document.createElement('button');
   btn.className = 'yt-dock-comments-btn';
-  btn.setAttribute('aria-label', 'Move comments to sidebar');
-  setCommentsBtnIcon(btn, false);
+  const isDocked = document.documentElement.classList.contains('yt-comments-docked');
+  if (isDocked) {
+    btn.classList.add('active');
+    btn.setAttribute('aria-label', 'Restore comments below player');
+    setCommentsBtnIcon(btn, true);
+  } else {
+    btn.classList.remove('active');
+    btn.setAttribute('aria-label', 'Move comments to sidebar');
+    setCommentsBtnIcon(btn, false);
+  }
   
   btn.addEventListener('click', (e) => {
     e.stopPropagation();
     e.preventDefault();
     toggleSidebarComments();
   }, true);
-  header.appendChild(btn);
+  container.appendChild(btn);
+}
+
+function injectRefreshCommentsButton() {
+  if (isLiveStreamOrChatActive()) {
+    const btn = document.querySelector('.yt-refresh-comments-btn');
+    if (btn) btn.remove();
+    return;
+  }
+  const header = document.querySelector('ytd-comments-header-renderer');
+  if (!header || header.querySelector('.yt-refresh-comments-btn')) return;
+  
+  const container = getOrCreateCommentsHeaderActions(header);
+  const btn = document.createElement('button');
+  btn.className = 'yt-refresh-comments-btn';
+  btn.setAttribute('aria-label', 'Refresh comments');
+  btn.setAttribute('title', 'Refresh comments');
+  
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', '0 0 24 24');
+  svg.setAttribute('width', '18');
+  svg.setAttribute('height', '18');
+  svg.setAttribute('fill', 'currentColor');
+  
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  path.setAttribute('d', 'M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z');
+  svg.appendChild(path);
+  btn.appendChild(svg);
+  
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    triggerCommentsRefresh(btn);
+  }, true);
+  
+  const dockBtn = container.querySelector('.yt-dock-comments-btn');
+  if (dockBtn) {
+    container.insertBefore(btn, dockBtn);
+  } else {
+    container.appendChild(btn);
+  }
+}
+
+function triggerCommentsRefresh(btn) {
+  if (!btn || btn.classList.contains('spinning')) return;
+  btn.classList.add('spinning');
+  
+  let finished = false;
+  const stopSpinning = () => {
+    if (finished) return;
+    finished = true;
+    btn.classList.remove('spinning');
+  };
+  
+  // Safe maximum spinning timeout (2.5 seconds)
+  const spinTimeout = setTimeout(stopSpinning, 2500);
+  
+  try {
+    // Observe contents list to stop spinning when new comments arrive
+    const contentsEl = document.querySelector('ytd-comments #sections #contents, #comments #contents');
+    if (contentsEl) {
+      const obs = new MutationObserver((mutations, observerInstance) => {
+        observerInstance.disconnect();
+        clearTimeout(spinTimeout);
+        setTimeout(stopSpinning, 200);
+      });
+      obs.observe(contentsEl, { childList: true });
+    }
+    
+    // Look for active item or trigger YouTube's sort dropdown
+    const sortMenuBtn = document.querySelector('ytd-comments-header-renderer #sort-menu yt-button-shape button, ytd-comments-header-renderer #sort-menu button, ytd-comments-header-renderer yt-sort-filter-sub-menu-renderer yt-dropdown-menu, ytd-comments-header-renderer #sort-menu');
+    
+    const existingActiveItem = document.querySelector('tp-yt-paper-listbox#menu .iron-selected, ytd-menu-service-item-renderer[aria-selected="true"], ytd-comments-header-renderer tp-yt-paper-item.iron-selected');
+    
+    if (existingActiveItem) {
+      existingActiveItem.click();
+    } else if (sortMenuBtn) {
+      sortMenuBtn.click();
+      setTimeout(() => {
+        const items = document.querySelectorAll('tp-yt-paper-listbox#menu tp-yt-paper-item, ytd-popup-container ytd-menu-service-item-renderer, ytd-menu-service-item-renderer');
+        let itemToClick = null;
+        for (const it of items) {
+          if (it.classList.contains('iron-selected') || it.getAttribute('aria-selected') === 'true') {
+            itemToClick = it;
+            break;
+          }
+        }
+        if (!itemToClick && items.length > 0) itemToClick = items[0];
+        if (itemToClick) {
+          itemToClick.click();
+        } else if (sortMenuBtn) {
+          sortMenuBtn.click();
+        }
+      }, 50);
+    }
+  } catch (err) {}
 }
 
 function setCommentsBtnIcon(button, isActive) {
@@ -937,6 +1065,13 @@ function scheduleButtonInjection() {
         const btn = document.querySelector('.yt-dock-comments-btn');
         if (btn) btn.remove();
       }
+
+      if (cachedSettings.showRefreshCommentsBtn === true && !isLiveOrChat) {
+        injectRefreshCommentsButton();
+      } else {
+        const btn = document.querySelector('.yt-refresh-comments-btn');
+        if (btn) btn.remove();
+      }
       
       // Auto-dock comments if enabled in settings and not manually undocked by user
       const root = document.documentElement;
@@ -969,6 +1104,7 @@ try {
     const defaultTrueKeys = [
       'unblurOnHover',
       'dockCommentsSidebar',
+      'showRefreshCommentsBtn',
       'stickyPlayer',
       'showMiniFullscreenBtn',
       'hideMixPlaylistsFeeds',

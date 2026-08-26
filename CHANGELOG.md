@@ -2,7 +2,20 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
-## [1.1.4] - 2026-08-25
+## [1.1.3] - 2026-08-26
+
+### Added
+- **1-Click Refresh Comments Button (Issue #16)**: Added a 1-click **Refresh Comments** button directly in the YouTube comments header to reload new comments in the background without refreshing the webpage or interrupting video playback.
+  - **Background Reload**: Refreshes comments silently and smoothly while preserving the active sort order ("Top comments" vs "Newest first").
+  - **Visual Feedback**: The refresh icon smoothly spins during comment fetching and stops once loaded, with a built-in safety timeout.
+  - **Extension Setting**: Added a toggle switch in the popup under **Watch Experience** (enabled by default).
+- **Daily Review Prompt Schedule**: Updated the review prompt frequency from 7 days to once every 24 hours (1 day cooldown when snoozed with "Maybe Later").
+
+### Fixed
+- **Dock Comments Initial Cross Icon**: Resolved an issue where opening a video with docked comments enabled displayed the dock icon instead of the cross (`X`) restore icon on initial page load.
+- **Clean Header Action Buttons & Motion Removal**: Removed background circular card bubbles and outline borders from comments header action buttons (Dock and Refresh) for a clean, transparent, native look across Light and Dark themes, and removed hover scaling/pop animations to keep buttons steady.
+
+---
 
 ### Fixed
 - **Custom Grid Shelf Layout Protection (Issue #14)**: Fixed a bug where enabling the Custom Grid Layout (setting 2, 3, 5, or 6 videos per row) distorted non-video shelves. Shorts shelves, Community Posts shelves, and Channel Membership panels now span the full row width cleanly with zero empty gaps or squished items.
