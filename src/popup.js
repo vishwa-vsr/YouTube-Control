@@ -32,6 +32,7 @@ const configKeys = [
   'stickyPlayer',
   'dockCommentsSidebar',
   'showRefreshCommentsBtn',
+  'showCommentScreenshotBtn',
   'hideAmbientMode',
   'hideSidebarFooter'
 ];
@@ -292,8 +293,12 @@ document.addEventListener('DOMContentLoaded', () => {
       'unblurOnHover',
       'dockCommentsSidebar',
       'showRefreshCommentsBtn',
+      'showCommentScreenshotBtn',
       'stickyPlayer',
       'showMiniFullscreenBtn',
+      'hideCategoryBarFeeds',
+      'hideCategoryBarChannels',
+      'hideCategoryBarWatch',
       'hideMixPlaylistsFeeds',
       'hideMixPlaylistsWatch',
       'hideShorts',

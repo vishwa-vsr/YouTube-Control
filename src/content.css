@@ -742,6 +742,75 @@ html[dark] .yt-refresh-comments-btn:hover {
   animation: yt-refresh-spin 0.75s linear infinite !important;
 }
 
+/* ─────────────────────────────────────────────────────────────
+   1-Click Comment Screenshot Button
+   ───────────────────────────────────────────────────────────── */
+.yt-comment-screenshot-btn {
+  display: none !important; /* Hidden unless feature class is enabled on <html> */
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 50% !important;
+  padding: 6px !important;
+  height: 32px !important;
+  width: 32px !important;
+  min-width: 32px !important;
+  cursor: pointer !important;
+  margin-left: 4px !important;
+  color: var(--yt-spec-text-secondary, #606060) !important;
+  transition: background-color 0.15s ease, transform 0.15s ease, color 0.15s ease !important;
+  outline: none !important;
+  vertical-align: middle !important;
+  box-sizing: border-box !important;
+}
+
+.yt-show-comment-screenshot-btn .yt-comment-screenshot-btn {
+  display: inline-flex !important;
+}
+
+.yt-comment-screenshot-btn svg {
+  width: 18px !important;
+  height: 18px !important;
+  display: block !important;
+  fill: none !important;
+  stroke: currentColor !important;
+}
+
+html:not([dark]) .yt-comment-screenshot-btn {
+  color: #0f0f0f !important;
+}
+
+html:not([dark]) .yt-comment-screenshot-btn:hover:not(.copied) {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+html[dark] .yt-comment-screenshot-btn {
+  color: #f1f1f1 !important;
+}
+
+html[dark] .yt-comment-screenshot-btn:hover:not(.copied) {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Success Checkmark State — Clean icon without dark bubble */
+.yt-comment-screenshot-btn.copied {
+  background-color: transparent !important;
+  background: transparent !important;
+  color: #2ba640 !important;
+  transform: scale(1.15) !important;
+}
+
+.yt-comment-screenshot-btn.copied:hover {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+.yt-comment-screenshot-btn.copied svg {
+  stroke: #2ba640 !important;
+  fill: none !important;
+}
+
 /* Layout modifications when comments are docked to the sidebar (Option B) */
 html:not(.yt-hide-comments).yt-comments-docked #secondary-inner #comments:not([hidden]):not([style*="display: none"]):not([style*="display:none"]) {
   display: flex !important;

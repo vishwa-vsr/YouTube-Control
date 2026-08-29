@@ -2,6 +2,19 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.1.4] - 2026-08-29
+
+### Added
+- **Comment & Thread Screenshot (Issue #15)**: Added a 1-click camera button next to the Reply button on every YouTube comment.
+  - **Save & Copy with 1 Click**: Instantly downloads a crisp image and copies it to your clipboard for easy pasting (`Ctrl + V`).
+  - **Full Conversation Threads**: If a comment has open replies, clicking its camera captures the entire conversation with sleek connecting threadlines.
+  - **Native Details**: Includes profile pictures, timestamps, like counts, dislike icons, and creator heart badges matching your YouTube theme.
+  - **Popup Control**: Toggle on or off anytime in the popup under the **Watch** tab.
+- **Category Bar Defaults**: Category Bar sub-options (Home, Channel pages, Watch page) are now ON by default when the feature is enabled.
+- **Popup Polish**: Simplified and reorganized feature descriptions across Feeds, Watch, and Style tabs to be punchy and easy to understand.
+
+---
+
 ## [1.1.3] - 2026-08-26
 
 ### Added
