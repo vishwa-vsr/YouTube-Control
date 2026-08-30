@@ -13,6 +13,9 @@ All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension
 - **Category Bar Defaults**: Category Bar sub-options (Home, Channel pages, Watch page) are now ON by default when the feature is enabled.
 - **Popup Polish**: Simplified and reorganized feature descriptions across Feeds, Watch, and Style tabs to be punchy and easy to understand.
 
+### Fixed
+- **Latest YouTube Posts Grid Layout**: Fixed an issue where enabling the Custom Grid Layout stretched community post cards across the entire screen and stacked them vertically. Post cards in the "Latest YouTube posts" shelf now stay side-by-side in their clean multi-card row format across all grid column options (2, 3, 4, 5, or 6 videos per row).
+
 ---
 
 ## [1.1.3] - 2026-08-26

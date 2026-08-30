@@ -935,7 +935,7 @@ html.yt-custom-grid-active body[dir="rtl"] ytd-browse[page-subtype="subscription
   margin-right: calc(var(--ytd-rich-grid-item-margin, 16px) / 2) !important;
 }
 
-/* Explicitly force Shorts shelves, community posts, and section renderers to span 100% full width */
+/* Explicitly force Shorts shelves, section renderers, and items holding them to span 100% full width */
 html.yt-custom-grid-active ytd-rich-section-renderer,
 html.yt-custom-grid-active ytd-rich-shelf-renderer,
 html.yt-custom-grid-active grid-shelf-view-model,
@@ -943,15 +943,27 @@ html.yt-custom-grid-active ytd-reel-shelf-renderer,
 html.yt-custom-grid-active ytd-rich-item-renderer:has(ytd-rich-section-renderer),
 html.yt-custom-grid-active ytd-rich-item-renderer:has(ytd-rich-shelf-renderer),
 html.yt-custom-grid-active ytd-rich-item-renderer:has(grid-shelf-view-model),
-html.yt-custom-grid-active ytd-rich-item-renderer:has(ytd-reel-shelf-renderer),
-html.yt-custom-grid-active ytd-rich-item-renderer:has(ytd-post-renderer) {
+html.yt-custom-grid-active ytd-rich-item-renderer:has(ytd-reel-shelf-renderer) {
   width: 100% !important;
   max-width: 100% !important;
   flex: 0 0 100% !important;
   box-sizing: border-box !important;
 }
 
-/* Preserve clean layout inside Shorts shelves and community post shelves */
+/* Preserve clean multi-column card layout inside Community Post shelves */
+html.yt-custom-grid-active ytd-rich-shelf-renderer:has(ytd-post-renderer) ytd-rich-item-renderer,
+html.yt-custom-grid-active ytd-rich-shelf-renderer ytd-rich-item-renderer[is-post] {
+  width: calc(100% / var(--ytd-rich-grid-items-per-row, 3) - var(--ytd-rich-grid-item-margin, 16px)) !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  flex: 0 0 calc(100% / var(--ytd-rich-grid-items-per-row, 3) - var(--ytd-rich-grid-item-margin, 16px)) !important;
+  box-sizing: border-box !important;
+  margin-left: calc(var(--ytd-rich-grid-item-margin, 16px) / 2) !important;
+  margin-right: calc(var(--ytd-rich-grid-item-margin, 16px) / 2) !important;
+  display: block !important;
+}
+
+/* Preserve clean layout inside Shorts shelves */
 html.yt-custom-grid-active ytd-rich-shelf-renderer[is-shorts] ytd-rich-item-renderer,
 html.yt-custom-grid-active ytd-reel-shelf-renderer ytd-rich-item-renderer {
   display: block !important;
