@@ -364,9 +364,9 @@ body {
 .speed-inputs-container {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   background: rgba(18, 20, 26, 0.8);
-  padding: 3px 6px;
+  padding: 3px 5px;
   border-radius: 8px;
   border: 1px solid var(--border-color);
   flex-shrink: 0;
@@ -379,21 +379,21 @@ body {
 }
 
 .speed-input-label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   color: var(--text-muted);
 }
 
 .speed-number-input {
-  width: 42px;
+  width: 36px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 4px;
   color: var(--text-primary);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   text-align: center;
-  padding: 2px 2px;
+  padding: 2px 1px;
   outline: none;
   transition: all 0.2s ease;
   font-family: inherit;

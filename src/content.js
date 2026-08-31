@@ -1128,6 +1128,39 @@ function injectScreenshotButton() {
   }
 }
 
+let isInternalSpeedUpdate = false;
+
+function getActiveVideoElement() {
+  return document.querySelector('#movie_player video.html5-main-video') || 
+         document.querySelector('.html5-main-video') || 
+         document.querySelector('video');
+}
+
+function getEffectivePlaybackRate() {
+  const saved = parseFloat(cachedSettings.persistentPlaybackRate);
+  if (!isNaN(saved) && saved > 0) return saved;
+  const speedA = parseFloat(cachedSettings.speedValueA);
+  if (!isNaN(speedA) && speedA > 0) return speedA;
+  return 1.0;
+}
+
+function enforcePersistedPlaybackRate(video) {
+  if (cachedSettings.showSpeedBtn !== true || cachedSettings.extensionEnabled === false) return;
+  const targetVideo = video || getActiveVideoElement();
+  if (!targetVideo) return;
+
+  const targetRate = getEffectivePlaybackRate();
+  if (Math.abs(targetVideo.playbackRate - targetRate) > 0.01) {
+    isInternalSpeedUpdate = true;
+    try {
+      targetVideo.playbackRate = targetRate;
+    } catch (e) {}
+    setTimeout(() => { isInternalSpeedUpdate = false; }, 100);
+  }
+  updateSpeedButtonText(targetRate);
+  attachVideoRateListener(targetVideo);
+}
+
 function formatSpeedText(rate) {
   if (typeof rate !== 'number' || isNaN(rate)) rate = 1.0;
   const rounded = parseFloat(rate.toFixed(2));
@@ -1141,9 +1174,9 @@ function updateSpeedButtonText(rate) {
   const badge = btn.querySelector('.ytp-speed-badge');
   if (!badge) return;
   
-  const video = document.querySelector('#movie_player video.html5-main-video') || document.querySelector('.html5-main-video');
+  const video = getActiveVideoElement();
   if (rate === undefined || rate === null) {
-    rate = video ? video.playbackRate : (parseFloat(cachedSettings.speedValueA) || 1.0);
+    rate = video ? video.playbackRate : getEffectivePlaybackRate();
   }
   
   if (video) {
@@ -1156,29 +1189,65 @@ function updateSpeedButtonText(rate) {
 }
 
 function attachVideoRateListener(video) {
-  if (!video || video._hasSpeedRateListener) return;
-  video._hasSpeedRateListener = true;
+  if (!video || video._hasSpeedListeners) return;
+  video._hasSpeedListeners = true;
+
+  const applyPersisted = () => {
+    enforcePersistedPlaybackRate(video);
+  };
+
+  video.addEventListener('loadedmetadata', applyPersisted);
+  video.addEventListener('play', applyPersisted);
+  video.addEventListener('playing', applyPersisted);
+
   video.addEventListener('ratechange', () => {
-    updateSpeedButtonText(video.playbackRate);
+    if (isInternalSpeedUpdate) return;
+    if (cachedSettings.showSpeedBtn !== true || cachedSettings.extensionEnabled === false) return;
+    
+    // If the user changed the rate manually via YouTube menu or keyboard shortcuts during playback
+    if (video.readyState >= 1) {
+      const newRate = Math.round(video.playbackRate * 100) / 100;
+      cachedSettings.persistentPlaybackRate = newRate;
+      try {
+        chrome.storage.local.set({ persistentPlaybackRate: newRate });
+      } catch (e) {}
+      updateSpeedButtonText(newRate);
+    }
   });
 }
 
 function togglePlaybackSpeed() {
-  const video = document.querySelector('#movie_player video.html5-main-video') || document.querySelector('.html5-main-video');
+  const video = getActiveVideoElement();
   if (!video) return;
 
   const speedA = parseFloat(cachedSettings.speedValueA) || 1.0;
-  const speedB = parseFloat(cachedSettings.speedValueB) || 2.0;
-  const currentRate = video.playbackRate;
+  const speedB = parseFloat(cachedSettings.speedValueB) || 1.5;
+  const speedC = parseFloat(cachedSettings.speedValueC) || 2.0;
+  const presets = [speedA, speedB, speedC];
+  const currentRate = Math.round(video.playbackRate * 100) / 100;
 
   let targetSpeed;
   if (Math.abs(currentRate - speedA) < 0.01) {
     targetSpeed = speedB;
-  } else {
+  } else if (Math.abs(currentRate - speedB) < 0.01) {
+    targetSpeed = speedC;
+  } else if (Math.abs(currentRate - speedC) < 0.01) {
     targetSpeed = speedA;
+  } else {
+    // If current speed is off-preset (e.g. 1.25x), jump to next preset in sequence
+    const nextHigher = presets.find(p => p > currentRate + 0.01);
+    targetSpeed = (nextHigher !== undefined) ? nextHigher : speedA;
   }
 
+  isInternalSpeedUpdate = true;
   video.playbackRate = targetSpeed;
+  setTimeout(() => { isInternalSpeedUpdate = false; }, 100);
+
+  cachedSettings.persistentPlaybackRate = targetSpeed;
+  try {
+    chrome.storage.local.set({ persistentPlaybackRate: targetSpeed });
+  } catch (e) {}
+
   updateSpeedButtonText(targetSpeed);
 }
 
@@ -1189,6 +1258,7 @@ function injectSpeedButton() {
   let btn = rightControls.querySelector('.ytp-speed-button');
   if (btn) {
     updateSpeedButtonText();
+    enforcePersistedPlaybackRate();
     return;
   }
 
@@ -1215,11 +1285,13 @@ function injectSpeedButton() {
     rightControls.appendChild(btn);
   }
 
-  const video = document.querySelector('#movie_player video.html5-main-video') || document.querySelector('.html5-main-video');
+  const video = getActiveVideoElement();
   if (video) {
     attachVideoRateListener(video);
+    enforcePersistedPlaybackRate(video);
+  } else {
+    updateSpeedButtonText();
   }
-  updateSpeedButtonText();
 }
 
 function toggleMiniFullscreen() {
@@ -1844,6 +1916,7 @@ window.addEventListener('yt-navigate-finish', (e) => {
   const nextUrl = (e && e.detail && e.detail.response && e.detail.response.endpoint && e.detail.response.endpoint.commandMetadata && e.detail.response.endpoint.commandMetadata.webCommandMetadata && e.detail.response.endpoint.commandMetadata.webCommandMetadata.url) || window.location.href;
   handleVideoChange(nextUrl);
   applySettings(cachedSettings);
+  enforcePersistedPlaybackRate();
 });
 
 window.addEventListener('yt-navigate-start', (e) => {
@@ -1861,8 +1934,10 @@ window.addEventListener('yt-navigate-start', (e) => {
 window.addEventListener('yt-page-data-updated', () => {
   handleVideoChange(window.location.href);
   applySettings(cachedSettings);
+  enforcePersistedPlaybackRate();
 });
 
 window.addEventListener('popstate', () => {
   handleVideoChange(window.location.href);
+  enforcePersistedPlaybackRate();
 });

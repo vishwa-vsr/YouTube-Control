@@ -2,6 +2,20 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.1.5] - 2026-08-31
+
+### Added
+- **3 Custom Playback Speeds**: The player speed button now lets you cycle through 3 custom speeds (defaults: `1.0x`, `1.5x`, and `2.0x`).
+- **Speed Memory Across Videos**: Your chosen playback speed is now automatically remembered and applied to every new video you play.
+- **Unified Comments Header**: Aligned comments count, Sort by menu, Refresh button, and Dock button cleanly on the same top row across both standard and sidebar views.
+
+### Fixed
+- **Playback Speed Reset**: Fixed videos forgetting your custom speed setting when changing or autoplaying videos.
+- **Docked Sidebar Emoji Picker**: Fixed the emoji popup getting cut off on the right side when commenting in the sidebar.
+- **Sidebar Comment Spacing**: Fixed button placement and line spacing below the "Add a comment" box when comments are docked.
+
+---
+
 ## [1.1.4] - 2026-08-29
 
 ### Added

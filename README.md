@@ -72,7 +72,7 @@ YouTube Control is a lightweight browser extension that strips away distractions
 | 📺 **Watch Page** | **Hide Recommended Videos** | Removes the sidebar video list on video watch pages. |
 | 📺 **Watch Page** | **Hide Buttons & Stats** | Hides Subscribe button, Like counts, and View counts. |
 | 📺 **Watch Page** | **Hide Top Header Bar** | Hides the search bar and header navigation bar. |
-| 🎛️ **Player Tools** | **Playback Speed Button** | Adds a 1-click speed button to toggle between two custom playback speeds (e.g. 1.0x and 2.0x). |
+| 🎛️ **Player Tools** | **Playback Speed Button** | Adds a 1-click speed button to cycle between 3 custom playback speeds (e.g. 1.0x, 1.5x, 2.0x) and keeps your chosen speed across videos. |
 | 📸 **Player Tools** | **Video Screenshot** | Captures a high-resolution PNG frame directly from the video player. |
 | 🔲 **Player Tools** | **Mini Fullscreen** | Expands video to fill the browser window while keeping browser tabs and address bar accessible. |
 

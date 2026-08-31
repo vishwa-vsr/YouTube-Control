@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const subRowSpeedInputs = document.getElementById('sub-row-speed-inputs');
   const speedInputA = document.getElementById('speedValueA');
   const speedInputB = document.getElementById('speedValueB');
+  const speedInputC = document.getElementById('speedValueC');
 
   const masterToggle = document.getElementById('masterToggle');
   const tabsNav = document.querySelector('.tabs-navigation');
@@ -163,10 +164,12 @@ document.addEventListener('DOMContentLoaded', () => {
         subRowSpeedInputs.classList.remove('disabled');
         if (speedInputA) speedInputA.disabled = false;
         if (speedInputB) speedInputB.disabled = false;
+        if (speedInputC) speedInputC.disabled = false;
       } else {
         subRowSpeedInputs.classList.add('disabled');
         if (speedInputA) speedInputA.disabled = true;
         if (speedInputB) speedInputB.disabled = true;
+        if (speedInputC) speedInputC.disabled = true;
       }
     }
   }
@@ -219,8 +222,12 @@ document.addEventListener('DOMContentLoaded', () => {
     speedInputA.addEventListener('blur', () => handleSpeedInputChange(speedInputA, 'speedValueA', 1.0));
   }
   if (speedInputB) {
-    speedInputB.addEventListener('change', () => handleSpeedInputChange(speedInputB, 'speedValueB', 2.0));
-    speedInputB.addEventListener('blur', () => handleSpeedInputChange(speedInputB, 'speedValueB', 2.0));
+    speedInputB.addEventListener('change', () => handleSpeedInputChange(speedInputB, 'speedValueB', 1.5));
+    speedInputB.addEventListener('blur', () => handleSpeedInputChange(speedInputB, 'speedValueB', 1.5));
+  }
+  if (speedInputC) {
+    speedInputC.addEventListener('change', () => handleSpeedInputChange(speedInputC, 'speedValueC', 2.0));
+    speedInputC.addEventListener('blur', () => handleSpeedInputChange(speedInputC, 'speedValueC', 2.0));
   }
 
   function updateMasterToggleUI(enabled) {
@@ -236,13 +243,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function sendCurrentSettingsToActiveTab() {
-    chrome.storage.local.get(['extensionEnabled', 'videosPerRow', 'speedValueA', 'speedValueB', ...configKeys], (res) => {
+    chrome.storage.local.get(['extensionEnabled', 'videosPerRow', 'speedValueA', 'speedValueB', 'speedValueC', ...configKeys], (res) => {
       const extensionEnabled = res.extensionEnabled !== false;
       const updatedSettings = { 
         extensionEnabled, 
         videosPerRow: res.videosPerRow || currentVideosPerRow,
         speedValueA: res.speedValueA !== undefined ? res.speedValueA : 1.0,
-        speedValueB: res.speedValueB !== undefined ? res.speedValueB : 2.0
+        speedValueB: res.speedValueB !== undefined ? res.speedValueB : 1.5,
+        speedValueC: res.speedValueC !== undefined ? res.speedValueC : 2.0
       };
       Object.keys(checkboxes).forEach(k => {
         if (checkboxes[k]) {
@@ -269,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Load initial settings
-  chrome.storage.local.get(['extensionEnabled', 'videosPerRow', 'speedValueA', 'speedValueB', ...configKeys], (settings) => {
+  chrome.storage.local.get(['extensionEnabled', 'videosPerRow', 'speedValueA', 'speedValueB', 'speedValueC', ...configKeys], (settings) => {
     const currentSettings = {};
     const extensionEnabled = settings.extensionEnabled !== false;
     
@@ -286,7 +294,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (speedInputA) speedInputA.value = settings.speedValueA !== undefined ? settings.speedValueA : 1.0;
-    if (speedInputB) speedInputB.value = settings.speedValueB !== undefined ? settings.speedValueB : 2.0;
+    if (speedInputB) speedInputB.value = settings.speedValueB !== undefined ? settings.speedValueB : 1.5;
+    if (speedInputC) speedInputC.value = settings.speedValueC !== undefined ? settings.speedValueC : 2.0;
 
     // Set default for certain keys to true if they are undefined
     const defaultTrueKeys = [

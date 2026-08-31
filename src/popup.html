@@ -293,7 +293,7 @@
           <div class="switch-row">
             <div class="switch-info">
               <span class="switch-label">Speed Toggle Button</span>
-              <span class="switch-description">1-click switch between 2 custom speeds</span>
+              <span class="switch-description">1-click switch between 3 custom speeds</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="showSpeedBtn">
@@ -304,7 +304,7 @@
           <div class="switch-row sub-switch-row" id="sub-row-speed-inputs">
             <div class="switch-info">
               <span class="switch-label sub-label">Custom Speeds</span>
-              <span class="switch-description">Set Speed 1 & Speed 2</span>
+              <span class="switch-description">Set Speed 1, 2 & 3</span>
             </div>
             <div class="speed-inputs-container">
               <div class="speed-input-group">
@@ -312,10 +312,16 @@
                 <input type="number" id="speedValueA" class="speed-number-input" min="0.1" max="16" step="0.05" value="1.0" aria-label="Speed 1">
                 <span class="speed-input-unit">x</span>
               </div>
-              <span class="speed-input-divider">↔</span>
+              <span class="speed-input-divider">→</span>
               <div class="speed-input-group">
                 <span class="speed-input-label">2:</span>
-                <input type="number" id="speedValueB" class="speed-number-input" min="0.1" max="16" step="0.05" value="2.0" aria-label="Speed 2">
+                <input type="number" id="speedValueB" class="speed-number-input" min="0.1" max="16" step="0.05" value="1.5" aria-label="Speed 2">
+                <span class="speed-input-unit">x</span>
+              </div>
+              <span class="speed-input-divider">→</span>
+              <div class="speed-input-group">
+                <span class="speed-input-label">3:</span>
+                <input type="number" id="speedValueC" class="speed-number-input" min="0.1" max="16" step="0.05" value="2.0" aria-label="Speed 3">
                 <span class="speed-input-unit">x</span>
               </div>
             </div>
