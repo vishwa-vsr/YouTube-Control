@@ -1,6 +1,7 @@
 # Ignore generated builds
 /dist/
 /backup/
+/scratch/
 
 # Ignore zip releases
 /*.zip

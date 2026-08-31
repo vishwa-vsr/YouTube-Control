@@ -5,6 +5,7 @@ All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension
 ## [1.1.5] - 2026-08-31
 
 ### Added
+- **Hide Scrollbars Everywhere (Issue #13)**: Added comprehensive scrollbar controls in the **Style** tab (Feeds, Left Menu, Watch Page, Live Chat & Playlists) with dedicated sub-toggles under Sticky Player and Docked Comments in the **Watch** tab.
 - **3 Custom Playback Speeds**: The player speed button now lets you cycle through 3 custom speeds (defaults: `1.0x`, `1.5x`, and `2.0x`).
 - **Speed Memory Across Videos**: Your chosen playback speed is now automatically remembered and applied to every new video you play.
 - **Unified Comments Header**: Aligned comments count, Sort by menu, Refresh button, and Dock button cleanly on the same top row across both standard and sidebar views.

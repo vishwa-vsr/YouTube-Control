@@ -370,6 +370,17 @@
               <span class="control-slider"></span>
             </label>
           </div>
+
+          <div class="switch-row sub-switch-row" id="sub-row-sticky-scrollbars">
+            <div class="switch-info">
+              <span class="switch-label sub-label">Hide Scrollbars</span>
+              <span class="switch-description">Make scrollbars invisible on video pane and sidebar</span>
+            </div>
+            <label class="toggle-control toggle-sub">
+              <input type="checkbox" id="stickyHideScrollbars">
+              <span class="control-slider"></span>
+            </label>
+          </div>
         </div>
 
         <!-- Section: Comments & Sidebar -->
@@ -404,6 +415,17 @@
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="dockCommentsSidebar">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row sub-switch-row" id="sub-row-dock-comments-scroll">
+            <div class="switch-info">
+              <span class="switch-label sub-label">Hide Scrollbar</span>
+              <span class="switch-description">Make scrollbar invisible in docked comments sidebar</span>
+            </div>
+            <label class="toggle-control toggle-sub">
+              <input type="checkbox" id="dockCommentsHideScrollbar">
               <span class="control-slider"></span>
             </label>
           </div>
@@ -510,6 +532,65 @@
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="unblurOnHover">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Card 4: Hide Scrollbars -->
+        <div class="option-card">
+          <div class="option-card-title">Scrollbars & Clean View</div>
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label">Hide Scrollbars</span>
+              <span class="switch-description">Remove visual scrollbars while keeping mouse & trackpad scrolling</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="hideScrollbars">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row sub-switch-row" id="sub-row-scrollbars-feeds">
+            <div class="switch-info">
+              <span class="switch-label sub-label">Main Feeds & Pages</span>
+              <span class="switch-description">Hide on Home, Subscriptions, Search & Channels</span>
+            </div>
+            <label class="toggle-control toggle-sub">
+              <input type="checkbox" id="hideScrollbarsFeeds">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row sub-switch-row" id="sub-row-scrollbars-sidebar">
+            <div class="switch-info">
+              <span class="switch-label sub-label">Left Navigation Menu</span>
+              <span class="switch-description">Hide on sidebar menu & subscriptions list</span>
+            </div>
+            <label class="toggle-control toggle-sub">
+              <input type="checkbox" id="hideScrollbarsSidebar">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row sub-switch-row" id="sub-row-scrollbars-watch">
+            <div class="switch-info">
+              <span class="switch-label sub-label">Standard Watch Page</span>
+              <span class="switch-description">Hide on recommendations list in normal view</span>
+            </div>
+            <label class="toggle-control toggle-sub">
+              <input type="checkbox" id="hideScrollbarsWatch">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+
+          <div class="switch-row sub-switch-row" id="sub-row-scrollbars-panels">
+            <div class="switch-info">
+              <span class="switch-label sub-label">Live Chat & Playlist Queues</span>
+              <span class="switch-description">Hide on live chat frame & playlist queues</span>
+            </div>
+            <label class="toggle-control toggle-sub">
+              <input type="checkbox" id="hideScrollbarsPanels">
               <span class="control-slider"></span>
             </label>
           </div>

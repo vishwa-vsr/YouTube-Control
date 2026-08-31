@@ -584,6 +584,136 @@ html:not(.yt-no-hover-unblur).yt-blur-thumbnails ytd-thumbnail:hover img[src*="i
   background: rgba(255, 255, 255, 0.3) !important;
 }
 
+/* ==========================================================================
+   HIDE SCROLLBARS MODULE (CATEGORIZED)
+   ========================================================================== */
+
+/* 1. Main Feeds & Pages (Home, Subscriptions, Channels, Search) */
+html.yt-hide-scrollbars.yt-hide-scrollbars-feeds,
+html.yt-hide-scrollbars.yt-hide-scrollbars-feeds body,
+html.yt-hide-scrollbars.yt-hide-scrollbars-feeds ytd-app,
+html.yt-hide-scrollbars.yt-hide-scrollbars-feeds #page-manager,
+html.yt-hide-scrollbars.yt-hide-scrollbars-feeds ytd-browse,
+html.yt-hide-scrollbars.yt-hide-scrollbars-feeds ytd-search {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+html.yt-hide-scrollbars.yt-hide-scrollbars-feeds::-webkit-scrollbar,
+html.yt-hide-scrollbars.yt-hide-scrollbars-feeds body::-webkit-scrollbar,
+html.yt-hide-scrollbars.yt-hide-scrollbars-feeds ytd-app::-webkit-scrollbar,
+html.yt-hide-scrollbars.yt-hide-scrollbars-feeds #page-manager::-webkit-scrollbar,
+html.yt-hide-scrollbars.yt-hide-scrollbars-feeds ytd-browse::-webkit-scrollbar,
+html.yt-hide-scrollbars.yt-hide-scrollbars-feeds ytd-search::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+}
+
+/* 2. Left Navigation Menu Sidebar */
+.yt-hide-scrollbars.yt-hide-scrollbars-sidebar ytd-guide-renderer,
+.yt-hide-scrollbars.yt-hide-scrollbars-sidebar ytd-guide-renderer #guide-inner-content,
+.yt-hide-scrollbars.yt-hide-scrollbars-sidebar ytd-guide-renderer #sections,
+.yt-hide-scrollbars.yt-hide-scrollbars-sidebar ytd-mini-guide-renderer,
+.yt-hide-scrollbars.yt-hide-scrollbars-sidebar #guide-wrapper,
+.yt-hide-scrollbars.yt-hide-scrollbars-sidebar tp-yt-app-drawer,
+.yt-hide-scrollbars.yt-hide-scrollbars-sidebar tp-yt-app-drawer #guide-content,
+.yt-hide-scrollbars.yt-hide-scrollbars-sidebar tp-yt-app-drawer #guide-inner-content {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.yt-hide-scrollbars.yt-hide-scrollbars-sidebar ytd-guide-renderer::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-sidebar ytd-guide-renderer #guide-inner-content::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-sidebar ytd-guide-renderer #sections::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-sidebar ytd-mini-guide-renderer::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-sidebar #guide-wrapper::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-sidebar tp-yt-app-drawer::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-sidebar tp-yt-app-drawer #guide-content::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-sidebar tp-yt-app-drawer #guide-inner-content::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+}
+
+/* 3. Standard Watch Page Recommendations */
+.yt-hide-scrollbars.yt-hide-scrollbars-watch ytd-watch-flexy #columns #secondary,
+.yt-hide-scrollbars.yt-hide-scrollbars-watch ytd-watch-flexy #columns #secondary-inner {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.yt-hide-scrollbars.yt-hide-scrollbars-watch ytd-watch-flexy #columns #secondary::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-watch ytd-watch-flexy #columns #secondary-inner::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+}
+
+/* Dedicated Hide Scrollbars for Sticky Player */
+.yt-sticky-hide-scrollbars.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #primary,
+.yt-sticky-hide-scrollbars.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #secondary,
+.yt-sticky-hide-scrollbars.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #primary-inner,
+.yt-sticky-hide-scrollbars.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #secondary-inner {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.yt-sticky-hide-scrollbars.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #primary::-webkit-scrollbar,
+.yt-sticky-hide-scrollbars.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #secondary::-webkit-scrollbar,
+.yt-sticky-hide-scrollbars.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #primary-inner::-webkit-scrollbar,
+.yt-sticky-hide-scrollbars.yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #secondary-inner::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+}
+
+/* 4. Live Chat & Playlist Queues (Main Page & Inside iframe) */
+.yt-hide-scrollbars.yt-hide-scrollbars-panels ytd-playlist-panel-renderer #items,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels ytd-playlist-panel-renderer #container,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels ytd-live-chat-frame,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels ytd-live-chat-frame #chat,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels ytd-live-chat-frame #chatframe,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels #chatframe,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels yt-live-chat-renderer,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels yt-live-chat-item-list-renderer,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels yt-live-chat-item-list-renderer #item-list,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels yt-live-chat-item-list-renderer #items,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels #item-scroller.yt-live-chat-item-list-renderer,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels ytd-engagement-panel-section-list-renderer #content {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.yt-hide-scrollbars.yt-hide-scrollbars-panels ytd-playlist-panel-renderer #items::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels ytd-playlist-panel-renderer #container::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels ytd-live-chat-frame::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels ytd-live-chat-frame #chat::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels ytd-live-chat-frame #chatframe::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels #chatframe::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels yt-live-chat-renderer::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels yt-live-chat-item-list-renderer::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels yt-live-chat-item-list-renderer #item-list::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels yt-live-chat-item-list-renderer #items::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels #item-scroller.yt-live-chat-item-list-renderer::-webkit-scrollbar,
+.yt-hide-scrollbars.yt-hide-scrollbars-panels ytd-engagement-panel-section-list-renderer #content::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+}
+
+/* 5. Dedicated Hide Scrollbar for Docked Comments */
+.yt-comments-docked.yt-dock-comments-hide-scrollbar #secondary-inner #comments #sections {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.yt-comments-docked.yt-dock-comments-hide-scrollbar #secondary-inner #comments #sections::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+}
+
 /* 14. BORDER AND OUTLINE CLEANUPS (disabled in native fullscreen) */
 /* Remove bottom border of the top header bar */
 .yt-sticky-player:not(:has(ytd-watch-flexy[fullscreen])) #masthead-container {

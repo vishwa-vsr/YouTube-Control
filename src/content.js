@@ -1,6 +1,18 @@
-// Map settings keys to HTML class names
-const classMap = {
-  hideHomeFeed: 'yt-hide-home-feed',
+(function() {
+  const isTopWindow = (window === window.top);
+  const isLiveChatFrame = !isTopWindow && (
+    window.location.pathname.includes('/live_chat') || 
+    window.location.href.includes('live_chat')
+  );
+
+  // If running in an unrelated subframe (e.g. ad frames, auth dialogs), stop execution immediately to save RAM/CPU
+  if (!isTopWindow && !isLiveChatFrame) {
+    return;
+  }
+
+  // Map settings keys to HTML class names
+  const classMap = {
+    hideHomeFeed: 'yt-hide-home-feed',
   hideCategoryBar: 'yt-hide-category-bar',
   hideCategoryBarFeeds: 'yt-hide-category-bar-feeds',
   hideCategoryBarChannels: 'yt-hide-category-bar-channels',
@@ -28,11 +40,18 @@ const classMap = {
   showMiniFullscreenBtn: 'yt-show-mini-fullscreen-btn',
   miniFullscreenFill: 'yt-web-fullscreen-fill',
   stickyPlayer: 'yt-sticky-player',
+  stickyHideScrollbars: 'yt-sticky-hide-scrollbars',
   dockCommentsSidebar: 'yt-enable-comments-dock',
+  dockCommentsHideScrollbar: 'yt-dock-comments-hide-scrollbar',
   showRefreshCommentsBtn: 'yt-enable-comments-refresh',
   showCommentScreenshotBtn: 'yt-show-comment-screenshot-btn',
   hideAmbientMode: 'yt-hide-ambient-mode',
-  hideSidebarFooter: 'yt-hide-sidebar-footer'
+  hideSidebarFooter: 'yt-hide-sidebar-footer',
+  hideScrollbars: 'yt-hide-scrollbars',
+  hideScrollbarsFeeds: 'yt-hide-scrollbars-feeds',
+  hideScrollbarsSidebar: 'yt-hide-scrollbars-sidebar',
+  hideScrollbarsWatch: 'yt-hide-scrollbars-watch',
+  hideScrollbarsPanels: 'yt-hide-scrollbars-panels'
 };
 
 // Global memory cache to hold settings and save battery/CPU
@@ -215,10 +234,59 @@ function applySettings(settings) {
     root.classList.remove('yt-hide-mix-playlists-watch');
   }
 
+  // Handle Sticky Player master & sub-classes cleanly
+  const stickyPlayerMaster = settings.stickyPlayer === true && isEnabled;
+  if (stickyPlayerMaster) {
+    root.classList.add('yt-sticky-player');
+    if (settings.stickyHideScrollbars !== false) root.classList.add('yt-sticky-hide-scrollbars');
+    else root.classList.remove('yt-sticky-hide-scrollbars');
+  } else {
+    root.classList.remove('yt-sticky-player');
+    root.classList.remove('yt-sticky-hide-scrollbars');
+  }
+
+  // Handle Hide Scrollbars master & sub-classes cleanly
+  const hideScrollbarsMaster = settings.hideScrollbars === true && isEnabled;
+  if (hideScrollbarsMaster) {
+    root.classList.add('yt-hide-scrollbars');
+    if (settings.hideScrollbarsFeeds !== false) root.classList.add('yt-hide-scrollbars-feeds');
+    else root.classList.remove('yt-hide-scrollbars-feeds');
+
+    if (settings.hideScrollbarsSidebar !== false) root.classList.add('yt-hide-scrollbars-sidebar');
+    else root.classList.remove('yt-hide-scrollbars-sidebar');
+
+    if (settings.hideScrollbarsWatch !== false) root.classList.add('yt-hide-scrollbars-watch');
+    else root.classList.remove('yt-hide-scrollbars-watch');
+
+    if (settings.hideScrollbarsPanels !== false) root.classList.add('yt-hide-scrollbars-panels');
+    else root.classList.remove('yt-hide-scrollbars-panels');
+  } else {
+    root.classList.remove('yt-hide-scrollbars');
+    root.classList.remove('yt-hide-scrollbars-feeds');
+    root.classList.remove('yt-hide-scrollbars-sidebar');
+    root.classList.remove('yt-hide-scrollbars-watch');
+    root.classList.remove('yt-hide-scrollbars-panels');
+  }
+
+  // Handle Dock Comments master & sub-classes cleanly
+  const dockCommentsMaster = settings.dockCommentsSidebar === true && isEnabled;
+  if (dockCommentsMaster) {
+    if (settings.dockCommentsHideScrollbar !== false) root.classList.add('yt-dock-comments-hide-scrollbar');
+    else root.classList.remove('yt-dock-comments-hide-scrollbar');
+  } else {
+    root.classList.remove('yt-dock-comments-hide-scrollbar');
+  }
+
   if (settings.unblurOnHover === false) {
     root.classList.add('yt-no-hover-unblur');
   } else {
     root.classList.remove('yt-no-hover-unblur');
+  }
+
+  // If executing inside a subframe (Live Chat), root classes are sufficient to apply CSS styles.
+  // Exit early to save CPU and RAM from player button injection and grid calculations.
+  if (!isTopWindow) {
+    return;
   }
 
   // Handle Custom Home Feed Grid
@@ -1757,9 +1825,11 @@ function scheduleButtonInjection() {
   }, 500);
 }
 
-// Observe modifications (efficiently using our cached configuration settings)
-const observer = new MutationObserver(scheduleButtonInjection);
-observer.observe(document.documentElement, { childList: true, subtree: true });
+// Observe modifications (only in top-level window to avoid polling on thousands of incoming live chat messages)
+if (isTopWindow) {
+  const observer = new MutationObserver(scheduleButtonInjection);
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+}
 
 // Load settings into cache once on startup
 try {
@@ -1769,9 +1839,11 @@ try {
     const defaultTrueKeys = [
       'unblurOnHover',
       'dockCommentsSidebar',
+      'dockCommentsHideScrollbar',
       'showRefreshCommentsBtn',
       'showCommentScreenshotBtn',
       'stickyPlayer',
+      'stickyHideScrollbars',
       'showMiniFullscreenBtn',
       'hideMixPlaylistsFeeds',
       'hideMixPlaylistsWatch',
@@ -1780,7 +1852,11 @@ try {
       'hideShortsFeeds',
       'hideShortsChannel',
       'hideShortsWatch',
-      'hideAmbientMode'
+      'hideAmbientMode',
+      'hideScrollbarsFeeds',
+      'hideScrollbarsSidebar',
+      'hideScrollbarsWatch',
+      'hideScrollbarsPanels'
     ];
     defaultTrueKeys.forEach(key => {
       if (settings[key] === undefined) {
@@ -1887,57 +1963,61 @@ function handleVideoChange(destinationUrlOrId) {
   return false;
 }
 
-// Immediately trigger reset when clicking a DIFFERENT video link in the watch page sidebar
-document.addEventListener('click', (e) => {
-  // Ignore non-left clicks or modifier keys (opening in new tab)
-  if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) {
-    return;
-  }
-
-  // Only intercept clicks from the watch page sidebar (recommended videos)
-  const secondary = document.querySelector('ytd-watch-flexy:not([hidden]) #secondary');
-  if (!secondary || !secondary.contains(e.target)) {
-    return;
-  }
-
-  // If clicking inside chapter list, transcript, or timestamp components, ignore
-  if (e.target.closest('ytd-chapter-renderer, ytd-macro-markers-list-item-renderer, ytd-transcript-segment-renderer, [target-id*="chapter"], [target-id*="transcript"]')) {
-    return;
-  }
-
-  const link = e.target.closest('a[href*="watch?v="], a[href*="/shorts/"], ytd-compact-video-renderer a, ytd-thumbnail a, a#video-title-link, a#thumbnail');
-  if (link && link.href) {
-    handleVideoChange(link.href);
-  }
-}, true);
-
-// Re-apply settings and reset scroll positions ONLY when navigating to a different video
-window.addEventListener('yt-navigate-finish', (e) => {
-  const nextUrl = (e && e.detail && e.detail.response && e.detail.response.endpoint && e.detail.response.endpoint.commandMetadata && e.detail.response.endpoint.commandMetadata.webCommandMetadata && e.detail.response.endpoint.commandMetadata.webCommandMetadata.url) || window.location.href;
-  handleVideoChange(nextUrl);
-  applySettings(cachedSettings);
-  enforcePersistedPlaybackRate();
-});
-
-window.addEventListener('yt-navigate-start', (e) => {
-  const nextUrl = (e && e.detail && e.detail.url) ? e.detail.url : window.location.href;
-  const isDifferentVideo = handleVideoChange(nextUrl);
-  
-  if (isDifferentVideo) {
-    userManuallyUndocked = false;
-    if (document.documentElement.classList.contains('yt-comments-docked')) {
-      toggleSidebarComments(true); // pass true so we don't treat navigation-based reset as a manual user undock
+// Navigation and click listeners for the main watch window
+if (isTopWindow) {
+  // Immediately trigger reset when clicking a DIFFERENT video link in the watch page sidebar
+  document.addEventListener('click', (e) => {
+    // Ignore non-left clicks or modifier keys (opening in new tab)
+    if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) {
+      return;
     }
-  }
-});
 
-window.addEventListener('yt-page-data-updated', () => {
-  handleVideoChange(window.location.href);
-  applySettings(cachedSettings);
-  enforcePersistedPlaybackRate();
-});
+    // Only intercept clicks from the watch page sidebar (recommended videos)
+    const secondary = document.querySelector('ytd-watch-flexy:not([hidden]) #secondary');
+    if (!secondary || !secondary.contains(e.target)) {
+      return;
+    }
 
-window.addEventListener('popstate', () => {
-  handleVideoChange(window.location.href);
-  enforcePersistedPlaybackRate();
-});
+    // If clicking inside chapter list, transcript, or timestamp components, ignore
+    if (e.target.closest('ytd-chapter-renderer, ytd-macro-markers-list-item-renderer, ytd-transcript-segment-renderer, [target-id*="chapter"], [target-id*="transcript"]')) {
+      return;
+    }
+
+    const link = e.target.closest('a[href*="watch?v="], a[href*="/shorts/"], ytd-compact-video-renderer a, ytd-thumbnail a, a#video-title-link, a#thumbnail');
+    if (link && link.href) {
+      handleVideoChange(link.href);
+    }
+  }, true);
+
+  // Re-apply settings and reset scroll positions ONLY when navigating to a different video
+  window.addEventListener('yt-navigate-finish', (e) => {
+    const nextUrl = (e && e.detail && e.detail.response && e.detail.response.endpoint && e.detail.response.endpoint.commandMetadata && e.detail.response.endpoint.commandMetadata.webCommandMetadata && e.detail.response.endpoint.commandMetadata.webCommandMetadata.url) || window.location.href;
+    handleVideoChange(nextUrl);
+    applySettings(cachedSettings);
+    enforcePersistedPlaybackRate();
+  });
+
+  window.addEventListener('yt-navigate-start', (e) => {
+    const nextUrl = (e && e.detail && e.detail.url) ? e.detail.url : window.location.href;
+    const isDifferentVideo = handleVideoChange(nextUrl);
+    
+    if (isDifferentVideo) {
+      userManuallyUndocked = false;
+      if (document.documentElement.classList.contains('yt-comments-docked')) {
+        toggleSidebarComments(true); // pass true so we don't treat navigation-based reset as a manual user undock
+      }
+    }
+  });
+
+  window.addEventListener('yt-page-data-updated', () => {
+    handleVideoChange(window.location.href);
+    applySettings(cachedSettings);
+    enforcePersistedPlaybackRate();
+  });
+
+  window.addEventListener('popstate', () => {
+    handleVideoChange(window.location.href);
+    enforcePersistedPlaybackRate();
+  });
+}
+})();

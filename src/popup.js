@@ -30,11 +30,18 @@ const configKeys = [
   'showMiniFullscreenBtn',
   'miniFullscreenFill',
   'stickyPlayer',
+  'stickyHideScrollbars',
   'dockCommentsSidebar',
+  'dockCommentsHideScrollbar',
   'showRefreshCommentsBtn',
   'showCommentScreenshotBtn',
   'hideAmbientMode',
-  'hideSidebarFooter'
+  'hideSidebarFooter',
+  'hideScrollbars',
+  'hideScrollbarsFeeds',
+  'hideScrollbarsSidebar',
+  'hideScrollbarsWatch',
+  'hideScrollbarsPanels'
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -47,6 +54,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const blurThumbnailsCheckbox = document.getElementById('blurThumbnails');
   const unblurOnHoverCheckbox = document.getElementById('unblurOnHover');
   const subRowUnblur = document.getElementById('sub-row-unblur');
+
+  const hideScrollbarsCheckbox = document.getElementById('hideScrollbars');
+  const subScrollbarsRows = [
+    { row: document.getElementById('sub-row-scrollbars-feeds'), input: document.getElementById('hideScrollbarsFeeds') },
+    { row: document.getElementById('sub-row-scrollbars-sidebar'), input: document.getElementById('hideScrollbarsSidebar') },
+    { row: document.getElementById('sub-row-scrollbars-watch'), input: document.getElementById('hideScrollbarsWatch') },
+    { row: document.getElementById('sub-row-scrollbars-panels'), input: document.getElementById('hideScrollbarsPanels') }
+  ];
 
   const customGridCheckbox = document.getElementById('customGridEnabled');
   const subRowGridCols = document.getElementById('sub-row-grid-cols');
@@ -84,6 +99,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const speedInputB = document.getElementById('speedValueB');
   const speedInputC = document.getElementById('speedValueC');
 
+  const stickyPlayerCheckbox = document.getElementById('stickyPlayer');
+  const stickyHideScrollbarsCheckbox = document.getElementById('stickyHideScrollbars');
+  const subRowStickyScrollbars = document.getElementById('sub-row-sticky-scrollbars');
+
+  const dockCommentsCheckbox = document.getElementById('dockCommentsSidebar');
+  const dockCommentsHideScrollbarCheckbox = document.getElementById('dockCommentsHideScrollbar');
+  const subRowDockCommentsScroll = document.getElementById('sub-row-dock-comments-scroll');
+
   const masterToggle = document.getElementById('masterToggle');
   const tabsNav = document.querySelector('.tabs-navigation');
   const optionsScroll = document.getElementById('options-scroll-area');
@@ -97,6 +120,40 @@ document.addEventListener('DOMContentLoaded', () => {
         subRowUnblur.classList.add('disabled');
         if (unblurOnHoverCheckbox) unblurOnHoverCheckbox.disabled = true;
       }
+    }
+
+    if (stickyPlayerCheckbox && subRowStickyScrollbars) {
+      if (stickyPlayerCheckbox.checked) {
+        subRowStickyScrollbars.classList.remove('disabled');
+        if (stickyHideScrollbarsCheckbox) stickyHideScrollbarsCheckbox.disabled = false;
+      } else {
+        subRowStickyScrollbars.classList.add('disabled');
+        if (stickyHideScrollbarsCheckbox) stickyHideScrollbarsCheckbox.disabled = true;
+      }
+    }
+
+    if (dockCommentsCheckbox && subRowDockCommentsScroll) {
+      if (dockCommentsCheckbox.checked) {
+        subRowDockCommentsScroll.classList.remove('disabled');
+        if (dockCommentsHideScrollbarCheckbox) dockCommentsHideScrollbarCheckbox.disabled = false;
+      } else {
+        subRowDockCommentsScroll.classList.add('disabled');
+        if (dockCommentsHideScrollbarCheckbox) dockCommentsHideScrollbarCheckbox.disabled = true;
+      }
+    }
+
+    if (hideScrollbarsCheckbox) {
+      subScrollbarsRows.forEach(item => {
+        if (item.row) {
+          if (hideScrollbarsCheckbox.checked) {
+            item.row.classList.remove('disabled');
+            if (item.input) item.input.disabled = false;
+          } else {
+            item.row.classList.add('disabled');
+            if (item.input) item.input.disabled = true;
+          }
+        }
+      });
     }
 
     if (customGridCheckbox && subRowGridCols) {
@@ -176,6 +233,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (blurThumbnailsCheckbox) {
     blurThumbnailsCheckbox.addEventListener('change', updateSubOptionState);
+  }
+
+  if (stickyPlayerCheckbox) {
+    stickyPlayerCheckbox.addEventListener('change', updateSubOptionState);
+  }
+
+  if (dockCommentsCheckbox) {
+    dockCommentsCheckbox.addEventListener('change', updateSubOptionState);
+  }
+
+  if (hideScrollbarsCheckbox) {
+    hideScrollbarsCheckbox.addEventListener('change', updateSubOptionState);
   }
 
   if (customGridCheckbox) {
@@ -301,9 +370,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const defaultTrueKeys = [
       'unblurOnHover',
       'dockCommentsSidebar',
+      'dockCommentsHideScrollbar',
       'showRefreshCommentsBtn',
       'showCommentScreenshotBtn',
       'stickyPlayer',
+      'stickyHideScrollbars',
       'showMiniFullscreenBtn',
       'hideCategoryBarFeeds',
       'hideCategoryBarChannels',
@@ -315,7 +386,11 @@ document.addEventListener('DOMContentLoaded', () => {
       'hideShortsFeeds',
       'hideShortsChannel',
       'hideShortsWatch',
-      'hideAmbientMode'
+      'hideAmbientMode',
+      'hideScrollbarsFeeds',
+      'hideScrollbarsSidebar',
+      'hideScrollbarsWatch',
+      'hideScrollbarsPanels'
     ];
     defaultTrueKeys.forEach(key => {
       if (settings[key] === undefined) {
