@@ -2,6 +2,18 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.1.5.1] - 2026-09-01
+
+### Changed
+- **Minimal Popup Design**: Streamlined the popup with clean, short titles and removed secondary description text across all tabs for a compact, fast interface.
+- **Borderless Cards & Refined Typography**: Removed card border outlines and increased text size for better readability and spacing.
+- **Updated Default Settings**:
+  - Enabled **Hide Shorts** by default.
+  - Enabled **Hide Scrollbars**, **Speed Switcher**, **Hide More from YouTube**, and **Hide Sidebar Footer** by default.
+  - Set Sticky Player scrollbar hiding to **OFF** by default.
+
+---
+
 ## [1.1.5] - 2026-08-31
 
 ### Added
