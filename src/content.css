@@ -436,9 +436,9 @@ html:not(.yt-no-hover-unblur).yt-blur-thumbnails ytd-thumbnail:hover img[src*="i
 }
 
 /* Fixed Web Fullscreen layout rules - works in both Default and Cinema/Theater Mode */
-.yt-web-fullscreen-active #player,
-.yt-web-fullscreen-active ytd-watch-flexy[theater] #player-theater-container,
-.yt-web-fullscreen-active ytd-watch-flexy[theater] #full-bleed-container {
+.yt-web-fullscreen-active #player-theater-container,
+.yt-web-fullscreen-active #full-bleed-container,
+.yt-web-fullscreen-active #player {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
@@ -454,23 +454,6 @@ html:not(.yt-no-hover-unblur).yt-blur-thumbnails ytd-thumbnail:hover img[src*="i
   transform: none !important;
   margin: 0 !important;
   padding: 0 !important;
-}
-
-/* Never let empty outer containers overlay a black screen in Web Fullscreen */
-.yt-web-fullscreen-active #full-bleed-container:not(:has(#player)),
-.yt-web-fullscreen-active #player-theater-container:not(:has(#player)) {
-  display: none !important;
-}
-
-/* When Theater Max (Web Fullscreen) is active, reset transforms, will-change, and sticky constraints on columns */
-.yt-web-fullscreen-active #columns,
-.yt-web-fullscreen-active #columns #primary,
-.yt-web-fullscreen-active #columns #secondary {
-  transform: none !important;
-  will-change: auto !important;
-  overflow: visible !important;
-  height: auto !important;
-  max-height: none !important;
 }
 
 /* Stretch all nested player elements to fill the fixed container */
@@ -527,64 +510,56 @@ html:not(.yt-no-hover-unblur).yt-blur-thumbnails ytd-thumbnail:hover img[src*="i
   display: none !important;
 }
 
-/* 13. TWO SCROLL WHEEL SPLIT PANE LAYOUT (disabled in Cinema Mode, native Fullscreen, and Theater Max) */
+/* 13. TWO SCROLL WHEEL SPLIT PANE LAYOUT (disabled in Cinema Mode and native Fullscreen) */
 /* Lock the main browser scroll and fit container manager to viewport height (only when actively viewing a video in default mode) */
-html:not(.yt-web-fullscreen-active).yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater])),
-html:not(.yt-web-fullscreen-active).yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater])) body {
+.yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater])),
+.yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater])) body {
   overflow: hidden !important;
   height: 100vh !important;
 }
 
-html:not(.yt-web-fullscreen-active).yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater])) #page-manager {
+.yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater])) #page-manager {
   height: calc(100vh - 56px) !important;
   max-height: calc(100vh - 56px) !important;
   overflow: hidden !important;
 }
 
-html:not(.yt-web-fullscreen-active).yt-hide-header.yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater])) #page-manager {
+.yt-hide-header.yt-sticky-player:has(ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater])) #page-manager {
   height: 100vh !important;
   max-height: 100vh !important;
 }
 
 /* Lock columns container to viewport height and disable columns-level scroll */
-html:not(.yt-web-fullscreen-active).yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater]) #columns {
+.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater]) #columns {
   height: calc(100vh - 56px) !important;
   max-height: calc(100vh - 56px) !important;
   overflow: hidden !important;
   box-sizing: border-box !important;
 }
 
-html:not(.yt-web-fullscreen-active).yt-hide-header.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater]) #columns {
+.yt-hide-header.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater]) #columns {
   height: 100vh !important;
   max-height: 100vh !important;
 }
 
 /* Lock left column and make it scrollable as a single unit (video player + comments scroll together) */
-html:not(.yt-web-fullscreen-active).yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater]) #columns #primary {
+.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater]) #columns #primary {
   height: 100% !important;
   max-height: 100% !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
   box-sizing: border-box !important;
   padding-right: 8px !important;
-  scroll-behavior: smooth !important;
-  overscroll-behavior-y: contain !important;
-  will-change: scroll-position !important;
-  transform: translateZ(0) !important;
 }
 
 /* Make the recommended videos sidebar scroll independently */
-html:not(.yt-web-fullscreen-active).yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater]) #columns #secondary {
+.yt-sticky-player ytd-watch-flexy:not([hidden]):not([fullscreen]):not([theater]) #columns #secondary {
   height: 100% !important;
   max-height: 100% !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
   box-sizing: border-box !important;
   padding-right: 8px !important;
-  scroll-behavior: smooth !important;
-  overscroll-behavior-y: contain !important;
-  will-change: scroll-position !important;
-  transform: translateZ(0) !important;
 }
 
 /* Premium clean scrollbars for both independent panes (disabled in native fullscreen) */
@@ -1094,10 +1069,6 @@ ytd-comments[style*="display:none"] {
   padding: 0 16px 16px 16px !important;
   box-sizing: border-box !important;
   scrollbar-width: thin !important;
-  scroll-behavior: smooth !important;
-  overscroll-behavior-y: contain !important;
-  will-change: scroll-position !important;
-  transform: translateZ(0) !important;
 }
 
 /* Scrollbar customizations for comments sections in the sidebar */

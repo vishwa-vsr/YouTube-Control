@@ -2,22 +2,6 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
-## [1.1.5.3] - 2026-09-03
-
-### Fixed
-- **Recorded Stream Support**: Restored comment docking, the 1-click refresh button, and dock icons on recorded stream replays.
-- **Theater Max Black Screen**: Fixed Theater Max (Web Fullscreen) showing a black screen when Sticky Player is active.
-
----
-
-## [1.1.5.2] - 2026-09-03
-
-### Fixed
-- **Smooth Scrolling for Sticky Player**: Split columns now glide smoothly with hardware acceleration instead of jumping in rigid notches.
-- **Docked Comments Scroll Trap**: Fixed mouse wheel scrolling getting trapped inside the comments box or jerking the sidebar.
-
----
-
 ## [1.1.5.1] - 2026-09-01
 
 ### Changed

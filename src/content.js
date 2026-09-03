@@ -70,7 +70,19 @@ function isLiveStreamOrChatActive() {
   const liveBadge = document.querySelector('.ytp-live-badge');
   const isLiveBadgeVisible = liveBadge && !liveBadge.hasAttribute('hidden') && liveBadge.style.display !== 'none' && !liveBadge.classList.contains('sf-hidden') && (liveBadge.offsetWidth > 0 || liveBadge.offsetHeight > 0);
   
-  return !!(isLiveFlexy || isLivePlayer || isLiveBadgeVisible);
+  const isLive = !!(isLiveFlexy || isLivePlayer || isLiveBadgeVisible);
+
+  const chatPanel = document.getElementById('chat') || document.querySelector('ytd-live-chat-frame') || document.querySelector('ytd-engagement-panel-section-list-renderer[target-id="ytd-engagement-panel-live-chat"]');
+  const hasActiveChat = !!(
+    chatPanel && 
+    !chatPanel.hasAttribute('hidden') && 
+    !chatPanel.hasAttribute('collapsed') && 
+    chatPanel.style.display !== 'none' &&
+    (chatPanel.offsetWidth > 0 || chatPanel.offsetHeight > 0) &&
+    chatPanel.querySelector('iframe[src*="live_chat"]')
+  );
+  
+  return isLive || hasActiveChat;
 }
 
 function updateSidebarState() {
@@ -319,7 +331,7 @@ function applySettings(settings) {
     if (root.classList.contains('yt-comments-docked')) toggleSidebarComments(true);
   }
 
-  if (settings.showRefreshCommentsBtn === true) {
+  if (settings.showRefreshCommentsBtn === true && !isLiveOrChat) {
     injectRefreshCommentsButton();
   } else {
     const btn = document.querySelector('.yt-refresh-comments-btn');
@@ -387,6 +399,11 @@ function injectSidebarCommentsButton() {
 }
 
 function injectRefreshCommentsButton() {
+  if (isLiveStreamOrChatActive()) {
+    const btn = document.querySelector('.yt-refresh-comments-btn');
+    if (btn) btn.remove();
+    return;
+  }
   const header = document.querySelector('ytd-comments-header-renderer');
   if (!header || header.querySelector('.yt-refresh-comments-btn')) return;
   
@@ -1776,7 +1793,7 @@ function scheduleButtonInjection() {
         if (btn) btn.remove();
       }
 
-      if (cachedSettings.showRefreshCommentsBtn === true) {
+      if (cachedSettings.showRefreshCommentsBtn === true && !isLiveOrChat) {
         injectRefreshCommentsButton();
       } else {
         const btn = document.querySelector('.yt-refresh-comments-btn');
