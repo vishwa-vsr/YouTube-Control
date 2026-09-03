@@ -38,18 +38,33 @@ YouTube Control is a lightweight browser extension that strips away distractions
 ## Screenshots
 
 <p align="center">
-  <b>Settings Popup</b><br>
-  <img src="assets/Comp%201%20.jpg" width="80%" alt="Settings Popup Menu">
+  <b>Settings Popup Menu</b><br>
+  <i>Customize feeds, watch experience, and clean styles with a minimal interface.</i><br><br>
+  <img src="assets/Comp%205.png" width="80%" alt="Settings Popup Menu">
 </p>
 
 <p align="center">
-  <b>Dual Scrolling Layout (Dock Comments to Sidebar)</b><br>
-  <img src="assets/Comp%203%20.jpg" width="80%" alt="Dual Scrolling Layout">
+  <b>Block YouTube Shorts</b><br>
+  <i>Remove Shorts shelves, sidebar links, and distractions across YouTube.</i><br><br>
+  <img src="assets/Comp%204%20(0-00-00-00).png" width="80%" alt="Block YouTube Shorts">
+</p>
+
+<p align="center">
+  <b>Dock Comments to Sidebar</b><br>
+  <i>Browse comments while keeping your video locked in view.</i><br><br>
+  <img src="assets/Comp%202%20.jpg" width="80%" alt="Dock Comments to Sidebar">
+</p>
+
+<p align="center">
+  <b>Sticky Player & Dual Scrolling</b><br>
+  <i>Browse recommended videos while keeping your video locked in view.</i><br><br>
+  <img src="assets/Comp%201%20.jpg" width="80%" alt="Sticky Player & Dual Scrolling">
 </p>
 
 <p align="center">
   <b>Mini Fullscreen Mode</b><br>
-  <img src="assets/Comp%202%20.jpg" width="80%" alt="Mini Fullscreen Mode">
+  <i>Watch videos in full browser view without hiding your tabs, search bar, or bookmarks.</i><br><br>
+  <img src="assets/Comp%203%20.jpg" width="80%" alt="Mini Fullscreen Mode">
 </p>
 
 ---
