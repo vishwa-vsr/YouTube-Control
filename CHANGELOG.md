@@ -6,6 +6,7 @@ All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension
 
 ### Fixed
 - **Recorded Stream Support**: Restored comment docking, the 1-click refresh button, and dock icons on recorded stream replays.
+- **Theater Max Black Screen**: Fixed Theater Max (Web Fullscreen) showing a black screen when Sticky Player is active.
 
 ---
 
