@@ -78,8 +78,9 @@ function isLiveStreamOrChatActive() {
     !chatPanel.hasAttribute('hidden') && 
     !chatPanel.hasAttribute('collapsed') && 
     chatPanel.style.display !== 'none' &&
+    !chatPanel.classList.contains('sf-hidden') &&
     (chatPanel.offsetWidth > 0 || chatPanel.offsetHeight > 0) &&
-    chatPanel.querySelector('iframe[src*="live_chat"]')
+    (chatPanel.querySelector('#chatframe, iframe, yt-live-chat-renderer') || chatPanel.tagName === 'YTD-LIVE-CHAT-FRAME')
   );
   
   return isLive || hasActiveChat;

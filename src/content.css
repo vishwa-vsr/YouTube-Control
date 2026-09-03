@@ -550,6 +550,10 @@ html:not(.yt-no-hover-unblur).yt-blur-thumbnails ytd-thumbnail:hover img[src*="i
   overflow-y: auto !important;
   box-sizing: border-box !important;
   padding-right: 8px !important;
+  scroll-behavior: smooth !important;
+  overscroll-behavior-y: contain !important;
+  will-change: scroll-position !important;
+  transform: translateZ(0) !important;
 }
 
 /* Make the recommended videos sidebar scroll independently */
@@ -560,6 +564,10 @@ html:not(.yt-no-hover-unblur).yt-blur-thumbnails ytd-thumbnail:hover img[src*="i
   overflow-y: auto !important;
   box-sizing: border-box !important;
   padding-right: 8px !important;
+  scroll-behavior: smooth !important;
+  overscroll-behavior-y: contain !important;
+  will-change: scroll-position !important;
+  transform: translateZ(0) !important;
 }
 
 /* Premium clean scrollbars for both independent panes (disabled in native fullscreen) */
@@ -1069,6 +1077,10 @@ ytd-comments[style*="display:none"] {
   padding: 0 16px 16px 16px !important;
   box-sizing: border-box !important;
   scrollbar-width: thin !important;
+  scroll-behavior: smooth !important;
+  overscroll-behavior-y: contain !important;
+  will-change: scroll-position !important;
+  transform: translateZ(0) !important;
 }
 
 /* Scrollbar customizations for comments sections in the sidebar */
