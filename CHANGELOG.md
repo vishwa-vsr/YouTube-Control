@@ -2,6 +2,14 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.1.5.5] - 2026-09-04
+
+### Fixed
+- **Comment Box Buttons & Emoji Picker**: Fixed an issue where the Cancel, Comment, and Emoji buttons disappeared from comment and reply boxes when the extension was turned on.
+- **Silky Smooth Watch Page Scrolling**: Optimized two-column Sticky Player and docked comments scrolling with native hardware acceleration hints, eliminating stutter and lag when scrolling recommendations, comments, and video descriptions.
+
+---
+
 ## [1.1.5.1] - 2026-09-01
 
 ### Changed
