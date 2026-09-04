@@ -1,0 +1,13 @@
+{
+  "name": "youtube-control",
+  "version": "1.1.5.5",
+  "private": true,
+  "description": "YouTube Control - Block Shorts, Hide Feed & Recommendations",
+  "scripts": {
+    "build": "python build.py --skip-prompt",
+    "test": "node test/test-sidebar-footer-comments.js && node test/test-scrolling-performance.js && node test/test-comment-canvas.js && node test/test-settings-schema.js && node test/test-speed-controller.js && node test/test-watch-navigation.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

@@ -1,275 +1,68 @@
-// List of all configuration keys (excluding the master Clean Mode)
-const configKeys = [
-  'hideHomeFeed',
-  'hideCategoryBar',
-  'hideCategoryBarFeeds',
-  'hideCategoryBarChannels',
-  'hideCategoryBarWatch',
-  'customGridEnabled',
-  'hideMixPlaylists',
-  'hideMixPlaylistsFeeds',
-  'hideMixPlaylistsWatch',
-  'hideSubscriptions',
-  'hideYou',
-  'hideExplore',
-  'hideMoreFromYoutube',
-  'hideShorts',
-  'hideShortsSidebar',
-  'hideShortsFeeds',
-  'hideShortsChannel',
-  'hideShortsWatch',
-  'hideRecommended',
-  'hideComments',
-  'hideButtonsStats',
-  'hideHeader',
-  'grayscaleMode',
-  'blurThumbnails',
-  'unblurOnHover',
-  'showSpeedBtn',
-  'showScreenshotBtn',
-  'showMiniFullscreenBtn',
-  'miniFullscreenFill',
-  'stickyPlayer',
-  'stickyHideScrollbars',
-  'dockCommentsSidebar',
-  'dockCommentsHideScrollbar',
-  'showRefreshCommentsBtn',
-  'showCommentScreenshotBtn',
-  'hideAmbientMode',
-  'hideSidebarFooter',
-  'hideScrollbars',
-  'hideScrollbarsFeeds',
-  'hideScrollbarsSidebar',
-  'hideScrollbarsWatch',
-  'hideScrollbarsPanels'
-];
+import {
+  CONFIG_KEYS,
+  SUB_TOGGLE_RELATIONS,
+  getDefaultSettings
+} from './modules/settings-schema.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Track all checkboxes
   const checkboxes = {};
-  configKeys.forEach(key => {
+  CONFIG_KEYS.forEach(key => {
     checkboxes[key] = document.getElementById(key);
   });
 
-  const blurThumbnailsCheckbox = document.getElementById('blurThumbnails');
-  const unblurOnHoverCheckbox = document.getElementById('unblurOnHover');
-  const subRowUnblur = document.getElementById('sub-row-unblur');
-
-  const hideScrollbarsCheckbox = document.getElementById('hideScrollbars');
-  const subScrollbarsRows = [
-    { row: document.getElementById('sub-row-scrollbars-feeds'), input: document.getElementById('hideScrollbarsFeeds') },
-    { row: document.getElementById('sub-row-scrollbars-sidebar'), input: document.getElementById('hideScrollbarsSidebar') },
-    { row: document.getElementById('sub-row-scrollbars-watch'), input: document.getElementById('hideScrollbarsWatch') },
-    { row: document.getElementById('sub-row-scrollbars-panels'), input: document.getElementById('hideScrollbarsPanels') }
-  ];
-
-  const customGridCheckbox = document.getElementById('customGridEnabled');
-  const subRowGridCols = document.getElementById('sub-row-grid-cols');
   const gridPillBtns = document.querySelectorAll('.grid-pill-btn');
   let currentVideosPerRow = 4;
 
-  const hideMixCheckbox = document.getElementById('hideMixPlaylists');
-  const subMixRows = [
-    { row: document.getElementById('sub-row-mix-feeds'), input: document.getElementById('hideMixPlaylistsFeeds') },
-    { row: document.getElementById('sub-row-mix-watch'), input: document.getElementById('hideMixPlaylistsWatch') }
-  ];
-
-  const hideShortsCheckbox = document.getElementById('hideShorts');
-  const subShortsRows = [
-    { row: document.getElementById('sub-row-shorts-sidebar'), input: document.getElementById('hideShortsSidebar') },
-    { row: document.getElementById('sub-row-shorts-feeds'), input: document.getElementById('hideShortsFeeds') },
-    { row: document.getElementById('sub-row-shorts-channel'), input: document.getElementById('hideShortsChannel') },
-    { row: document.getElementById('sub-row-shorts-watch'), input: document.getElementById('hideShortsWatch') }
-  ];
-
-  const hideCategoryBarCheckbox = document.getElementById('hideCategoryBar');
-  const subCategoryRows = [
-    { row: document.getElementById('sub-row-category-feeds'), input: document.getElementById('hideCategoryBarFeeds') },
-    { row: document.getElementById('sub-row-category-channels'), input: document.getElementById('hideCategoryBarChannels') },
-    { row: document.getElementById('sub-row-category-watch'), input: document.getElementById('hideCategoryBarWatch') }
-  ];
-
-  const miniFullscreenCheckbox = document.getElementById('showMiniFullscreenBtn');
-  const miniFullscreenFillCheckbox = document.getElementById('miniFullscreenFill');
-  const subRowMiniFullscreenFill = document.getElementById('sub-row-mini-fullscreen-fill');
-
-  const speedBtnCheckbox = document.getElementById('showSpeedBtn');
-  const subRowSpeedInputs = document.getElementById('sub-row-speed-inputs');
   const speedInputA = document.getElementById('speedValueA');
   const speedInputB = document.getElementById('speedValueB');
   const speedInputC = document.getElementById('speedValueC');
-
-  const stickyPlayerCheckbox = document.getElementById('stickyPlayer');
-  const stickyHideScrollbarsCheckbox = document.getElementById('stickyHideScrollbars');
-  const subRowStickyScrollbars = document.getElementById('sub-row-sticky-scrollbars');
-
-  const dockCommentsCheckbox = document.getElementById('dockCommentsSidebar');
-  const dockCommentsHideScrollbarCheckbox = document.getElementById('dockCommentsHideScrollbar');
-  const subRowDockCommentsScroll = document.getElementById('sub-row-dock-comments-scroll');
 
   const masterToggle = document.getElementById('masterToggle');
   const tabsNav = document.querySelector('.tabs-navigation');
   const optionsScroll = document.getElementById('options-scroll-area');
 
   function updateSubOptionState() {
-    if (blurThumbnailsCheckbox && subRowUnblur) {
-      if (blurThumbnailsCheckbox.checked) {
-        subRowUnblur.classList.remove('disabled');
-        if (unblurOnHoverCheckbox) unblurOnHoverCheckbox.disabled = false;
-      } else {
-        subRowUnblur.classList.add('disabled');
-        if (unblurOnHoverCheckbox) unblurOnHoverCheckbox.disabled = true;
-      }
-    }
+    SUB_TOGGLE_RELATIONS.forEach(({ parentKey, subRows }) => {
+      const parentInput = checkboxes[parentKey];
+      const isParentActive = parentInput ? parentInput.checked : false;
 
-    if (stickyPlayerCheckbox && subRowStickyScrollbars) {
-      if (stickyPlayerCheckbox.checked) {
-        subRowStickyScrollbars.classList.remove('disabled');
-        if (stickyHideScrollbarsCheckbox) stickyHideScrollbarsCheckbox.disabled = false;
-      } else {
-        subRowStickyScrollbars.classList.add('disabled');
-        if (stickyHideScrollbarsCheckbox) stickyHideScrollbarsCheckbox.disabled = true;
-      }
-    }
-
-    if (dockCommentsCheckbox && subRowDockCommentsScroll) {
-      if (dockCommentsCheckbox.checked) {
-        subRowDockCommentsScroll.classList.remove('disabled');
-        if (dockCommentsHideScrollbarCheckbox) dockCommentsHideScrollbarCheckbox.disabled = false;
-      } else {
-        subRowDockCommentsScroll.classList.add('disabled');
-        if (dockCommentsHideScrollbarCheckbox) dockCommentsHideScrollbarCheckbox.disabled = true;
-      }
-    }
-
-    if (hideScrollbarsCheckbox) {
-      subScrollbarsRows.forEach(item => {
-        if (item.row) {
-          if (hideScrollbarsCheckbox.checked) {
-            item.row.classList.remove('disabled');
-            if (item.input) item.input.disabled = false;
+      subRows.forEach(sub => {
+        const rowEl = document.getElementById(sub.rowId);
+        if (rowEl) {
+          if (isParentActive) {
+            rowEl.classList.remove('disabled');
           } else {
-            item.row.classList.add('disabled');
-            if (item.input) item.input.disabled = true;
+            rowEl.classList.add('disabled');
           }
         }
-      });
-    }
 
-    if (customGridCheckbox && subRowGridCols) {
-      if (customGridCheckbox.checked) {
-        subRowGridCols.classList.remove('disabled');
-      } else {
-        subRowGridCols.classList.add('disabled');
-      }
-    }
-
-    if (hideMixCheckbox) {
-      subMixRows.forEach(item => {
-        if (item.row) {
-          if (hideMixCheckbox.checked) {
-            item.row.classList.remove('disabled');
-            if (item.input) item.input.disabled = false;
-          } else {
-            item.row.classList.add('disabled');
-            if (item.input) item.input.disabled = true;
+        if (sub.inputId) {
+          const inputEl = document.getElementById(sub.inputId);
+          if (inputEl) {
+            inputEl.disabled = !isParentActive;
           }
         }
-      });
-    }
 
-    if (hideShortsCheckbox) {
-      subShortsRows.forEach(item => {
-        if (item.row) {
-          if (hideShortsCheckbox.checked) {
-            item.row.classList.remove('disabled');
-            if (item.input) item.input.disabled = false;
-          } else {
-            item.row.classList.add('disabled');
-            if (item.input) item.input.disabled = true;
-          }
+        if (sub.inputIds) {
+          sub.inputIds.forEach(id => {
+            const inputEl = document.getElementById(id);
+            if (inputEl) {
+              inputEl.disabled = !isParentActive;
+            }
+          });
         }
       });
+    });
+  }
+
+  // Bind change listeners to parent switches for dynamic sub-row enable/disable
+  SUB_TOGGLE_RELATIONS.forEach(({ parentKey }) => {
+    const parentInput = checkboxes[parentKey];
+    if (parentInput) {
+      parentInput.addEventListener('change', updateSubOptionState);
     }
-
-    if (hideCategoryBarCheckbox) {
-      subCategoryRows.forEach(item => {
-        if (item.row) {
-          if (hideCategoryBarCheckbox.checked) {
-            item.row.classList.remove('disabled');
-            if (item.input) item.input.disabled = false;
-          } else {
-            item.row.classList.add('disabled');
-            if (item.input) item.input.disabled = true;
-          }
-        }
-      });
-    }
-
-    if (miniFullscreenCheckbox && subRowMiniFullscreenFill) {
-      if (miniFullscreenCheckbox.checked) {
-        subRowMiniFullscreenFill.classList.remove('disabled');
-        if (miniFullscreenFillCheckbox) miniFullscreenFillCheckbox.disabled = false;
-      } else {
-        subRowMiniFullscreenFill.classList.add('disabled');
-        if (miniFullscreenFillCheckbox) miniFullscreenFillCheckbox.disabled = true;
-      }
-    }
-
-    if (speedBtnCheckbox && subRowSpeedInputs) {
-      if (speedBtnCheckbox.checked) {
-        subRowSpeedInputs.classList.remove('disabled');
-        if (speedInputA) speedInputA.disabled = false;
-        if (speedInputB) speedInputB.disabled = false;
-        if (speedInputC) speedInputC.disabled = false;
-      } else {
-        subRowSpeedInputs.classList.add('disabled');
-        if (speedInputA) speedInputA.disabled = true;
-        if (speedInputB) speedInputB.disabled = true;
-        if (speedInputC) speedInputC.disabled = true;
-      }
-    }
-  }
-
-  if (blurThumbnailsCheckbox) {
-    blurThumbnailsCheckbox.addEventListener('change', updateSubOptionState);
-  }
-
-  if (stickyPlayerCheckbox) {
-    stickyPlayerCheckbox.addEventListener('change', updateSubOptionState);
-  }
-
-  if (dockCommentsCheckbox) {
-    dockCommentsCheckbox.addEventListener('change', updateSubOptionState);
-  }
-
-  if (hideScrollbarsCheckbox) {
-    hideScrollbarsCheckbox.addEventListener('change', updateSubOptionState);
-  }
-
-  if (customGridCheckbox) {
-    customGridCheckbox.addEventListener('change', updateSubOptionState);
-  }
-
-  if (hideMixCheckbox) {
-    hideMixCheckbox.addEventListener('change', updateSubOptionState);
-  }
-
-  if (hideShortsCheckbox) {
-    hideShortsCheckbox.addEventListener('change', updateSubOptionState);
-  }
-
-  if (hideCategoryBarCheckbox) {
-    hideCategoryBarCheckbox.addEventListener('change', updateSubOptionState);
-  }
-
-  if (miniFullscreenCheckbox) {
-    miniFullscreenCheckbox.addEventListener('change', updateSubOptionState);
-  }
-
-  if (speedBtnCheckbox) {
-    speedBtnCheckbox.addEventListener('change', updateSubOptionState);
-  }
+  });
 
   function handleSpeedInputChange(input, key, fallback) {
     if (!input) return;
@@ -312,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function sendCurrentSettingsToActiveTab() {
-    chrome.storage.local.get(['extensionEnabled', 'videosPerRow', 'speedValueA', 'speedValueB', 'speedValueC', ...configKeys], (res) => {
+    chrome.storage.local.get(['extensionEnabled', 'videosPerRow', 'speedValueA', 'speedValueB', 'speedValueC', ...CONFIG_KEYS], (res) => {
       const extensionEnabled = res.extensionEnabled !== false;
       const updatedSettings = { 
         extensionEnabled, 
@@ -346,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Load initial settings
-  chrome.storage.local.get(['extensionEnabled', 'videosPerRow', 'speedValueA', 'speedValueB', 'speedValueC', ...configKeys], (settings) => {
+  chrome.storage.local.get(['extensionEnabled', 'videosPerRow', 'speedValueA', 'speedValueB', 'speedValueC', ...CONFIG_KEYS], (settings) => {
     const currentSettings = {};
     const extensionEnabled = settings.extensionEnabled !== false;
     
@@ -366,43 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (speedInputB) speedInputB.value = settings.speedValueB !== undefined ? settings.speedValueB : 1.5;
     if (speedInputC) speedInputC.value = settings.speedValueC !== undefined ? settings.speedValueC : 2.0;
 
-    // Set default for certain keys to true if they are undefined
-    const defaultTrueKeys = [
-      'unblurOnHover',
-      'dockCommentsSidebar',
-      'dockCommentsHideScrollbar',
-      'showRefreshCommentsBtn',
-      'showCommentScreenshotBtn',
-      'stickyPlayer',
-      'showMiniFullscreenBtn',
-      'showSpeedBtn',
-      'hideCategoryBarFeeds',
-      'hideCategoryBarChannels',
-      'hideCategoryBarWatch',
-      'hideMixPlaylistsFeeds',
-      'hideMixPlaylistsWatch',
-      'hideShorts',
-      'hideShortsSidebar',
-      'hideShortsFeeds',
-      'hideShortsChannel',
-      'hideShortsWatch',
-      'hideMoreFromYoutube',
-      'hideSidebarFooter',
-      'hideAmbientMode',
-      'hideScrollbars',
-      'hideScrollbarsFeeds',
-      'hideScrollbarsSidebar',
-      'hideScrollbarsWatch',
-      'hideScrollbarsPanels'
-    ];
-    defaultTrueKeys.forEach(key => {
-      if (settings[key] === undefined) {
-        settings[key] = true;
-      }
-    });
-    
-    configKeys.forEach(key => {
-      const val = settings[key] !== undefined ? settings[key] : false;
+    const resolved = getDefaultSettings(settings);
+    CONFIG_KEYS.forEach(key => {
+      const val = resolved[key];
       currentSettings[key] = val;
       if (checkboxes[key]) {
         checkboxes[key].checked = val;

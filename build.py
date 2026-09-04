@@ -23,7 +23,6 @@ import subprocess
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 SRC_DIR = os.path.join(ROOT_DIR, "src")
 
-# Files/folders to skip copying inside the src directory
 SKIP = {
   "build.py",
   "node_modules",
@@ -35,7 +34,8 @@ SKIP = {
   "project_rules.md",
   "design.md",
   "README.md",
-  "frontend-design"
+  "frontend-design",
+  "modules"
 }
 
 
@@ -177,13 +177,46 @@ def minify_css(css):
     return css.strip()
 
 
-def minify_js_esbuild(src_path, dst_path):
-    """Minify JavaScript using local esbuild if available, with a fallback to custom logic."""
-    esbuild_cmd = os.path.join(SRC_DIR, "node_modules", ".bin", "esbuild.cmd")
-    if not os.path.exists(esbuild_cmd):
-        esbuild_cmd = "esbuild"
+def get_esbuild_cmd():
+    """Find the esbuild executable from root, src, or system PATH."""
+    for base in (ROOT_DIR, SRC_DIR):
+        cmd = os.path.join(base, "node_modules", ".bin", "esbuild.cmd")
+        if os.path.exists(cmd):
+            return cmd
+        sh = os.path.join(base, "node_modules", ".bin", "esbuild")
+        if os.path.exists(sh):
+            return sh
+    return shutil.which("esbuild") or "esbuild"
+
+
+def bundle_js_esbuild(src_path, dst_path, target="chrome90"):
+    """Bundle JavaScript with IIFE format using local or global esbuild."""
+    esbuild_cmd = get_esbuild_cmd()
     try:
-        subprocess.run([esbuild_cmd, src_path, "--minify", "--target=chrome90", "--outfile=" + dst_path],
+        subprocess.run([
+            esbuild_cmd,
+            src_path,
+            "--bundle",
+            "--format=iife",
+            "--minify",
+            f"--target={target}",
+            f"--outfile={dst_path}"
+        ], capture_output=True, check=True, shell=True)
+        return True
+    except subprocess.CalledProcessError as e:
+        err_msg = e.stderr.decode('utf-8', errors='replace') if e.stderr else str(e)
+        print(f"  [esbuild Error] Failed to bundle {src_path}: {err_msg}")
+        return False
+    except Exception as e:
+        print(f"  [esbuild Error] Failed to bundle {src_path}: {e}")
+        return False
+
+
+def minify_js_esbuild(src_path, dst_path, target="chrome90"):
+    """Minify JavaScript using local esbuild if available, with a fallback to custom logic."""
+    esbuild_cmd = get_esbuild_cmd()
+    try:
+        subprocess.run([esbuild_cmd, src_path, "--minify", f"--target={target}", "--outfile=" + dst_path],
                        capture_output=True, check=True, shell=True)
         return True
     except Exception:
@@ -192,9 +225,7 @@ def minify_js_esbuild(src_path, dst_path):
 
 def minify_css_esbuild(src_path, dst_path):
     """Minify CSS using local esbuild if available, with a fallback to custom logic."""
-    esbuild_cmd = os.path.join(SRC_DIR, "node_modules", ".bin", "esbuild.cmd")
-    if not os.path.exists(esbuild_cmd):
-        esbuild_cmd = "esbuild"
+    esbuild_cmd = get_esbuild_cmd()
     try:
         subprocess.run([esbuild_cmd, src_path, "--minify", "--outfile=" + dst_path],
                        capture_output=True, check=True, shell=True)
@@ -203,16 +234,31 @@ def minify_css_esbuild(src_path, dst_path):
         return False
 
 
-def process_file(src_path, dst_path):
-    """Process a single file: minify JS/HTML/CSS or copy as-is."""
+def process_file(src_path, dst_path, is_firefox=False):
+    """Process a single file: bundle/minify JS/HTML/CSS or copy as-is."""
     ext = os.path.splitext(src_path)[1].lower()
+    fname = os.path.basename(src_path)
+    target = "firefox100" if is_firefox else "chrome90"
 
     if ext == '.js':
         with open(src_path, 'r', encoding='utf-8', errors='replace') as f:
             code = f.read()
         original_size = len(code.encode('utf-8'))
         
-        success = minify_js_esbuild(src_path, dst_path)
+        # Bundle modular entry points (content.js and popup.js) as IIFE
+        if fname in ("content.js", "popup.js"):
+            success = bundle_js_esbuild(src_path, dst_path, target=target)
+            if not success:
+                print(f"\n[FATAL ERROR] Failed to bundle modular entry point '{fname}' into '{dst_path}'.")
+                print("Make sure Node.js and esbuild are installed (run 'npm install' in the project root).\n")
+                sys.exit(1)
+            new_size = os.path.getsize(dst_path)
+            saved = original_size - new_size
+            print(f"  JS  {fname:30s}  {original_size:>8,} -> {new_size:>8,}  (bundled)")
+            return original_size, new_size
+        else:
+            success = minify_js_esbuild(src_path, dst_path, target=target)
+
         if success:
             new_size = os.path.getsize(dst_path)
         else:
@@ -225,7 +271,7 @@ def process_file(src_path, dst_path):
                 
         saved = original_size - new_size
         if saved > 100:
-            print(f"  JS  {os.path.basename(src_path):30s}  {original_size:>8,} -> {new_size:>8,}  (saved {saved:,} bytes)")
+            print(f"  JS  {fname:30s}  {original_size:>8,} -> {new_size:>8,}  (saved {saved:,} bytes)")
         return original_size, new_size
 
     elif ext in ('.html', '.htm'):
@@ -298,7 +344,7 @@ def build_target(target_name, is_firefox=False):
                 continue
             src_path = os.path.join(root, fname)
             dst_path = os.path.join(dst_dir, fname)
-            orig, new = process_file(src_path, dst_path)
+            orig, new = process_file(src_path, dst_path, is_firefox=is_firefox)
             
             # Apply Firefox-specific tweaks to manifest.json
             if is_firefox and fname == "manifest.json" and root == SRC_DIR:

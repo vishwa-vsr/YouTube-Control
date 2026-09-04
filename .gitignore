@@ -2,6 +2,7 @@
 /dist/
 /backup/
 /scratch/
+node_modules/
 
 # Ignore zip releases
 /*.zip
