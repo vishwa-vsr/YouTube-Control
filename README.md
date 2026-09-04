@@ -8,7 +8,6 @@
 <p align="center">
   <a href="https://github.com/vishwa-vsr/YouTube-Control/blob/master/LICENSE"><img src="https://img.shields.io/github/license/vishwa-vsr/YouTube-Control?color=blue" alt="MIT License"></a>
   <img src="https://img.shields.io/badge/manifest-v3-blue" alt="Manifest V3">
-  <a href="https://github.com/vishwa-vsr/YouTube-Control/actions/workflows/test.yml"><img src="https://github.com/vishwa-vsr/YouTube-Control/actions/workflows/test.yml/badge.svg" alt="Tests & Build Status"></a>
   <a href="https://github.com/vishwa-vsr/YouTube-Control/issues"><img src="https://img.shields.io/github/issues/vishwa-vsr/YouTube-Control" alt="Open Issues"></a>
   <a href="https://github.com/vishwa-vsr/YouTube-Control/pulls"><img src="https://img.shields.io/github/issues-pr/vishwa-vsr/YouTube-Control" alt="Pull Requests"></a>
 </p>
