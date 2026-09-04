@@ -2,6 +2,14 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.1.5.6] - 2026-09-04
+
+### Fixed
+- **Video Recommendations Loading**: Fixed an issue where the watch page recommendation sidebar disappeared or failed to load on videos containing suggested Shorts.
+- **Sidebar Scroll Responsiveness**: Optimized recommendation sidebar scrolling to ensure suggested videos load immediately when comments are docked to the side.
+
+---
+
 ## [1.1.5.5] - 2026-09-04
 
 ### Changed

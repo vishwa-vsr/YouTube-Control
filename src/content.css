@@ -222,7 +222,8 @@
 /* 3d. Watch Page & Recommendation Shorts */
 .yt-hide-shorts-watch ytd-watch-flexy ytd-reel-shelf-renderer,
 .yt-hide-shorts-watch ytd-watch-flexy grid-shelf-view-model,
-.yt-hide-shorts-watch ytd-watch-next-secondary-results-renderer :is(ytd-compact-video-renderer, ytd-item-section-renderer):has([href*="/shorts/"]),
+.yt-hide-shorts-watch ytd-watch-next-secondary-results-renderer ytd-compact-video-renderer:has(a[href*="/shorts/"]),
+.yt-hide-shorts-watch ytd-watch-next-secondary-results-renderer yt-lockup-view-model:has(a[href*="/shorts/"]),
 .yt-hide-shorts-watch ytd-reel-shelf-renderer,
 .yt-hide-shorts-watch grid-shelf-view-model,
 .yt-hide-shorts-watch ytd-rich-shelf-renderer[is-shorts],
@@ -565,7 +566,6 @@ html:not(.yt-no-hover-unblur).yt-blur-thumbnails ytd-thumbnail:hover img[src*="i
   box-sizing: border-box !important;
   padding-right: 8px !important;
   overscroll-behavior-y: contain !important;
-  will-change: scroll-position !important;
 }
 
 /* Premium clean scrollbars for both independent panes (disabled in native fullscreen) */

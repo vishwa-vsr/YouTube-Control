@@ -28,12 +28,27 @@ assert.ok(primaryMatch[1].includes('will-change: scroll-position'), '#primary mu
 
 // 4. Verify hardware scrolling hints on #secondary
 assert.ok(secondaryMatch[1].includes('overscroll-behavior-y: contain'), '#secondary must have overscroll-behavior-y: contain to eliminate scroll-chaining lag');
-assert.ok(secondaryMatch[1].includes('will-change: scroll-position'), '#secondary must have will-change: scroll-position to ensure dedicated composited scrolling');
+assert.strictEqual(secondaryMatch[1].includes('will-change: scroll-position'), false, 'CRITICAL: will-change: scroll-position must NOT be applied to #secondary (causes Chromium compositor isolation that freezes lazy-loading IntersectionObserver on recommendations)');
 
 // 5. Verify hardware scrolling hints on docked comments #sections
 const dockedCommentsSections = css.match(/\.yt-comments-docked\s+#secondary-inner\s+#comments\s+#sections\s*\{([^}]+)\}/);
 assert.ok(dockedCommentsSections, 'Must find docked comments #sections rule in content.css');
 assert.ok(dockedCommentsSections[1].includes('overscroll-behavior-y: contain'), 'Docked comments #sections must have overscroll-behavior-y: contain');
 assert.ok(dockedCommentsSections[1].includes('will-change: scroll-position'), 'Docked comments #sections must have will-change: scroll-position');
+
+// 6. Verify watch page recommendation Shorts blocker isolation (never blanket-hide parent container)
+assert.strictEqual(
+  css.includes('ytd-item-section-renderer):has([href*="/shorts/"])'),
+  false,
+  'CRITICAL: ytd-item-section-renderer must NEVER be targeted with :has([href*="/shorts/"]) because it wraps all recommendations'
+);
+assert.ok(
+  css.includes('.yt-hide-shorts-watch ytd-watch-next-secondary-results-renderer ytd-compact-video-renderer:has(a[href*="/shorts/"])'),
+  'Must target individual compact video Shorts in sidebar'
+);
+assert.ok(
+  css.includes('.yt-hide-shorts-watch ytd-watch-next-secondary-results-renderer yt-lockup-view-model:has(a[href*="/shorts/"])'),
+  'Must target individual modern lockup view model Shorts in sidebar'
+);
 
 console.log('PASS: All scrolling performance assertions passed successfully!');
