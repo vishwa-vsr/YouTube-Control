@@ -18,6 +18,7 @@ Thumbs.db
 
 # Ignore test page dumps & reference materials
 /pages/
+/docs/
 *.html
 
 # Ignore large assets, idea files, and AI settings

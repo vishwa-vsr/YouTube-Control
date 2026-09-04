@@ -1,33 +1,33 @@
-<p align="center">
+﻿<p align="center">
   <img src="assets/logo.png" width="96" height="96" alt="YouTube Control Logo">
 </p>
 
 <h1 align="center">YouTube Control</h1>
-<p align="center"><b>Shorts Blocker & YouTube Detox Extension</b></p>
-<p align="center"><i>Hide Shorts, clean up video clutter, and customize your YouTube layout for focused watching.</i></p>
+<p align="center"><b>Block Shorts, hide recommendation feeds, and detox your YouTube experience.</b></p>
 
 <p align="center">
   <a href="https://github.com/vishwa-vsr/YouTube-Control/blob/master/LICENSE"><img src="https://img.shields.io/github/license/vishwa-vsr/YouTube-Control?color=blue" alt="MIT License"></a>
+  <img src="https://img.shields.io/badge/manifest-v3-blue" alt="Manifest V3">
+  <img src="https://img.shields.io/badge/tests-passing-emerald" alt="Tests Passing">
   <a href="https://github.com/vishwa-vsr/YouTube-Control/issues"><img src="https://img.shields.io/github/issues/vishwa-vsr/YouTube-Control" alt="Open Issues"></a>
   <a href="https://github.com/vishwa-vsr/YouTube-Control/pulls"><img src="https://img.shields.io/github/issues-pr/vishwa-vsr/YouTube-Control" alt="Pull Requests"></a>
 </p>
 
 ---
 
-## What is YouTube Control?
+## Overview
 
-YouTube Control is a lightweight browser extension that strips away distractions and gives you control over YouTube's user interface. 
+**YouTube Control** is a lightweight, privacy-focused browser extension that strips away distractions, blocks algorithmic rabbit holes, and gives you complete control over YouTube's layout.
 
-* **No tracking or analytics** — 100% of your preferences stay on your device.
-* **No external servers** — runs entirely locally inside your browser.
-* **No account required** — install and use instantly.
-* **Manifest V3 compliant** — built for modern Chromium and Firefox browsers.
+* **100% Local & Private**: No analytics, telemetry, or external API calls. All settings stay in your browser's local storage.
+* **Fast & Lightweight**: Built with modular vanilla JavaScript, hardware-accelerated CSS, and compiled into zero-overhead bundles via `esbuild`.
+* **Manifest V3 Native**: Fully compliant with modern Chrome, Microsoft Edge, Brave, Opera, and Mozilla Firefox standards.
 
 ---
 
 ## 📥 Store Downloads
 
-| Browser Store | Version | Rating | Active Users |
+| Store | Version | Rating | Users |
 | :--- | :---: | :---: | :---: |
 | [Chrome Web Store](https://chromewebstore.google.com/detail/youtube-control-shorts-bl/ljinlboeiainceejndpicabkmheecnfj?hl=en-GB&authuser=0) | [![](https://img.shields.io/chrome-web-store/v/ljinlboeiainceejndpicabkmheecnfj?color=blue&label=latest)](https://chromewebstore.google.com/detail/youtube-control-shorts-bl/ljinlboeiainceejndpicabkmheecnfj?hl=en-GB&authuser=0) | [![](https://img.shields.io/chrome-web-store/rating/ljinlboeiainceejndpicabkmheecnfj?color=blue)](https://chromewebstore.google.com/detail/youtube-control-shorts-bl/ljinlboeiainceejndpicabkmheecnfj?hl=en-GB&authuser=0) | [![](https://img.shields.io/chrome-web-store/users/ljinlboeiainceejndpicabkmheecnfj?color=blue&label=users)](https://chromewebstore.google.com/detail/youtube-control-shorts-bl/ljinlboeiainceejndpicabkmheecnfj?hl=en-GB&authuser=0) |
 | [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/youtube-control/) | [![](https://img.shields.io/amo/v/youtube-control?color=orange&label=latest)](https://addons.mozilla.org/en-US/firefox/addon/youtube-control/) | [![](https://img.shields.io/amo/rating/youtube-control?color=orange)](https://addons.mozilla.org/en-US/firefox/addon/youtube-control/) | [![](https://img.shields.io/amo/users/youtube-control?color=orange)](https://addons.mozilla.org/en-US/firefox/addon/youtube-control/) |
@@ -35,35 +35,35 @@ YouTube Control is a lightweight browser extension that strips away distractions
 
 ---
 
-## Screenshots
+## Visual Tour
 
 <p align="center">
-  <b>Settings Popup Menu</b><br>
-  <i>Customize feeds, watch experience, and clean styles with a minimal interface.</i><br><br>
+  <b>Minimal Settings Popup</b><br>
+  <i>Toggle distraction blockers, video layouts, and styling options instantly.</i><br><br>
   <img src="assets/Comp%205.png" width="80%" alt="Settings Popup Menu">
 </p>
 
 <p align="center">
   <b>Block YouTube Shorts</b><br>
-  <i>Remove Shorts shelves, sidebar links, and distractions across YouTube.</i><br><br>
+  <i>Eliminate Shorts shelves, navigation buttons, reels, and sidebar links.</i><br><br>
   <img src="assets/Comp%204%20(0-00-00-00).png" width="80%" alt="Block YouTube Shorts">
 </p>
 
 <p align="center">
   <b>Dock Comments to Sidebar</b><br>
-  <i>Browse comments while keeping your video locked in view.</i><br><br>
+  <i>Read and post comments beside the player without losing your place in the video.</i><br><br>
   <img src="assets/Comp%202%20.jpg" width="80%" alt="Dock Comments to Sidebar">
 </p>
 
 <p align="center">
   <b>Sticky Player & Dual Scrolling</b><br>
-  <i>Browse recommended videos while keeping your video locked in view.</i><br><br>
+  <i>Pins the video to the top and lets recommendations and comments scroll independently.</i><br><br>
   <img src="assets/Comp%201%20.jpg" width="80%" alt="Sticky Player & Dual Scrolling">
 </p>
 
 <p align="center">
   <b>Mini Fullscreen Mode</b><br>
-  <i>Watch videos in full browser view without hiding your tabs, search bar, or bookmarks.</i><br><br>
+  <i>Fills the browser viewport with the video while keeping your address bar and tabs accessible.</i><br><br>
   <img src="assets/Comp%203%20.jpg" width="80%" alt="Mini Fullscreen Mode">
 </p>
 
@@ -71,44 +71,39 @@ YouTube Control is a lightweight browser extension that strips away distractions
 
 ## Features
 
-| Category | Feature | Description |
+| Category | Feature | What It Does |
 | :--- | :--- | :--- |
-| 🚫 **Shorts & Feeds** | **Hide Shorts** | Removes Shorts shelves, navigation buttons, channel reels, and sidebar recommendations. |
+| 🚫 **Shorts & Feeds** | **Hide Shorts** | Removes Shorts shelves, navigation buttons, channel reels, and sidebar links. |
 | 🚫 **Shorts & Feeds** | **Hide Home Feed** | Removes the video recommendation grid on the YouTube home page. |
-| 🚫 **Shorts & Feeds** | **Hide Mix Playlists** | Hides auto-generated YouTube Mix playlists on Home feeds and watch pages. |
-| 🚫 **Shorts & Feeds** | **Hide Category Bar** | Hides topic filter pills on Home feeds, Channel sorting pills, and Watch page pills. |
-| 📐 **Layouts** | **Custom Grid Layout** | Choose between 2, 3, 4, 5, or 6 video cards per row on the Home page. |
-| 📐 **Layouts** | **Sticky Player & Dual Scrolling** | Pins the video player at top and lets comments and sidebar scroll independently. |
-| 💬 **Comments** | **Dock Comments to Sidebar** | Moves the video comments section to the right sidebar next to the player. |
-| 💬 **Comments** | **Hide Comments & Chat** | Removes video comments section and live chat box. |
-| 👁️ **Visual Detox** | **Blur Thumbnails** | Blurs thumbnail images until you hover your mouse over them. |
-| 🎨 **Styling** | **Black & White Mode** | Converts the entire YouTube interface to clean grayscale. |
-| 🎨 **Styling** | **Block Ambient Mode** | Turns off the glowing background light effect behind the video player. |
-| 📺 **Watch Page** | **Hide Recommended Videos** | Removes the sidebar video list on video watch pages. |
-| 📺 **Watch Page** | **Hide Buttons & Stats** | Hides Subscribe button, Like counts, and View counts. |
-| 📺 **Watch Page** | **Hide Top Header Bar** | Hides the search bar and header navigation bar. |
-| 🎛️ **Player Tools** | **Playback Speed Button** | Adds a 1-click speed button to cycle between 3 custom playback speeds (e.g. 1.0x, 1.5x, 2.0x) and keeps your chosen speed across videos. |
-| 📸 **Player Tools** | **Video Screenshot** | Captures a high-resolution PNG frame directly from the video player. |
-| 🔲 **Player Tools** | **Mini Fullscreen** | Expands video to fill the browser window while keeping browser tabs and address bar accessible. |
+| 🚫 **Shorts & Feeds** | **Hide Mix Playlists** | Hides auto-generated YouTube Mixes on Home feeds and watch pages. |
+| 🚫 **Shorts & Feeds** | **Hide Category Bar** | Hides topic filter pills on Home feeds, Channel sorting pills, and Watch page chips. |
+| 🚫 **Shorts & Feeds** | **Hide More From YouTube** | Hides YouTube Premium, Music, and Kids links from the sidebar menu. |
+| 🚫 **Shorts & Feeds** | **Hide Sidebar Footer** | Hides policy and copyright footer text from the left navigation drawer. |
+| 📐 **Layouts** | **Custom Grid Columns** | Choose between 2, 3, 4, 5, or 6 video cards per row on Home and Subscriptions. |
+| 📐 **Layouts** | **Sticky Player & Dual Scroll** | Pins the video player at the top and enables independent, hardware-accelerated column scrolling. |
+| 💬 **Comments** | **Dock Comments to Sidebar** | Moves the comments section into the right sidebar next to the video player. |
+| 💬 **Comments** | **1-Click Refresh Comments** | Silently reloads comments in the background without refreshing the page or interrupting audio. |
+| 📸 **Comments** | **Comment & Thread Screenshot** | 1-click camera button that copies high-resolution comment cards or full discussion threads to the clipboard. |
+| 💬 **Comments** | **Hide Comments & Chat** | Removes video comments and live chat replay entirely. |
+| 👁️ **Visual Detox** | **Blur Thumbnails** | Blurs video thumbnails until you hover your mouse over them. |
+| 🎨 **Styling** | **Grayscale Mode** | Converts the entire YouTube interface to distraction-free black & white. |
+| 🎨 **Styling** | **Block Ambient Mode** | Removes the glowing background halo lighting behind the video player. |
+| 🎨 **Styling** | **Hide Scrollbars** | Hides scrollbars across Home feeds, Sidebar, Watch page, or Panels while keeping smooth scrolling intact. |
+| 📺 **Watch Page** | **Hide Recommended Videos** | Removes the recommended video sidebar on watch pages. |
+| 📺 **Watch Page** | **Hide Buttons & Stats** | Hides Subscribe buttons, view counts, and like counts. |
+| 📺 **Watch Page** | **Hide Top Header** | Hides the top search bar and header navigation. |
+| 🎛️ **Player Tools** | **Playback Speed Button** | Adds an in-player button to cycle between 3 custom speeds (e.g., 1.0x, 1.5x, 2.0x) and remembers your speed across videos. |
+| 📸 **Player Tools** | **Video Screenshot** | Captures a high-resolution PNG frame directly from the video stream to your clipboard/downloads. |
+| 🔲 **Player Tools** | **Mini Fullscreen** | Expands the player to fill the window while keeping your tabs and bookmarks bar visible. |
 
 ---
 
 ## ⌨️ Keyboard Shortcuts
 
-| Shortcut | Action | Condition |
-| :--- | :--- | :--- |
+| Key | Action | Condition |
+| :---: | :--- | :--- |
 | `Esc` | Exit Mini Fullscreen | When Mini Fullscreen is active |
-| `T` | Exit Mini Fullscreen | When switching to Cinema / Theater Mode |
-
----
-
-## 🔒 Privacy & Permissions
-
-* **Permission requested**: `storage` only.
-* **Why**: To save your toggle settings locally in your browser (`chrome.storage.local`).
-* **Zero telemetry**: No personal data, URLs, or viewing history are ever collected, transmitted, or stored outside your browser.
-
-Read the full [Privacy Policy](PRIVACY.md).
+| `T` | Exit Mini Fullscreen | When toggling Cinema / Theater Mode |
 
 ---
 
@@ -116,80 +111,115 @@ Read the full [Privacy Policy](PRIVACY.md).
 
 ```text
 YouTube-Control/
-├── assets/             # Screenshots, store posters, and icons
-├── src/                # Extension source code (Edit here)
-│   ├── manifest.json   # Manifest V3 configuration
-│   ├── background.js   # Service worker (uninstall URL & install timestamp)
-│   ├── popup.html      # Settings panel UI
-│   ├── popup.css       # Settings panel styling
-│   ├── popup.js        # Settings panel controller logic
-│   ├── content.js      # YouTube DOM manipulator & features script
-│   ├── content.css     # CSS rules injected into YouTube pages
-│   └── icons/          # Extension icon assets (16px, 48px, 128px)
-├── dist/               # Generated unpacked browser builds (Ignored in git)
-│   ├── chrome/         # Unpacked Chrome distribution
-│   ├── firefox/        # Unpacked Firefox distribution
-│   └── edge/           # Unpacked Edge distribution
-├── releases/           # Generated .zip packages for store uploads
-├── build.py            # Packaging and minification script
-├── CHANGELOG.md        # Release version history
-├── CONTRIBUTING.md     # Development and pull request guide
-└── LICENSE             # MIT License
+├── src/                    # Source code (edit here)
+│   ├── manifest.json       # Manifest V3 extension configuration
+│   ├── background.js       # Lightweight background service worker
+│   ├── popup.html          # Popup settings user interface
+│   ├── popup.css           # Popup styling
+│   ├── popup.js            # Popup controller logic
+│   ├── content.js          # Main content script entry point
+│   ├── content.css         # Injected layout, theme, and detox styles
+│   ├── modules/            # Self-contained ES modules
+│   │   ├── comment-canvas.js   # Canvas drawing, thread curves & screenshot export
+│   │   ├── speed-controller.js # Video rate cycling, memory & event listeners
+│   │   ├── watch-navigation.js # URL tracking, lifecycle hooks & scroll resets
+│   │   └── settings-schema.js  # Unified settings definitions & parent/sub rules
+│   └── icons/              # Extension icons (16px, 48px, 128px)
+├── dist/                   # Bundled unpacked builds for browsers (generated)
+│   ├── chrome/             # Ready-to-load Chrome/Edge build
+│   └── firefox/            # Ready-to-load Firefox build
+├── releases/               # Store upload zip archives (generated)
+├── test/                   # Automated unit and regression test suites
+│   ├── test-comment-canvas.js
+│   ├── test-scrolling-performance.js
+│   ├── test-settings-schema.js
+│   ├── test-sidebar-footer-comments.js
+│   ├── test-speed-controller.js
+│   └── test-watch-navigation.js
+├── build.py                # esbuild bundler, minifier, and packaging script
+├── package.json            # Node development dependencies and test scripts
+├── CHANGELOG.md            # Public user-facing version notes
+├── CONTRIBUTING.md         # Developer setup and contribution guide
+└── LICENSE                 # MIT License
 ```
 
 ---
 
-## 🛠️ Local Development & Testing
+## 🛠️ Local Development
 
 ### Prerequisites
-* [Python 3.8+](https://www.python.org/downloads/) installed.
+* **[Node.js](https://nodejs.org/)** (v18 or higher)
+* **[Python](https://www.python.org/)** (v3.8 or higher)
+* **[Git](https://git-scm.com/)**
 
-### 1. Build the Extension
-Run the build script to process files into the `dist/` folder:
+### 1. Clone & Install Dependencies
+```bash
+git clone https://github.com/vishwa-vsr/YouTube-Control.git
+cd YouTube-Control
+npm install
+```
+
+### 2. Run Automated Tests
+```bash
+npm test
+```
+
+### 3. Build Extension Bundles
+Run the build script to bundle `src/` into the `dist/` directory via `esbuild`:
 
 ```bash
-# Build unpacked folders for Chrome, Firefox, and Edge
+# Build unpacked distribution folders for Chrome, Firefox, and Edge
 python build.py -y
 
-# Optional: Build unpacked folders AND create zip files in releases/
+# Optional: Build unpacked distributions AND package store-ready zip archives in releases/
 python build.py -y --zip
 ```
 
-### 2. Load in Your Browser
+---
 
-#### Google Chrome / Chromium Browsers (Brave, Opera, Vivaldi)
-1. Go to `chrome://extensions/` in your address bar.
-2. Enable **Developer mode** (top-right toggle).
-3. Click **Load unpacked** (top-left button).
-4. Select the `dist/chrome` folder inside this repository.
+## 🔌 Loading in Your Browser
 
-#### Microsoft Edge
-1. Go to `edge://extensions/` in your address bar.
-2. Enable **Developer mode** (bottom-left toggle).
-3. Click **Load unpacked** (top-right button).
-4. Select the `dist/edge` folder.
+### Google Chrome, Edge, Brave, or Opera
+1. Navigate to `chrome://extensions/` (or `edge://extensions/` in Edge).
+2. Enable **Developer mode** using the toggle switch.
+3. Click **Load unpacked**.
+4. Select the **`dist/chrome`** directory inside this repository.
 
-#### Mozilla Firefox
-1. Go to `about:debugging#/runtime/this-firefox` in your address bar.
+### Mozilla Firefox
+1. Navigate to `about:debugging#/runtime/this-firefox`.
 2. Click **Load Temporary Add-on...**.
-3. Select the `manifest.json` file inside the `dist/firefox` folder.
+3. Select the `manifest.json` file inside **`dist/firefox`**.
 
 > [!TIP]
-> **Applying changes during development:**  
-> Edit files inside `src/`, run `python build.py -y`, and click the **Reload icon (↻)** on the extension card in `chrome://extensions/`.
+> **Active Development Flow**: Edit files inside `src/` or `src/modules/`, run `python build.py -y`, and click the **Reload (↻)** icon on the extension card in your browser's extension manager.
+
+---
+
+## 🔍 Troubleshooting
+
+| Issue | Cause | Fix |
+| :--- | :--- | :--- |
+| `Cannot find module 'esbuild'` | Missing Node dependencies. | Run `npm install` in the project root. |
+| Changes don't appear on YouTube | You edited `src/` but didn't recompile. | Run `python build.py -y` and click Reload in `chrome://extensions`. |
+| Script error loading `src/` in Chrome | You loaded `src/` instead of `dist/chrome`. | Load the compiled `dist/chrome` folder (content scripts require bundling). |
+| YouTube layout looks broken | YouTube changed Polymer DOM nodes. | Run `npm test` to verify selectors against fixtures. |
+
+---
+
+## 🔒 Privacy & Permissions
+
+* **Permission requested**: `storage` only.
+* **Why**: To save your toggle preferences locally via `chrome.storage.local`.
+* **Zero network tracking**: No telemetry, tracking pixels, or remote servers. See our [Privacy Policy](PRIVACY.md).
 
 ---
 
 ## 🤝 Contributing
 
-Contributions, bug reports, and feature suggestions are welcome! Please read the [Contributing Guide](CONTRIBUTING.md) before submitting a pull request.
-
-* 🐛 [Report a Bug](https://github.com/vishwa-vsr/YouTube-Control/issues/new?labels=bug)
-* 💡 [Request a Feature](https://github.com/vishwa-vsr/YouTube-Control/issues/new?labels=enhancement)
-* 📋 [View Open Issues](https://github.com/vishwa-vsr/YouTube-Control/issues)
+Bug reports, feature requests, and code contributions are welcome! Please read the [Contributing Guide](CONTRIBUTING.md) before submitting a pull request.
 
 ---
 
 ## 📄 License
 
-This project is open-source under the [MIT License](LICENSE).
+Distributed under the [MIT License](LICENSE).
