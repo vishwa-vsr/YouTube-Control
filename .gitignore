@@ -23,6 +23,7 @@ Thumbs.db
 
 # Ignore large assets, idea files, and AI settings
 /assets/webstore/
+/assets/webstore-stats/
 /assets/promotional-posters/
 /assets/idea.md
 /skills/
