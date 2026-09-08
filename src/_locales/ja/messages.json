@@ -1,0 +1,206 @@
+{
+  "appName": {
+    "message": "YouTube Control — Shorts ブロック・フィード非表示"
+  },
+  "appDesc": {
+    "message": "YouTube Shortsのブロック、フィードやおすすめ動画の非表示、サムネイルのぼかし、コメントのサイドバー固定など、YouTubeを快適にカスタマイズ。"
+  },
+  "appTitle": {
+    "message": "YouTube Control"
+  },
+  "headerGithubTitle": {
+    "message": "GitHub リポジトリ"
+  },
+  "tabFeeds": {
+    "message": "フィード"
+  },
+  "tabWatch": {
+    "message": "再生画面"
+  },
+  "tabStyle": {
+    "message": "スタイル"
+  },
+  "sectionNavigationFeeds": {
+    "message": "ナビゲーションとフィード"
+  },
+  "hideHomeFeed": {
+    "message": "ホームフィードを非表示"
+  },
+  "hideCategoryBar": {
+    "message": "カテゴリバーを非表示"
+  },
+  "catBarHomeFeeds": {
+    "message": "ホームとフィード"
+  },
+  "catBarChannels": {
+    "message": "チャンネルページ"
+  },
+  "catBarWatch": {
+    "message": "再生ページ"
+  },
+  "customGridEnabled": {
+    "message": "グリッド列数を変更"
+  },
+  "gridVideosPerRow": {
+    "message": "1行あたりの動画数"
+  },
+  "hideMixPlaylists": {
+    "message": "Mixリストを非表示"
+  },
+  "mixHomeFeeds": {
+    "message": "ホームとフィード"
+  },
+  "mixWatch": {
+    "message": "再生ページ"
+  },
+  "hideShorts": {
+    "message": "Shorts を非表示"
+  },
+  "shortsSidebar": {
+    "message": "サイドバーメニュー"
+  },
+  "shortsFeeds": {
+    "message": "ホームとフィード"
+  },
+  "shortsChannels": {
+    "message": "チャンネルページ"
+  },
+  "shortsWatch": {
+    "message": "再生ページ"
+  },
+  "sectionSidebarMenu": {
+    "message": "サイドバーの各セクション"
+  },
+  "hideSubscriptions": {
+    "message": "登録チャンネルを非表示"
+  },
+  "hideYou": {
+    "message": "「あなた」を非表示"
+  },
+  "hideExplore": {
+    "message": "探索を非表示"
+  },
+  "hideMoreFromYoutube": {
+    "message": "YouTube のその他を非表示"
+  },
+  "hideSidebarFooter": {
+    "message": "サイドバーのフッターを非表示"
+  },
+  "sectionWatchExperience": {
+    "message": "再生画面のカスタマイズ"
+  },
+  "sectionPlayerControls": {
+    "message": "プレーヤー操作"
+  },
+  "showSpeedBtn": {
+    "message": "再生速度ボタンを表示"
+  },
+  "customSpeeds": {
+    "message": "プリセット速度"
+  },
+  "speedAria1": {
+    "message": "速度 1"
+  },
+  "speedAria2": {
+    "message": "速度 2"
+  },
+  "speedAria3": {
+    "message": "速度 3"
+  },
+  "showScreenshotBtn": {
+    "message": "動画キャプチャボタン"
+  },
+  "showMiniFullscreenBtn": {
+    "message": "シアターマックス (超拡大)"
+  },
+  "miniFullscreenFill": {
+    "message": "画面いっぱいに拡大 (ズーム)"
+  },
+  "stickyPlayer": {
+    "message": "プレーヤー追従固定"
+  },
+  "stickyHideScrollbars": {
+    "message": "スクロールバーを非表示"
+  },
+  "sectionCommentsSidebar": {
+    "message": "コメントとサイドバー"
+  },
+  "showCommentScreenshotBtn": {
+    "message": "コメントキャプチャボタン"
+  },
+  "showRefreshCommentsBtn": {
+    "message": "コメント再読み込みボタン"
+  },
+  "dockCommentsSidebar": {
+    "message": "コメントを右側に固定"
+  },
+  "dockCommentsHideScrollbar": {
+    "message": "スクロールバーを非表示"
+  },
+  "hideComments": {
+    "message": "コメント欄を完全非表示"
+  },
+  "hideRecommended": {
+    "message": "おすすめ関連動画を非表示"
+  },
+  "sectionHeaderStats": {
+    "message": "ヘッダーと統計表示"
+  },
+  "hideButtonsStats": {
+    "message": "再生回数・高評価を非表示"
+  },
+  "hideHeader": {
+    "message": "上部ナビバーを非表示"
+  },
+  "sectionVisualStyling": {
+    "message": "画面の見た目・スタイル"
+  },
+  "grayscaleMode": {
+    "message": "モノクロ表示モード"
+  },
+  "hideAmbientMode": {
+    "message": "シネマティック照明をブロック"
+  },
+  "blurThumbnails": {
+    "message": "サムネイルをぼかす"
+  },
+  "unblurOnHover": {
+    "message": "マウスホバーでくっきり表示"
+  },
+  "sectionScrollbars": {
+    "message": "スクロールバーの非表示"
+  },
+  "hideScrollbars": {
+    "message": "スクロールバーを隠す"
+  },
+  "scrollbarsFeeds": {
+    "message": "ホーム・主要ページ"
+  },
+  "scrollbarsSidebar": {
+    "message": "左サイドバーメニュー"
+  },
+  "scrollbarsWatch": {
+    "message": "通常の動画再生ページ"
+  },
+  "scrollbarsPanels": {
+    "message": "チャット欄・再生リスト"
+  },
+  "rateUs": {
+    "message": "評価する 5★"
+  },
+  "feedback": {
+    "message": "ご意見 💬"
+  },
+  "reviewMessage": {
+    "message": "YouTube Control がお役に立ちましたら、Chrome ウェブストアで短いレビューをいただけると大変励みになります。10秒ほどで完了します。"
+  },
+  "reviewLeaveBtn": {
+    "message": "レビューを書く"
+  },
+  "reviewLaterBtn": {
+    "message": "後で"
+  },
+  "reviewDismissBtn": {
+    "message": "今後表示しない"
+  }
+}

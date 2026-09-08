@@ -1,0 +1,206 @@
+{
+  "appName": {
+    "message": "YouTube Control — Bloquer les Shorts, Masquer le flux et Recommandations"
+  },
+  "appDesc": {
+    "message": "Bloquez les YouTube Shorts, masquez les flux et recommandations, floutez les miniatures, épinglez les commentaires et personnalisez votre expérience."
+  },
+  "appTitle": {
+    "message": "YouTube Control"
+  },
+  "headerGithubTitle": {
+    "message": "Dépôt GitHub"
+  },
+  "tabFeeds": {
+    "message": "Flux"
+  },
+  "tabWatch": {
+    "message": "Visionnage"
+  },
+  "tabStyle": {
+    "message": "Style"
+  },
+  "sectionNavigationFeeds": {
+    "message": "Navigation et Flux"
+  },
+  "hideHomeFeed": {
+    "message": "Masquer le flux d'accueil"
+  },
+  "hideCategoryBar": {
+    "message": "Masquer la barre de catégories"
+  },
+  "catBarHomeFeeds": {
+    "message": "Accueil et flux"
+  },
+  "catBarChannels": {
+    "message": "Pages de chaînes"
+  },
+  "catBarWatch": {
+    "message": "Page de lecture"
+  },
+  "customGridEnabled": {
+    "message": "Grille personnalisée"
+  },
+  "gridVideosPerRow": {
+    "message": "Vidéos par ligne"
+  },
+  "hideMixPlaylists": {
+    "message": "Masquer les playlists Mix"
+  },
+  "mixHomeFeeds": {
+    "message": "Accueil et flux"
+  },
+  "mixWatch": {
+    "message": "Page de lecture"
+  },
+  "hideShorts": {
+    "message": "Masquer les Shorts"
+  },
+  "shortsSidebar": {
+    "message": "Menu latéral"
+  },
+  "shortsFeeds": {
+    "message": "Accueil et flux"
+  },
+  "shortsChannels": {
+    "message": "Pages de chaînes"
+  },
+  "shortsWatch": {
+    "message": "Page de lecture"
+  },
+  "sectionSidebarMenu": {
+    "message": "Sections du menu latéral"
+  },
+  "hideSubscriptions": {
+    "message": "Masquer les Abonnements"
+  },
+  "hideYou": {
+    "message": "Masquer la section \"Vous\""
+  },
+  "hideExplore": {
+    "message": "Masquer Explorer"
+  },
+  "hideMoreFromYoutube": {
+    "message": "Masquer Autres contenus YouTube"
+  },
+  "hideSidebarFooter": {
+    "message": "Masquer le bas du menu latéral"
+  },
+  "sectionWatchExperience": {
+    "message": "Expérience de visionnage"
+  },
+  "sectionPlayerControls": {
+    "message": "Commandes du lecteur"
+  },
+  "showSpeedBtn": {
+    "message": "Sélecteur de vitesse"
+  },
+  "customSpeeds": {
+    "message": "Vitesses personnalisées"
+  },
+  "speedAria1": {
+    "message": "Vitesse 1"
+  },
+  "speedAria2": {
+    "message": "Vitesse 2"
+  },
+  "speedAria3": {
+    "message": "Vitesse 3"
+  },
+  "showScreenshotBtn": {
+    "message": "Capture d'écran vidéo"
+  },
+  "showMiniFullscreenBtn": {
+    "message": "Mode cinéma agrandi"
+  },
+  "miniFullscreenFill": {
+    "message": "Plein écran ajusté (Zoom)"
+  },
+  "stickyPlayer": {
+    "message": "Lecteur vidéo épinglé"
+  },
+  "stickyHideScrollbars": {
+    "message": "Masquer les barres de défilement"
+  },
+  "sectionCommentsSidebar": {
+    "message": "Commentaires et volet latéral"
+  },
+  "showCommentScreenshotBtn": {
+    "message": "Capture de commentaire"
+  },
+  "showRefreshCommentsBtn": {
+    "message": "Actualiser les commentaires"
+  },
+  "dockCommentsSidebar": {
+    "message": "Épingler les commentaires à droite"
+  },
+  "dockCommentsHideScrollbar": {
+    "message": "Masquer la barre de défilement"
+  },
+  "hideComments": {
+    "message": "Masquer entièrement les commentaires"
+  },
+  "hideRecommended": {
+    "message": "Masquer les recommandations"
+  },
+  "sectionHeaderStats": {
+    "message": "En-tête et statistiques"
+  },
+  "hideButtonsStats": {
+    "message": "Masquer vues et mentions j'aime"
+  },
+  "hideHeader": {
+    "message": "Masquer la barre du haut"
+  },
+  "sectionVisualStyling": {
+    "message": "Apparence visuelle"
+  },
+  "grayscaleMode": {
+    "message": "Mode Noir et Blanc"
+  },
+  "hideAmbientMode": {
+    "message": "Bloquer l'éclairage ambiant"
+  },
+  "blurThumbnails": {
+    "message": "Flouter les miniatures"
+  },
+  "unblurOnHover": {
+    "message": "Afficher au survol"
+  },
+  "sectionScrollbars": {
+    "message": "Barres de défilement discrètes"
+  },
+  "hideScrollbars": {
+    "message": "Masquer les barres de défilement"
+  },
+  "scrollbarsFeeds": {
+    "message": "Flux principaux et pages"
+  },
+  "scrollbarsSidebar": {
+    "message": "Menu de navigation gauche"
+  },
+  "scrollbarsWatch": {
+    "message": "Page de lecture classique"
+  },
+  "scrollbarsPanels": {
+    "message": "Chat en direct et playlists"
+  },
+  "rateUs": {
+    "message": "Noter 5★"
+  },
+  "feedback": {
+    "message": "Avis 💬"
+  },
+  "reviewMessage": {
+    "message": "Si YouTube Control vous est utile, un court avis sur le Chrome Web Store nous ferait très plaisir. Cela ne prend que 10 secondes."
+  },
+  "reviewLeaveBtn": {
+    "message": "Donner mon avis"
+  },
+  "reviewLaterBtn": {
+    "message": "Plus tard"
+  },
+  "reviewDismissBtn": {
+    "message": "Ne plus afficher"
+  }
+}

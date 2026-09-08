@@ -1,0 +1,206 @@
+{
+  "appName": {
+    "message": "YouTube Control — Block Shorts, Hide Feed & Recommendations"
+  },
+  "appDesc": {
+    "message": "Block YouTube Shorts, hide feeds & recommendations, blur thumbnails, dock comments, and customize your YouTube experience."
+  },
+  "appTitle": {
+    "message": "YouTube Control"
+  },
+  "headerGithubTitle": {
+    "message": "GitHub Repository"
+  },
+  "tabFeeds": {
+    "message": "Feeds"
+  },
+  "tabWatch": {
+    "message": "Watch"
+  },
+  "tabStyle": {
+    "message": "Style"
+  },
+  "sectionNavigationFeeds": {
+    "message": "Navigation & Feeds"
+  },
+  "hideHomeFeed": {
+    "message": "Hide Home Feed"
+  },
+  "hideCategoryBar": {
+    "message": "Hide Category Bar"
+  },
+  "catBarHomeFeeds": {
+    "message": "Home & Feeds"
+  },
+  "catBarChannels": {
+    "message": "Channel Pages"
+  },
+  "catBarWatch": {
+    "message": "Watch Page"
+  },
+  "customGridEnabled": {
+    "message": "Custom Video Grid"
+  },
+  "gridVideosPerRow": {
+    "message": "Videos Per Row"
+  },
+  "hideMixPlaylists": {
+    "message": "Hide Mix Playlists"
+  },
+  "mixHomeFeeds": {
+    "message": "Home & Feeds"
+  },
+  "mixWatch": {
+    "message": "Watch Page"
+  },
+  "hideShorts": {
+    "message": "Hide Shorts"
+  },
+  "shortsSidebar": {
+    "message": "Sidebar Menu"
+  },
+  "shortsFeeds": {
+    "message": "Home & Feeds"
+  },
+  "shortsChannels": {
+    "message": "Channel Pages"
+  },
+  "shortsWatch": {
+    "message": "Watch Page"
+  },
+  "sectionSidebarMenu": {
+    "message": "Sidebar Menu Sections"
+  },
+  "hideSubscriptions": {
+    "message": "Hide Subscriptions"
+  },
+  "hideYou": {
+    "message": "Hide 'You' Section"
+  },
+  "hideExplore": {
+    "message": "Hide Explore Section"
+  },
+  "hideMoreFromYoutube": {
+    "message": "Hide More from YouTube"
+  },
+  "hideSidebarFooter": {
+    "message": "Hide Sidebar Footer"
+  },
+  "sectionWatchExperience": {
+    "message": "Watch Experience"
+  },
+  "sectionPlayerControls": {
+    "message": "Player Controls"
+  },
+  "showSpeedBtn": {
+    "message": "Speed Switcher"
+  },
+  "customSpeeds": {
+    "message": "Custom Speeds"
+  },
+  "speedAria1": {
+    "message": "Speed 1"
+  },
+  "speedAria2": {
+    "message": "Speed 2"
+  },
+  "speedAria3": {
+    "message": "Speed 3"
+  },
+  "showScreenshotBtn": {
+    "message": "Video Screenshot"
+  },
+  "showMiniFullscreenBtn": {
+    "message": "Theater Max"
+  },
+  "miniFullscreenFill": {
+    "message": "Fill Screen (Zoom)"
+  },
+  "stickyPlayer": {
+    "message": "Sticky Player"
+  },
+  "stickyHideScrollbars": {
+    "message": "Hide Scrollbars"
+  },
+  "sectionCommentsSidebar": {
+    "message": "Comments & Sidebar"
+  },
+  "showCommentScreenshotBtn": {
+    "message": "Comment Screenshot"
+  },
+  "showRefreshCommentsBtn": {
+    "message": "Refresh Comments"
+  },
+  "dockCommentsSidebar": {
+    "message": "Dock Comments"
+  },
+  "dockCommentsHideScrollbar": {
+    "message": "Hide Scrollbar"
+  },
+  "hideComments": {
+    "message": "Hide Comments"
+  },
+  "hideRecommended": {
+    "message": "Hide Recommendations"
+  },
+  "sectionHeaderStats": {
+    "message": "Header & Stats"
+  },
+  "hideButtonsStats": {
+    "message": "Hide Video Stats"
+  },
+  "hideHeader": {
+    "message": "Hide Top Bar"
+  },
+  "sectionVisualStyling": {
+    "message": "Visual Styling"
+  },
+  "grayscaleMode": {
+    "message": "Black & White"
+  },
+  "hideAmbientMode": {
+    "message": "Block Ambient Glow"
+  },
+  "blurThumbnails": {
+    "message": "Blur Thumbnails"
+  },
+  "unblurOnHover": {
+    "message": "Reveal on Hover"
+  },
+  "sectionScrollbars": {
+    "message": "Scrollbars & Clean View"
+  },
+  "hideScrollbars": {
+    "message": "Hide Scrollbars"
+  },
+  "scrollbarsFeeds": {
+    "message": "Main Feeds & Pages"
+  },
+  "scrollbarsSidebar": {
+    "message": "Left Navigation Menu"
+  },
+  "scrollbarsWatch": {
+    "message": "Standard Watch Page"
+  },
+  "scrollbarsPanels": {
+    "message": "Live Chat & Playlists"
+  },
+  "rateUs": {
+    "message": "Rate Us 5★"
+  },
+  "feedback": {
+    "message": "Feedback 💬"
+  },
+  "reviewMessage": {
+    "message": "If YouTube Control has helped you, a quick review on the Chrome Web Store would mean the world to us. It takes 10 seconds."
+  },
+  "reviewLeaveBtn": {
+    "message": "Leave a Review"
+  },
+  "reviewLaterBtn": {
+    "message": "Maybe Later"
+  },
+  "reviewDismissBtn": {
+    "message": "Don't Ask Again"
+  }
+}

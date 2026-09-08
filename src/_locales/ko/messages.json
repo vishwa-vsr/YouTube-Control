@@ -1,0 +1,206 @@
+{
+  "appName": {
+    "message": "YouTube Control — Shorts 차단, 홈 피드 및 추천 동영상 숨김"
+  },
+  "appDesc": {
+    "message": "YouTube Shorts 차단, 피드 및 추천 동영상 숨김, 썸네일 블러, 댓글 사이드바 고정 등 나만의 맞춤 YouTube 환경을 만드세요."
+  },
+  "appTitle": {
+    "message": "YouTube Control"
+  },
+  "headerGithubTitle": {
+    "message": "GitHub 저장소"
+  },
+  "tabFeeds": {
+    "message": "피드"
+  },
+  "tabWatch": {
+    "message": "재생"
+  },
+  "tabStyle": {
+    "message": "스타일"
+  },
+  "sectionNavigationFeeds": {
+    "message": "탐색 및 피드"
+  },
+  "hideHomeFeed": {
+    "message": "홈 피드 숨기기"
+  },
+  "hideCategoryBar": {
+    "message": "카테고리 바 숨기기"
+  },
+  "catBarHomeFeeds": {
+    "message": "홈 및 피드"
+  },
+  "catBarChannels": {
+    "message": "채널 페이지"
+  },
+  "catBarWatch": {
+    "message": "동영상 재생 페이지"
+  },
+  "customGridEnabled": {
+    "message": "동영상 그리드 맞춤 설정"
+  },
+  "gridVideosPerRow": {
+    "message": "한 줄당 동영상 수"
+  },
+  "hideMixPlaylists": {
+    "message": "믹스 재생목록 숨기기"
+  },
+  "mixHomeFeeds": {
+    "message": "홈 및 피드"
+  },
+  "mixWatch": {
+    "message": "동영상 재생 페이지"
+  },
+  "hideShorts": {
+    "message": "Shorts 숨기기"
+  },
+  "shortsSidebar": {
+    "message": "사이드바 메뉴"
+  },
+  "shortsFeeds": {
+    "message": "홈 및 피드"
+  },
+  "shortsChannels": {
+    "message": "채널 페이지"
+  },
+  "shortsWatch": {
+    "message": "동영상 재생 페이지"
+  },
+  "sectionSidebarMenu": {
+    "message": "사이드바 메뉴 항목"
+  },
+  "hideSubscriptions": {
+    "message": "구독 숨기기"
+  },
+  "hideYou": {
+    "message": "'내 페이지' 숨기기"
+  },
+  "hideExplore": {
+    "message": "탐색 숨기기"
+  },
+  "hideMoreFromYoutube": {
+    "message": "YouTube 더보기 숨기기"
+  },
+  "hideSidebarFooter": {
+    "message": "사이드바 하단 정보 숨기기"
+  },
+  "sectionWatchExperience": {
+    "message": "동영상 재생 환경"
+  },
+  "sectionPlayerControls": {
+    "message": "플레이어 컨트롤"
+  },
+  "showSpeedBtn": {
+    "message": "재생 속도 빠른 전환 버튼"
+  },
+  "customSpeeds": {
+    "message": "원클릭 속도 설정"
+  },
+  "speedAria1": {
+    "message": "속도 1"
+  },
+  "speedAria2": {
+    "message": "속도 2"
+  },
+  "speedAria3": {
+    "message": "속도 3"
+  },
+  "showScreenshotBtn": {
+    "message": "동영상 캡처 버튼"
+  },
+  "showMiniFullscreenBtn": {
+    "message": "영화관 모드 극대화"
+  },
+  "miniFullscreenFill": {
+    "message": "화면 꽉 채우기 (확대)"
+  },
+  "stickyPlayer": {
+    "message": "동영상 화면 상단 고정"
+  },
+  "stickyHideScrollbars": {
+    "message": "스크롤바 숨기기"
+  },
+  "sectionCommentsSidebar": {
+    "message": "댓글 및 사이드바"
+  },
+  "showCommentScreenshotBtn": {
+    "message": "댓글 캡처 버튼"
+  },
+  "showRefreshCommentsBtn": {
+    "message": "댓글 새로고침 버튼"
+  },
+  "dockCommentsSidebar": {
+    "message": "댓글 창 우측 고정"
+  },
+  "dockCommentsHideScrollbar": {
+    "message": "스크롤바 숨기기"
+  },
+  "hideComments": {
+    "message": "댓글 완전 숨기기"
+  },
+  "hideRecommended": {
+    "message": "추천 동영상 목록 숨기기"
+  },
+  "sectionHeaderStats": {
+    "message": "상단바 및 통계"
+  },
+  "hideButtonsStats": {
+    "message": "조회수 및 좋아요 수 숨기기"
+  },
+  "hideHeader": {
+    "message": "YouTube 상단바 숨기기"
+  },
+  "sectionVisualStyling": {
+    "message": "화면 스타일"
+  },
+  "grayscaleMode": {
+    "message": "흑백 화면 모드"
+  },
+  "hideAmbientMode": {
+    "message": "시네마틱 조명 효과 차단"
+  },
+  "blurThumbnails": {
+    "message": "썸네일 흐리게 처리 (블러)"
+  },
+  "unblurOnHover": {
+    "message": "마우스를 올리면 선명하게 표시"
+  },
+  "sectionScrollbars": {
+    "message": "스크롤바 깔끔하게 정리"
+  },
+  "hideScrollbars": {
+    "message": "스크롤바 숨김"
+  },
+  "scrollbarsFeeds": {
+    "message": "메인 피드 및 일반 페이지"
+  },
+  "scrollbarsSidebar": {
+    "message": "왼쪽 탐색 메뉴"
+  },
+  "scrollbarsWatch": {
+    "message": "동영상 시청 페이지"
+  },
+  "scrollbarsPanels": {
+    "message": "실시간 채팅 및 재생목록"
+  },
+  "rateUs": {
+    "message": "별점 5★ 남기기"
+  },
+  "feedback": {
+    "message": "피드백 💬"
+  },
+  "reviewMessage": {
+    "message": "YouTube Control이 마음에 드셨다면 Chrome 웹스토어에 간단한 리뷰를 남겨주세요. 개발에 큰 힘이 되며 10초면 작성할 수 있습니다."
+  },
+  "reviewLeaveBtn": {
+    "message": "리뷰 작성하기"
+  },
+  "reviewLaterBtn": {
+    "message": "나중에"
+  },
+  "reviewDismissBtn": {
+    "message": "다시 보지 않기"
+  }
+}

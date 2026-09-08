@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YouTube Control</title>
+  <title data-i18n="appTitle">YouTube Control</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
@@ -12,10 +12,10 @@
     <header class="app-header">
       <div class="logo-area">
         <img src="icons/logo.png" class="header-logo" alt="logo">
-        <span class="app-title">YouTube Control</span>
+        <span class="app-title" data-i18n="appTitle">YouTube Control</span>
       </div>
       <div class="header-actions">
-        <button type="button" class="header-icon-btn github-header-btn" id="githubHeaderBtn" title="GitHub Repository">
+        <button type="button" class="header-icon-btn github-header-btn" id="githubHeaderBtn" title="GitHub Repository" data-i18n-title="headerGithubTitle">
           <svg viewBox="0 0 24 24" class="header-github-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </button>
         <label class="header-toggle">
@@ -29,22 +29,22 @@
 
     <!-- Tabs Navigation Capsule -->
     <div class="tabs-navigation">
-      <button class="tab-btn active" data-tab="feeds">Feeds</button>
-      <button class="tab-btn" data-tab="watch">Watch</button>
-      <button class="tab-btn" data-tab="style">Style</button>
+      <button class="tab-btn active" data-tab="feeds" data-i18n="tabFeeds">Feeds</button>
+      <button class="tab-btn" data-tab="watch" data-i18n="tabWatch">Watch</button>
+      <button class="tab-btn" data-tab="style" data-i18n="tabStyle">Style</button>
     </div>
 
     <!-- Options Group -->
     <div id="options-scroll-area">
       <!-- Tab Pane: Feeds -->
       <div class="tab-pane active" id="tab-feeds">
-        <h4 class="section-title">Navigation & Feeds</h4>
+        <h4 class="section-title" data-i18n="sectionNavigationFeeds">Navigation & Feeds</h4>
         
         <!-- Card 1: Hide Home Feed -->
         <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Hide Home Feed</span>
+              <span class="switch-label" data-i18n="hideHomeFeed">Hide Home Feed</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="hideHomeFeed">
@@ -57,7 +57,7 @@
         <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Hide Category Bar</span>
+              <span class="switch-label" data-i18n="hideCategoryBar">Hide Category Bar</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="hideCategoryBar">
@@ -67,7 +67,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-category-feeds">
             <div class="switch-info">
-              <span class="switch-label sub-label">Home & Feeds</span>
+              <span class="switch-label sub-label" data-i18n="catBarHomeFeeds">Home & Feeds</span>
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="hideCategoryBarFeeds">
@@ -77,7 +77,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-category-channels">
             <div class="switch-info">
-              <span class="switch-label sub-label">Channel Pages</span>
+              <span class="switch-label sub-label" data-i18n="catBarChannels">Channel Pages</span>
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="hideCategoryBarChannels">
@@ -87,7 +87,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-category-watch">
             <div class="switch-info">
-              <span class="switch-label sub-label">Watch Page</span>
+              <span class="switch-label sub-label" data-i18n="catBarWatch">Watch Page</span>
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="hideCategoryBarWatch">
@@ -100,7 +100,7 @@
         <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Custom Video Grid</span>
+              <span class="switch-label" data-i18n="customGridEnabled">Custom Video Grid</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="customGridEnabled">
@@ -110,7 +110,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-grid-cols">
             <div class="switch-info">
-              <span class="switch-label sub-label">Videos Per Row</span>
+              <span class="switch-label sub-label" data-i18n="gridVideosPerRow">Videos Per Row</span>
             </div>
             <div class="grid-pill-selector">
               <button type="button" class="grid-pill-btn" data-cols="2">2</button>
@@ -126,7 +126,7 @@
         <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Hide Mix Playlists</span>
+              <span class="switch-label" data-i18n="hideMixPlaylists">Hide Mix Playlists</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="hideMixPlaylists">
@@ -136,7 +136,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-mix-feeds">
             <div class="switch-info">
-              <span class="switch-label sub-label">Home & Feeds</span>
+              <span class="switch-label sub-label" data-i18n="mixHomeFeeds">Home & Feeds</span>
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="hideMixPlaylistsFeeds">
@@ -146,7 +146,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-mix-watch">
             <div class="switch-info">
-              <span class="switch-label sub-label">Watch Page</span>
+              <span class="switch-label sub-label" data-i18n="mixWatch">Watch Page</span>
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="hideMixPlaylistsWatch">
@@ -159,7 +159,7 @@
         <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Hide Shorts</span>
+              <span class="switch-label" data-i18n="hideShorts">Hide Shorts</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="hideShorts">
@@ -169,7 +169,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-shorts-sidebar">
             <div class="switch-info">
-              <span class="switch-label sub-label">Sidebar Menu</span>
+              <span class="switch-label sub-label" data-i18n="shortsSidebar">Sidebar Menu</span>
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="hideShortsSidebar">
@@ -179,7 +179,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-shorts-feeds">
             <div class="switch-info">
-              <span class="switch-label sub-label">Home & Feeds</span>
+              <span class="switch-label sub-label" data-i18n="shortsFeeds">Home & Feeds</span>
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="hideShortsFeeds">
@@ -189,7 +189,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-shorts-channel">
             <div class="switch-info">
-              <span class="switch-label sub-label">Channel Pages</span>
+              <span class="switch-label sub-label" data-i18n="shortsChannels">Channel Pages</span>
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="hideShortsChannel">
@@ -199,7 +199,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-shorts-watch">
             <div class="switch-info">
-              <span class="switch-label sub-label">Watch Page</span>
+              <span class="switch-label sub-label" data-i18n="shortsWatch">Watch Page</span>
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="hideShortsWatch">
@@ -210,10 +210,10 @@
 
         <!-- Card 6: Sidebar Navigation Sections -->
         <div class="option-card">
-          <div class="option-card-title">Sidebar Menu Sections</div>
+          <div class="option-card-title" data-i18n="sectionSidebarMenu">Sidebar Menu Sections</div>
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Hide Subscriptions</span>
+              <span class="switch-label" data-i18n="hideSubscriptions">Hide Subscriptions</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="hideSubscriptions">
@@ -223,7 +223,7 @@
 
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Hide 'You' Section</span>
+              <span class="switch-label" data-i18n="hideYou">Hide 'You' Section</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="hideYou">
@@ -233,7 +233,7 @@
 
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Hide Explore Section</span>
+              <span class="switch-label" data-i18n="hideExplore">Hide Explore Section</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="hideExplore">
@@ -243,7 +243,7 @@
 
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Hide More from YouTube</span>
+              <span class="switch-label" data-i18n="hideMoreFromYoutube">Hide More from YouTube</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="hideMoreFromYoutube">
@@ -253,7 +253,7 @@
 
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Hide Sidebar Footer</span>
+              <span class="switch-label" data-i18n="hideSidebarFooter">Hide Sidebar Footer</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="hideSidebarFooter">
@@ -265,14 +265,14 @@
 
       <!-- Tab Pane: Watch Experience -->
       <div class="tab-pane" id="tab-watch">
-        <h4 class="section-title">Watch Experience</h4>
+        <h4 class="section-title" data-i18n="sectionWatchExperience">Watch Experience</h4>
         
         <!-- Section: Player Controls -->
         <div class="option-card">
-          <div class="option-card-title">Player Controls</div>
+          <div class="option-card-title" data-i18n="sectionPlayerControls">Player Controls</div>
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Speed Switcher</span>
+              <span class="switch-label" data-i18n="showSpeedBtn">Speed Switcher</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="showSpeedBtn">
@@ -282,24 +282,24 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-speed-inputs">
             <div class="switch-info">
-              <span class="switch-label sub-label">Custom Speeds</span>
+              <span class="switch-label sub-label" data-i18n="customSpeeds">Custom Speeds</span>
             </div>
             <div class="speed-inputs-container">
               <div class="speed-input-group">
                 <span class="speed-input-label">1:</span>
-                <input type="number" id="speedValueA" class="speed-number-input" min="0.1" max="16" step="0.05" value="1.0" aria-label="Speed 1">
+                <input type="number" id="speedValueA" class="speed-number-input" min="0.1" max="16" step="0.05" value="1.0" aria-label="Speed 1" data-i18n-aria-label="speedAria1">
                 <span class="speed-input-unit">x</span>
               </div>
               <span class="speed-input-divider">→</span>
               <div class="speed-input-group">
                 <span class="speed-input-label">2:</span>
-                <input type="number" id="speedValueB" class="speed-number-input" min="0.1" max="16" step="0.05" value="1.5" aria-label="Speed 2">
+                <input type="number" id="speedValueB" class="speed-number-input" min="0.1" max="16" step="0.05" value="1.5" aria-label="Speed 2" data-i18n-aria-label="speedAria2">
                 <span class="speed-input-unit">x</span>
               </div>
               <span class="speed-input-divider">→</span>
               <div class="speed-input-group">
                 <span class="speed-input-label">3:</span>
-                <input type="number" id="speedValueC" class="speed-number-input" min="0.1" max="16" step="0.05" value="2.0" aria-label="Speed 3">
+                <input type="number" id="speedValueC" class="speed-number-input" min="0.1" max="16" step="0.05" value="2.0" aria-label="Speed 3" data-i18n-aria-label="speedAria3">
                 <span class="speed-input-unit">x</span>
               </div>
             </div>
@@ -307,7 +307,7 @@
 
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Video Screenshot</span>
+              <span class="switch-label" data-i18n="showScreenshotBtn">Video Screenshot</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="showScreenshotBtn">
@@ -317,7 +317,7 @@
 
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Theater Max</span>
+              <span class="switch-label" data-i18n="showMiniFullscreenBtn">Theater Max</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="showMiniFullscreenBtn">
@@ -327,7 +327,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-mini-fullscreen-fill">
             <div class="switch-info">
-              <span class="switch-label sub-label">Fill Screen (Zoom)</span>
+              <span class="switch-label sub-label" data-i18n="miniFullscreenFill">Fill Screen (Zoom)</span>
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="miniFullscreenFill">
@@ -337,7 +337,7 @@
 
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Sticky Player</span>
+              <span class="switch-label" data-i18n="stickyPlayer">Sticky Player</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="stickyPlayer">
@@ -347,7 +347,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-sticky-scrollbars">
             <div class="switch-info">
-              <span class="switch-label sub-label">Hide Scrollbars</span>
+              <span class="switch-label sub-label" data-i18n="stickyHideScrollbars">Hide Scrollbars</span>
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="stickyHideScrollbars">
@@ -358,10 +358,10 @@
 
         <!-- Section: Comments & Sidebar -->
         <div class="option-card">
-          <div class="option-card-title">Comments & Sidebar</div>
+          <div class="option-card-title" data-i18n="sectionCommentsSidebar">Comments & Sidebar</div>
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Comment Screenshot</span>
+              <span class="switch-label" data-i18n="showCommentScreenshotBtn">Comment Screenshot</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="showCommentScreenshotBtn">
@@ -371,7 +371,7 @@
 
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Refresh Comments</span>
+              <span class="switch-label" data-i18n="showRefreshCommentsBtn">Refresh Comments</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="showRefreshCommentsBtn">
@@ -381,7 +381,7 @@
 
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Dock Comments</span>
+              <span class="switch-label" data-i18n="dockCommentsSidebar">Dock Comments</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="dockCommentsSidebar">
@@ -391,7 +391,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-dock-comments-scroll">
             <div class="switch-info">
-              <span class="switch-label sub-label">Hide Scrollbar</span>
+              <span class="switch-label sub-label" data-i18n="dockCommentsHideScrollbar">Hide Scrollbar</span>
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="dockCommentsHideScrollbar">
@@ -401,7 +401,7 @@
 
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Hide Comments</span>
+              <span class="switch-label" data-i18n="hideComments">Hide Comments</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="hideComments">
@@ -411,7 +411,7 @@
 
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Hide Recommendations</span>
+              <span class="switch-label" data-i18n="hideRecommended">Hide Recommendations</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="hideRecommended">
@@ -422,10 +422,10 @@
 
         <!-- Section: Header & Stats -->
         <div class="option-card">
-          <div class="option-card-title">Header & Stats</div>
+          <div class="option-card-title" data-i18n="sectionHeaderStats">Header & Stats</div>
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Hide Video Stats</span>
+              <span class="switch-label" data-i18n="hideButtonsStats">Hide Video Stats</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="hideButtonsStats">
@@ -435,7 +435,7 @@
 
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Hide Top Bar</span>
+              <span class="switch-label" data-i18n="hideHeader">Hide Top Bar</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="hideHeader">
@@ -447,13 +447,13 @@
 
       <!-- Tab Pane: Visual Styling -->
       <div class="tab-pane" id="tab-style">
-        <h4 class="section-title">Visual Styling</h4>
+        <h4 class="section-title" data-i18n="sectionVisualStyling">Visual Styling</h4>
         
         <!-- Card 1: Black & White Mode -->
         <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Black & White</span>
+              <span class="switch-label" data-i18n="grayscaleMode">Black & White</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="grayscaleMode">
@@ -466,7 +466,7 @@
         <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Block Ambient Glow</span>
+              <span class="switch-label" data-i18n="hideAmbientMode">Block Ambient Glow</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="hideAmbientMode">
@@ -479,7 +479,7 @@
         <div class="option-card">
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Blur Thumbnails</span>
+              <span class="switch-label" data-i18n="blurThumbnails">Blur Thumbnails</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="blurThumbnails">
@@ -489,7 +489,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-unblur">
             <div class="switch-info">
-              <span class="switch-label sub-label">Reveal on Hover</span>
+              <span class="switch-label sub-label" data-i18n="unblurOnHover">Reveal on Hover</span>
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="unblurOnHover">
@@ -500,10 +500,10 @@
 
         <!-- Card 4: Hide Scrollbars -->
         <div class="option-card">
-          <div class="option-card-title">Scrollbars & Clean View</div>
+          <div class="option-card-title" data-i18n="sectionScrollbars">Scrollbars & Clean View</div>
           <div class="switch-row">
             <div class="switch-info">
-              <span class="switch-label">Hide Scrollbars</span>
+              <span class="switch-label" data-i18n="hideScrollbars">Hide Scrollbars</span>
             </div>
             <label class="toggle-control">
               <input type="checkbox" id="hideScrollbars">
@@ -513,7 +513,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-scrollbars-feeds">
             <div class="switch-info">
-              <span class="switch-label sub-label">Main Feeds & Pages</span>
+              <span class="switch-label sub-label" data-i18n="scrollbarsFeeds">Main Feeds & Pages</span>
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="hideScrollbarsFeeds">
@@ -523,7 +523,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-scrollbars-sidebar">
             <div class="switch-info">
-              <span class="switch-label sub-label">Left Navigation Menu</span>
+              <span class="switch-label sub-label" data-i18n="scrollbarsSidebar">Left Navigation Menu</span>
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="hideScrollbarsSidebar">
@@ -533,7 +533,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-scrollbars-watch">
             <div class="switch-info">
-              <span class="switch-label sub-label">Standard Watch Page</span>
+              <span class="switch-label sub-label" data-i18n="scrollbarsWatch">Standard Watch Page</span>
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="hideScrollbarsWatch">
@@ -543,7 +543,7 @@
 
           <div class="switch-row sub-switch-row" id="sub-row-scrollbars-panels">
             <div class="switch-info">
-              <span class="switch-label sub-label">Live Chat & Playlists</span>
+              <span class="switch-label sub-label" data-i18n="scrollbarsPanels">Live Chat & Playlists</span>
             </div>
             <label class="toggle-control toggle-sub">
               <input type="checkbox" id="hideScrollbarsPanels">
@@ -558,22 +558,22 @@
     <footer class="app-footer">
       <button type="button" class="footer-action-btn rate-btn" id="rateUsBtn">
         <svg viewBox="0 0 24 24" class="footer-icon star-icon"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-        <span>Rate Us 5★</span>
+        <span data-i18n="rateUs">Rate Us 5★</span>
       </button>
       <button type="button" class="footer-action-btn feedback-btn" id="feedbackBtn">
         <svg viewBox="0 0 24 24" class="footer-icon feedback-icon"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z"/></svg>
-        <span>Feedback 💬</span>
+        <span data-i18n="feedback">Feedback 💬</span>
       </button>
     </footer>
 
     <!-- Review Prompt Modal -->
     <div class="review-overlay" id="reviewOverlay" style="display: none;">
       <div class="review-modal">
-        <p class="review-message">If YouTube Control has helped you, a quick review on the Chrome Web Store would mean the world to us. It takes 10 seconds.</p>
+        <p class="review-message" data-i18n="reviewMessage">If YouTube Control has helped you, a quick review on the Chrome Web Store would mean the world to us. It takes 10 seconds.</p>
         <div class="review-actions">
-          <button type="button" class="review-btn review-btn-primary" id="reviewLeaveBtn">Leave a Review</button>
-          <button type="button" class="review-btn review-btn-secondary" id="reviewLaterBtn">Maybe Later</button>
-          <button type="button" class="review-btn review-btn-dismiss" id="reviewDismissBtn">Don't Ask Again</button>
+          <button type="button" class="review-btn review-btn-primary" id="reviewLeaveBtn" data-i18n="reviewLeaveBtn">Leave a Review</button>
+          <button type="button" class="review-btn review-btn-secondary" id="reviewLaterBtn" data-i18n="reviewLaterBtn">Maybe Later</button>
+          <button type="button" class="review-btn review-btn-dismiss" id="reviewDismissBtn" data-i18n="reviewDismissBtn">Don't Ask Again</button>
         </div>
       </div>
     </div>

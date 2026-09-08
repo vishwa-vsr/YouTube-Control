@@ -1,0 +1,206 @@
+{
+  "appName": {
+    "message": "YouTube Control — Блокировка Shorts, скрытие ленты и рекомендаций"
+  },
+  "appDesc": {
+    "message": "Блокируйте YouTube Shorts, скрывайте ленту и рекомендации, размывайте превью, закрепляйте комментарии сбоку и настраивайте YouTube под себя."
+  },
+  "appTitle": {
+    "message": "YouTube Control"
+  },
+  "headerGithubTitle": {
+    "message": "Репозиторий GitHub"
+  },
+  "tabFeeds": {
+    "message": "Лента"
+  },
+  "tabWatch": {
+    "message": "Просмотр"
+  },
+  "tabStyle": {
+    "message": "Стиль"
+  },
+  "sectionNavigationFeeds": {
+    "message": "Навигация и лента"
+  },
+  "hideHomeFeed": {
+    "message": "Скрыть главную ленту"
+  },
+  "hideCategoryBar": {
+    "message": "Скрыть панель категорий"
+  },
+  "catBarHomeFeeds": {
+    "message": "Главная и лента"
+  },
+  "catBarChannels": {
+    "message": "Страницы каналов"
+  },
+  "catBarWatch": {
+    "message": "Страница видео"
+  },
+  "customGridEnabled": {
+    "message": "Своя сетка видео"
+  },
+  "gridVideosPerRow": {
+    "message": "Видео в ряду"
+  },
+  "hideMixPlaylists": {
+    "message": "Скрыть микс-плейлисты"
+  },
+  "mixHomeFeeds": {
+    "message": "Главная и лента"
+  },
+  "mixWatch": {
+    "message": "Страница видео"
+  },
+  "hideShorts": {
+    "message": "Скрыть Shorts"
+  },
+  "shortsSidebar": {
+    "message": "Боковое меню"
+  },
+  "shortsFeeds": {
+    "message": "Главная и лента"
+  },
+  "shortsChannels": {
+    "message": "Страницы каналов"
+  },
+  "shortsWatch": {
+    "message": "Страница видео"
+  },
+  "sectionSidebarMenu": {
+    "message": "Разделы бокового меню"
+  },
+  "hideSubscriptions": {
+    "message": "Скрыть Подписки"
+  },
+  "hideYou": {
+    "message": "Скрыть раздел «Вы»"
+  },
+  "hideExplore": {
+    "message": "Скрыть «Навигатор»"
+  },
+  "hideMoreFromYoutube": {
+    "message": "Скрыть «Другие возможности YouTube»"
+  },
+  "hideSidebarFooter": {
+    "message": "Скрыть подвал бокового меню"
+  },
+  "sectionWatchExperience": {
+    "message": "Настройки просмотра"
+  },
+  "sectionPlayerControls": {
+    "message": "Управление плеером"
+  },
+  "showSpeedBtn": {
+    "message": "Переключатель скорости"
+  },
+  "customSpeeds": {
+    "message": "Своя скорость"
+  },
+  "speedAria1": {
+    "message": "Скорость 1"
+  },
+  "speedAria2": {
+    "message": "Скорость 2"
+  },
+  "speedAria3": {
+    "message": "Скорость 3"
+  },
+  "showScreenshotBtn": {
+    "message": "Скриншот видео"
+  },
+  "showMiniFullscreenBtn": {
+    "message": "Широкий экран Max"
+  },
+  "miniFullscreenFill": {
+    "message": "Заполнить экран (масштаб)"
+  },
+  "stickyPlayer": {
+    "message": "Закрепленный плеер"
+  },
+  "stickyHideScrollbars": {
+    "message": "Скрыть полосы прокрутки"
+  },
+  "sectionCommentsSidebar": {
+    "message": "Комментарии и боковая панель"
+  },
+  "showCommentScreenshotBtn": {
+    "message": "Скриншот комментариев"
+  },
+  "showRefreshCommentsBtn": {
+    "message": "Обновить комментарии"
+  },
+  "dockCommentsSidebar": {
+    "message": "Закрепить комментарии сбоку"
+  },
+  "dockCommentsHideScrollbar": {
+    "message": "Скрыть полосу прокрутки"
+  },
+  "hideComments": {
+    "message": "Скрыть блок комментариев"
+  },
+  "hideRecommended": {
+    "message": "Скрыть рекомендуемые видео"
+  },
+  "sectionHeaderStats": {
+    "message": "Верхняя панель и статистика"
+  },
+  "hideButtonsStats": {
+    "message": "Скрыть просмотры и лайки"
+  },
+  "hideHeader": {
+    "message": "Скрыть верхнюю панель"
+  },
+  "sectionVisualStyling": {
+    "message": "Внешний вид и стиль"
+  },
+  "grayscaleMode": {
+    "message": "Черно-белый режим"
+  },
+  "hideAmbientMode": {
+    "message": "Отключить фоновую подсветку"
+  },
+  "blurThumbnails": {
+    "message": "Размывать превью видео"
+  },
+  "unblurOnHover": {
+    "message": "Четко при наведении курсора"
+  },
+  "sectionScrollbars": {
+    "message": "Полосы прокрутки и чистый вид"
+  },
+  "hideScrollbars": {
+    "message": "Скрыть полосы прокрутки"
+  },
+  "scrollbarsFeeds": {
+    "message": "Главная лента и страницы"
+  },
+  "scrollbarsSidebar": {
+    "message": "Левое боковое меню"
+  },
+  "scrollbarsWatch": {
+    "message": "Обычная страница просмотра"
+  },
+  "scrollbarsPanels": {
+    "message": "Чат и плейлисты"
+  },
+  "rateUs": {
+    "message": "Оценить 5★"
+  },
+  "feedback": {
+    "message": "Отзыв 💬"
+  },
+  "reviewMessage": {
+    "message": "Если YouTube Control помог вам, короткий отзыв в Chrome Web Store очень поможет развитию расширения. Это займет всего 10 секунд."
+  },
+  "reviewLeaveBtn": {
+    "message": "Оставить отзыв"
+  },
+  "reviewLaterBtn": {
+    "message": "Может позже"
+  },
+  "reviewDismissBtn": {
+    "message": "Больше не напоминать"
+  }
+}

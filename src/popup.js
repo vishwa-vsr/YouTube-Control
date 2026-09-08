@@ -3,8 +3,12 @@ import {
   SUB_TOGGLE_RELATIONS,
   getDefaultSettings
 } from './modules/settings-schema.js';
+import { initI18n } from './modules/i18n.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize internationalization across popup elements
+  initI18n();
+
   // Track all checkboxes
   const checkboxes = {};
   CONFIG_KEYS.forEach(key => {

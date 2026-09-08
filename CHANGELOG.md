@@ -2,6 +2,14 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.1.5.7] - 2026-09-08
+
+### Added
+- **8 Global Languages**: The extension now automatically speaks your language! Added full support for English, Japanese, Spanish, German, French, Korean, Brazilian Portuguese, and Russian using official YouTube terms.
+- **Roomier Popup Menu**: Widened the popup layout so words in every language fit comfortably without squishing switches or buttons.
+
+---
+
 ## [1.1.5.6] - 2026-09-04
 
 ### Fixed
