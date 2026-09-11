@@ -202,5 +202,20 @@
   },
   "reviewDismissBtn": {
     "message": "Больше не напоминать"
+  },
+  "trackScrollDistance": {
+    "message": "Трекер дистанции прокрутки"
+  },
+  "distanceToday": {
+    "message": "Сегодня:"
+  },
+  "distanceAllTime": {
+    "message": "Всего:"
+  },
+  "distancePaused": {
+    "message": "(Пауза)"
+  },
+  "scrolledToday": {
+    "message": "прокручено сегодня"
   }
 }

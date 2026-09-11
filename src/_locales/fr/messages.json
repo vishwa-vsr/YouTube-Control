@@ -202,5 +202,20 @@
   },
   "reviewDismissBtn": {
     "message": "Ne plus afficher"
+  },
+  "trackScrollDistance": {
+    "message": "Suivi de Distance Défilée"
+  },
+  "distanceToday": {
+    "message": "Aujourd'hui :"
+  },
+  "distanceAllTime": {
+    "message": "Total :"
+  },
+  "distancePaused": {
+    "message": "(En pause)"
+  },
+  "scrolledToday": {
+    "message": "parcourus aujourd'hui"
   }
 }

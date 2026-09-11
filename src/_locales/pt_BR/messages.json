@@ -202,5 +202,20 @@
   },
   "reviewDismissBtn": {
     "message": "Não perguntar novamente"
+  },
+  "trackScrollDistance": {
+    "message": "Rastreador de distância de rolagem"
+  },
+  "distanceToday": {
+    "message": "Hoje:"
+  },
+  "distanceAllTime": {
+    "message": "Total:"
+  },
+  "distancePaused": {
+    "message": "(Pausado)"
+  },
+  "scrolledToday": {
+    "message": "rolados hoje"
   }
 }

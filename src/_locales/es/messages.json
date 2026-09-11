@@ -202,5 +202,20 @@
   },
   "reviewDismissBtn": {
     "message": "No volver a mostrar"
+  },
+  "trackScrollDistance": {
+    "message": "Rastreador de distancia de desplazamiento"
+  },
+  "distanceToday": {
+    "message": "Hoy:"
+  },
+  "distanceAllTime": {
+    "message": "Total:"
+  },
+  "distancePaused": {
+    "message": "(Pausado)"
+  },
+  "scrolledToday": {
+    "message": "desplazados hoy"
   }
 }

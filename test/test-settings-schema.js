@@ -17,7 +17,7 @@ async function runTests() {
   assert.strictEqual(typeof schema.resolveActiveClasses, 'function', 'resolveActiveClasses must be a function');
 
   // 2. Verify key count
-  assert.strictEqual(schema.CONFIG_KEYS.length, 42, 'CONFIG_KEYS must contain exactly 42 configuration keys');
+  assert.strictEqual(schema.CONFIG_KEYS.length, 43, 'CONFIG_KEYS must contain exactly 43 configuration keys');
   assert.strictEqual(schema.DEFAULT_TRUE_KEYS.length, 26, 'DEFAULT_TRUE_KEYS must contain exactly 26 keys');
 
   // Guardrail 5: Sub-Toggle Default Consistency (defaultTrueKeys)

@@ -25,6 +25,12 @@ import {
   getDefaultSettings
 } from './modules/settings-schema.js';
 
+import {
+  initScrollTracker,
+  updateScrollTrackerSettings,
+  rebindScrollTargets
+} from './modules/scroll-tracker.js';
+
 const isTopWindow = (window === window.top);
 const isLiveChatFrame = !isTopWindow && (
   window.location.pathname.includes('/live_chat') || 
@@ -150,6 +156,9 @@ function runContentScript() {
         }
       }
       
+      if (isTopWindow) {
+        updateScrollTrackerSettings({ trackScrollDistance: false });
+      }
       checkShortsTab();
       return;
     }
@@ -164,6 +173,8 @@ function runContentScript() {
     if (!isTopWindow) {
       return;
     }
+
+    updateScrollTrackerSettings(settings);
 
     // Handle Custom Home Feed Grid
     if (settings.customGridEnabled === true) {
@@ -979,6 +990,7 @@ function runContentScript() {
         
         updateSidebarState();
         hideSidebarElements();
+        rebindScrollTargets();
       } else {
         cleanupCustomGrid();
       }
@@ -996,6 +1008,9 @@ function runContentScript() {
     chrome.storage.local.get(null, (settings) => {
       cachedSettings = getDefaultSettings(settings || {});
       initSpeedController(cachedSettings);
+      if (isTopWindow) {
+        initScrollTracker(cachedSettings);
+      }
       applySettings(cachedSettings);
     });
   } catch (err) {}
@@ -1027,6 +1042,9 @@ function runContentScript() {
     onNavigateFinish: () => {
       applySettings(cachedSettings);
       enforcePersistedPlaybackRate();
+      if (isTopWindow) {
+        rebindScrollTargets();
+      }
     },
     onPageUpdate: () => {
       applySettings(cachedSettings);

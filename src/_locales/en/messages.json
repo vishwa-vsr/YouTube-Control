@@ -202,5 +202,20 @@
   },
   "reviewDismissBtn": {
     "message": "Don't Ask Again"
+  },
+  "trackScrollDistance": {
+    "message": "Scroll Distance Tracker"
+  },
+  "distanceToday": {
+    "message": "Today:"
+  },
+  "distanceAllTime": {
+    "message": "All-Time:"
+  },
+  "distancePaused": {
+    "message": "(Paused)"
+  },
+  "scrolledToday": {
+    "message": "scrolled today"
   }
 }

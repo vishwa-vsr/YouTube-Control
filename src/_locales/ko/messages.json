@@ -202,5 +202,20 @@
   },
   "reviewDismissBtn": {
     "message": "다시 보지 않기"
+  },
+  "trackScrollDistance": {
+    "message": "스크롤 거리 트래커"
+  },
+  "distanceToday": {
+    "message": "오늘:"
+  },
+  "distanceAllTime": {
+    "message": "전체:"
+  },
+  "distancePaused": {
+    "message": "(일시 중지됨)"
+  },
+  "scrolledToday": {
+    "message": "오늘 스크롤함"
   }
 }

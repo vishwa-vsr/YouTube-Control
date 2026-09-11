@@ -312,6 +312,55 @@ body {
   border-bottom: none;
 }
 
+/* Explored Distance Tracker Stats Row */
+.distance-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0 5px 0;
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-muted);
+  transition: opacity 0.2s ease;
+}
+
+.distance-stats-row.paused {
+  opacity: 0.55;
+}
+
+.distance-stat-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.distance-label {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.distance-value {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.distance-stat-divider {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 10px;
+}
+
+.distance-paused-badge {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 1px 5px;
+  margin-left: 2px;
+}
+
 /* Grid Pill Selector Styling */
 .grid-pill-selector {
   display: flex;

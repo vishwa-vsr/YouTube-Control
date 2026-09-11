@@ -74,9 +74,9 @@ for (const k of allHtmlKeys) {
   );
 }
 
-// Ensure every key in messages.json is actively used (manifest.json or popup.html)
-const manifestKeys = new Set(['appName', 'appDesc']);
-const unreferencedKeys = enKeys.filter(k => !manifestKeys.has(k) && !allHtmlKeys.has(k));
+// Ensure every key in messages.json is actively used (manifest.json, popup.html, or content scripts)
+const nonHtmlKeys = new Set(['appName', 'appDesc', 'scrolledToday']);
+const unreferencedKeys = enKeys.filter(k => !nonHtmlKeys.has(k) && !allHtmlKeys.has(k));
 assert.strictEqual(
   unreferencedKeys.length,
   0,

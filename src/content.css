@@ -1244,6 +1244,26 @@ html.yt-custom-grid-active ytd-browse[page-subtype="subscriptions"] ytd-rich-gri
   max-width: 100% !important;
 }
 
+/* ==========================================================================
+   Explored Distance Tracker - Top Header Text Overlay
+   ========================================================================== */
+.yt-control-distance-header {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 14px;
+  font-family: Roboto, "Arial", sans-serif;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  font-weight: 400;
+  color: var(--yt-spec-text-primary, #f1f1f1);
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+  align-self: center;
+}
 
-
-
+@media (max-width: 900px) {
+  .yt-control-distance-header {
+    display: none !important;
+  }
+}

@@ -202,5 +202,20 @@
   },
   "reviewDismissBtn": {
     "message": "今後表示しない"
+  },
+  "trackScrollDistance": {
+    "message": "スクロール距離トラッカー"
+  },
+  "distanceToday": {
+    "message": "今日:"
+  },
+  "distanceAllTime": {
+    "message": "通算:"
+  },
+  "distancePaused": {
+    "message": "(一時停止)"
+  },
+  "scrolledToday": {
+    "message": "今日スクロール"
   }
 }

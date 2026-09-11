@@ -46,7 +46,8 @@ export const CONFIG_KEYS = [
   'hideScrollbarsFeeds',
   'hideScrollbarsSidebar',
   'hideScrollbarsWatch',
-  'hideScrollbarsPanels'
+  'hideScrollbarsPanels',
+  'trackScrollDistance'
 ];
 
 export const DEFAULT_TRUE_KEYS = [

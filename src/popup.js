@@ -4,6 +4,10 @@ import {
   getDefaultSettings
 } from './modules/settings-schema.js';
 import { initI18n } from './modules/i18n.js';
+import {
+  formatDistance,
+  getDistanceStats
+} from './modules/scroll-tracker.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize internationalization across popup elements
@@ -229,10 +233,54 @@ document.addEventListener('DOMContentLoaded', () => {
         // Save to storage
         chrome.storage.local.set(updateData, () => {
           sendCurrentSettingsToActiveTab();
+          if (key === 'trackScrollDistance') {
+            refreshDistanceStats();
+          }
         });
       });
     }
   });
+
+  // ── Explored Distance Tracker Popup Display ──
+  const distanceTodayValEl = document.getElementById('distanceTodayValue');
+  const distanceAllTimeValEl = document.getElementById('distanceAllTimeValue');
+  const distanceStatsRowEl = document.getElementById('distanceStatsRow');
+  const distancePausedBadgeEl = document.getElementById('distancePausedBadge');
+
+  function updateDistanceDisplay(metersToday = 0, metersAllTime = 0, isEnabled = false) {
+    if (distanceTodayValEl) {
+      distanceTodayValEl.textContent = formatDistance(metersToday);
+    }
+    if (distanceAllTimeValEl) {
+      distanceAllTimeValEl.textContent = formatDistance(metersAllTime);
+    }
+    if (distanceStatsRowEl) {
+      if (isEnabled) {
+        distanceStatsRowEl.classList.remove('paused');
+      } else {
+        distanceStatsRowEl.classList.add('paused');
+      }
+    }
+    if (distancePausedBadgeEl) {
+      distancePausedBadgeEl.style.display = isEnabled ? 'none' : 'inline-block';
+    }
+  }
+
+  function refreshDistanceStats() {
+    getDistanceStats(({ todayMeters, allTimeMeters, isEnabled }) => {
+      updateDistanceDisplay(todayMeters, allTimeMeters, isEnabled);
+    });
+  }
+
+  refreshDistanceStats();
+
+  if (chrome.storage && chrome.storage.onChanged) {
+    chrome.storage.onChanged.addListener((changes, area) => {
+      if (area === 'local' && (changes.scrollMetersToday || changes.scrollMetersAllTime || changes.trackScrollDistance || changes.scrollDate)) {
+        refreshDistanceStats();
+      }
+    });
+  }
 
   // Tab switching logic
   const tabButtons = document.querySelectorAll('.tab-btn');

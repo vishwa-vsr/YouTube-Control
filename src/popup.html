@@ -53,6 +53,31 @@
           </div>
         </div>
 
+        <!-- Card: Scroll Distance Tracker -->
+        <div class="option-card" id="card-scroll-distance">
+          <div class="switch-row">
+            <div class="switch-info">
+              <span class="switch-label" data-i18n="trackScrollDistance">Scroll Distance Tracker</span>
+            </div>
+            <label class="toggle-control">
+              <input type="checkbox" id="trackScrollDistance">
+              <span class="control-slider"></span>
+            </label>
+          </div>
+          <div class="distance-stats-row" id="distanceStatsRow">
+            <span class="distance-stat-item">
+              <span class="distance-label" data-i18n="distanceToday">Today:</span>
+              <span class="distance-value" id="distanceTodayValue">0m</span>
+            </span>
+            <span class="distance-stat-divider">•</span>
+            <span class="distance-stat-item">
+              <span class="distance-label" data-i18n="distanceAllTime">All-Time:</span>
+              <span class="distance-value" id="distanceAllTimeValue">0m</span>
+            </span>
+            <span class="distance-paused-badge" id="distancePausedBadge" data-i18n="distancePaused">(Paused)</span>
+          </div>
+        </div>
+
         <!-- Card 2: Hide Category Bar -->
         <div class="option-card">
           <div class="switch-row">
