@@ -173,7 +173,16 @@ export function updateHeaderOverlay(meters = (currentTodayMeters + pendingDeltaM
     logoRenderer.insertAdjacentElement('afterend', el);
   }
 
-  el.textContent = formatHeaderText(meters);
+  const dist = formatDistance(meters);
+  const suffix = getScrolledTodaySuffix();
+  const numSpan = el.querySelector('.yt-control-distance-num');
+  const suffixSpan = el.querySelector('.yt-control-distance-suffix');
+  if (numSpan && suffixSpan) {
+    if (numSpan.textContent !== dist) numSpan.textContent = dist;
+    if (suffixSpan.textContent !== ` ${suffix}`) suffixSpan.textContent = ` ${suffix}`;
+  } else {
+    el.innerHTML = `<span class="yt-control-distance-num">${dist}</span><span class="yt-control-distance-suffix"> ${suffix}</span>`;
+  }
 }
 
 export function requestHeaderUpdate() {

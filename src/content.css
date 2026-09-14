@@ -1245,12 +1245,20 @@ html.yt-custom-grid-active ytd-browse[page-subtype="subscriptions"] ytd-rich-gri
 }
 
 /* ==========================================================================
-   Explored Distance Tracker - Top Header Text Overlay
+   Scroll Distance Tracker - Top Header Text Overlay
    ========================================================================== */
+#start.ytd-masthead {
+  position: relative !important;
+}
+
 .yt-control-distance-header {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 14px;
   display: inline-flex;
   align-items: center;
-  margin-left: 14px;
   font-family: Roboto, "Arial", sans-serif;
   font-size: 1.4rem;
   line-height: 2rem;
@@ -1259,10 +1267,20 @@ html.yt-custom-grid-active ytd-browse[page-subtype="subscriptions"] ytd-rich-gri
   user-select: none;
   pointer-events: none;
   white-space: nowrap;
-  align-self: center;
+  z-index: 10;
 }
 
-@media (max-width: 900px) {
+.yt-control-distance-header .yt-control-distance-suffix {
+  white-space: pre;
+}
+
+@media (max-width: 1380px) {
+  .yt-control-distance-header .yt-control-distance-suffix {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1200px) {
   .yt-control-distance-header {
     display: none !important;
   }
