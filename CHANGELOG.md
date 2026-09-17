@@ -2,6 +2,13 @@
 
 All notable changes to the **YouTube Control: Shorts Blocker & Detox** extension will be documented in this file.
 
+## [1.1.5.8] - 2026-09-17
+
+### Added
+- **Built-in Offline Fonts**: Fonts are now stored directly inside the app so the menu opens faster and works without internet.
+
+---
+
 ## [1.1.5.7] - 2026-09-14
 
 ### Added
